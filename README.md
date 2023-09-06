@@ -9,6 +9,31 @@ Ask Manager is an easy way of complying with the GDPR regarding cookie consent. 
 
 * [Stencil](https://stenciljs.com/)
 
+## Development
+
+To get a local copy up and running follow these steps.
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+* Node
+* npm
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/arvidsandin/ask-manager.git && cd ask-manager
+   ```
+1. Install npm packages
+   ```sh
+   npm install
+   ```
+3. Start local development server
+   ```sh
+   npm start
+   ```
+
 
 ## License
 
