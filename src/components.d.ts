@@ -6,56 +6,40 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface AskManager {
         /**
-          * The first name
+          * Has the user accepted cookies
          */
-        "first": string;
-        /**
-          * The last name
-         */
-        "last": string;
-        /**
-          * The middle name
-         */
-        "middle": string;
+        "hasAccepted": boolean;
     }
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLAskManagerElement extends Components.AskManager, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLAskManagerElement: {
+        prototype: HTMLAskManagerElement;
+        new (): HTMLAskManagerElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "ask-manager": HTMLAskManagerElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface AskManager {
         /**
-          * The first name
+          * Has the user accepted cookies
          */
-        "first"?: string;
-        /**
-          * The last name
-         */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
+        "hasAccepted"?: boolean;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "ask-manager": AskManager;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "ask-manager": LocalJSX.AskManager & JSXBase.HTMLAttributes<HTMLAskManagerElement>;
         }
     }
 }
