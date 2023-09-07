@@ -1,0 +1,9 @@
+{
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    },
+    "extends": [
+        "plugin:@stencil-community/recommended",
+        "prettier"
+    ]
+}
