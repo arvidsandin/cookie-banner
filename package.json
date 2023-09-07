@@ -24,14 +24,18 @@
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@stencil/core": "^4.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.11",
+    "husky": "^8.0.3",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "puppeteer": "^21.0.3"
