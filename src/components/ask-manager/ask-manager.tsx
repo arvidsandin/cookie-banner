@@ -9,7 +9,7 @@ export class AskManager {
   /**
    * Has the user accepted cookies
    */
-  @Prop() hasAccepted: boolean;
+  @Prop() hasAccepted: boolean = false;
 
   render() {
     return (
