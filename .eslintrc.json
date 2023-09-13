@@ -5,5 +5,8 @@
     "extends": [
         "plugin:@stencil-community/recommended",
         "prettier"
+    ],
+    "plugins": [
+        "html"
     ]
 }
