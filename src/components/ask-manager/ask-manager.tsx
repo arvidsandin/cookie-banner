@@ -43,7 +43,7 @@ export class AskManager {
 
   render() {
     return (
-      <div class="dimmable-background">
+      <div class="dimmable-backdrop">
         <div class="consent-box">
           <p class="info-text">
             This website uses cookies for functional, analytical and marketing purposes. Read more in our <a href="https://example.com">privacy policy</a> You can manage your
