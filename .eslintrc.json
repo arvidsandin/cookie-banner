@@ -8,5 +8,8 @@
     ],
     "plugins": [
         "html"
-    ]
+    ],
+    "rules": {
+        "@stencil-community/strict-boolean-conditions": 0
+    }
 }
