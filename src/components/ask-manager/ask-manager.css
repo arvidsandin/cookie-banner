@@ -13,7 +13,7 @@
   height: 100%;
 }
 
-.consent-box {
+.consent-box, .options-box {
   display: flex;
   position: absolute;
   bottom: 15px;
