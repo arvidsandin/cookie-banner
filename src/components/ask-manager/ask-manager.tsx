@@ -18,9 +18,11 @@ export class AskManager {
    */
   @Prop() cookiePolicyLastUpdated!: string;
 
+  @Prop() storageName: string = 'cookie-consent';
+
   @State() isInOptionsView: boolean = false;
   optionsCheckboxes = [];
-  cookieConsent = JSON.parse(localStorage.getItem('cookie-consent')) || {
+  cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
     lastAccepted: null,
     acceptedCategories: [],
   };
@@ -30,7 +32,7 @@ export class AskManager {
       lastAccepted: new Date(),
       acceptedCategories: categories,
     };
-    localStorage.setItem(`cookie-consent`, JSON.stringify(this.cookieConsent));
+    localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
   }
 
   showOptions = () => {

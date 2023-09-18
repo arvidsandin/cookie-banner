@@ -15,6 +15,7 @@ export namespace Components {
           * last time the privacy policy or which cookies that are used by the website was updated used to know if updated consent is needed can be any string that can be read by Date()
          */
         "cookiePolicyLastUpdated": string;
+        "storageName": string;
     }
 }
 declare global {
@@ -38,6 +39,7 @@ declare namespace LocalJSX {
           * last time the privacy policy or which cookies that are used by the website was updated used to know if updated consent is needed can be any string that can be read by Date()
          */
         "cookiePolicyLastUpdated": string;
+        "storageName"?: string;
     }
     interface IntrinsicElements {
         "ask-manager": AskManager;
