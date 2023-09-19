@@ -21,7 +21,9 @@ export class AskManager {
   @Prop() storageName: string = 'cookie-consent';
 
   @State() isInOptionsView: boolean = false;
-  optionsCheckboxes = [];
+
+  categoryCheckboxes = [];
+
   cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
     lastAccepted: null,
     acceptedCategories: [],
@@ -49,7 +51,7 @@ export class AskManager {
   };
   acceptSelectedCookies = () => {
     let selectedCategories = [];
-    for (const option of this.optionsCheckboxes) {
+    for (const option of this.categoryCheckboxes) {
       if (option.checked) {
         selectedCategories.push(option.value);
       }
@@ -71,7 +73,7 @@ export class AskManager {
                   value={category}
                   checked={this.cookieConsent.acceptedCategories.includes(category)}
                   ref={element => {
-                    this.optionsCheckboxes[this.categories.indexOf(category)] = element;
+                    this.categoryCheckboxes[this.categories.indexOf(category)] = element;
                   }}
                 ></input>
                 <p>{category}</p>
