@@ -104,8 +104,8 @@ export class AskManager {
               choices at any time.
             </p>
             <button onClick={this.showOptions}>More options</button>
-            <button onClick={this.acceptAllCookies}>Reject non-essential</button>
-            <button onClick={this.rejectAllCookies}>Accept all</button>
+            <button onClick={this.rejectAllCookies}>Reject non-essential</button>
+            <button onClick={this.acceptAllCookies}>Accept all</button>
           </div>
         )}
       </div>
