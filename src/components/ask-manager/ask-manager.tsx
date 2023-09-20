@@ -9,7 +9,7 @@ export class AskManager {
   /**
    * list of categories of the cookies
    */
-  categories: string[] = [];
+  private categories: string[] = [];
 
   /**
    * last time the privacy policy or which cookies that are used by the website was updated
@@ -42,14 +42,14 @@ export class AskManager {
 
   @State() isInOptionsView: boolean = false;
 
-  categoryCheckboxes = [];
+  private categoryCheckboxes = [];
 
-  cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+  private cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
     lastAccepted: null,
     acceptedCategories: [],
   };
 
-  acceptCategories(categories: string[]) {
+  private acceptCategories(categories: string[]) {
     this.cookieConsent = {
       lastAccepted: new Date(),
       acceptedCategories: categories,
@@ -57,19 +57,19 @@ export class AskManager {
     localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
   }
 
-  showOptions = () => {
+  private showOptions = () => {
     this.isInOptionsView = true;
   };
-  hideOptions = () => {
+  private hideOptions = () => {
     this.isInOptionsView = false;
   };
-  rejectAllCookies = () => {
+  private rejectAllCookies = () => {
     this.acceptCategories([]);
   };
-  acceptAllCookies = () => {
+  private acceptAllCookies = () => {
     this.acceptCategories(this.categories);
   };
-  acceptSelectedCookies = () => {
+  private acceptSelectedCookies = () => {
     const selectedCategories = this.categoryCheckboxes.filter(option => option.checked).map(option => option.value);
     this.acceptCategories(selectedCategories);
     this.isInOptionsView = false;
