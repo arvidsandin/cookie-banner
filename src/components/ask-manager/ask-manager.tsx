@@ -9,14 +9,14 @@ export class AskManager {
   /**
    * list of categories of the cookies
    */
-  categories: string[];
+  categories: string[] = [];
 
   /**
    * last time the privacy policy or which cookies that are used by the website was updated
    * used to know if updated consent is needed
    * can be any string that can be read by Date()
    */
-  private cookiePolicyLastUpdated: string;
+  private cookiePolicyLastUpdated: string = null;
 
   /**
    * key to use when storing the consent in localStorage
