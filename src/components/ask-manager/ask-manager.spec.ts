@@ -6,6 +6,5 @@ describe('ask-manager', () => {
   it('sets defautlvalues', async () => {
     const theAskManager = new AskManager();
     expect(theAskManager.isInOptionsView).toBeFalsy();
-    expect(theAskManager.storageName).toBe('cookie-consent');
   });
 });

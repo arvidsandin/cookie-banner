@@ -1,4 +1,4 @@
-import { Component, Method, Prop, State, h } from '@stencil/core';
+import { Component, Method, State, h } from '@stencil/core';
 
 @Component({
   tag: 'ask-manager',
@@ -21,16 +21,18 @@ export class AskManager {
   /**
    * key to use when storing the consent in localStorage
    */
-  @Prop() storageName: string = 'cookie-consent';
+  private storageName: string = null;
 
   private readonly defaultOptions = {
     categories: [],
     cookiePolicyLastUpdated: null,
+    storageName: 'cookie-consent',
   };
 
   @Method()
   async setOptions(userOptions) {
     const options = { ...this.defaultOptions, ...userOptions };
+    this.storageName = options.storageName;
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
 
@@ -38,13 +40,17 @@ export class AskManager {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
       this.cookiePolicyLastUpdated = new Date().toISOString();
     }
+    this.cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+      lastAccepted: null,
+      acceptedCategories: [],
+    };
   }
 
   @State() isInOptionsView: boolean = false;
 
   private categoryCheckboxes = [];
 
-  private cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+  private cookieConsent = {
     lastAccepted: null,
     acceptedCategories: [],
   };
