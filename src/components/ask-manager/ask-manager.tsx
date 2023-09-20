@@ -70,12 +70,7 @@ export class AskManager {
     this.acceptCategories(this.categories);
   };
   acceptSelectedCookies = () => {
-    let selectedCategories = [];
-    for (const option of this.categoryCheckboxes) {
-      if (option.checked) {
-        selectedCategories.push(option.value);
-      }
-    }
+    const selectedCategories = this.categoryCheckboxes.filter(option => option.checked).map(option => option.value);
     this.acceptCategories(selectedCategories);
     this.isInOptionsView = false;
   };
