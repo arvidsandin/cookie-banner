@@ -52,11 +52,11 @@ export class AskManager {
     const options = { ...this.defaultOptions, ...userOptions };
 
     //check for empty string or only whitespace string
-    if (!options.linkToPrivacyPolicy.trim()) {
+    if (!options.linkToPrivacyPolicy || !options.linkToPrivacyPolicy.trim()) {
       throw new Error('No linkToPrivacyPolicy provided');
     }
-    if (!options.linkText.trim()) {
-      throw new Error('No linkText provided');
+    if (!options.linkText || !options.linkText.trim()) {
+      throw new Error('Empty linkText provided');
     }
     this.storageName = options.storageName;
     this.categories = options.categories;
@@ -101,11 +101,6 @@ export class AskManager {
     this.isInOptionsView = true;
   };
   private hideOptions = () => {
-    this.isInOptionsView = false;
-  };
-  acceptSelectedCookies = () => {
-    const selectedCategories = this.categoryCheckboxes.filter(option => option.checked).map(option => option.value);
-    this.acceptCategories(selectedCategories);
     this.isInOptionsView = false;
   };
 
