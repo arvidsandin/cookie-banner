@@ -97,12 +97,6 @@ export class AskManager {
   hideOptions = () => {
     this.isInOptionsView = false;
   };
-  rejectAllCookies = () => {
-    this.acceptCategories([]);
-  };
-  acceptAllCookies = () => {
-    this.acceptCategories(this.categories);
-  };
   acceptSelectedCookies = () => {
     let selectedCategories = [];
     for (const option of this.categoryCheckboxes) {
@@ -118,41 +112,26 @@ export class AskManager {
     return (
       <div class="dimmable-backdrop">
         {this.isInOptionsView ? (
-          <div class="options-box">
-            {this.categories.map(category => (
-              <div key={category}>
-                <input
-                  type="checkbox"
-                  class="checkbox"
-                  value={category}
-                  checked={this.cookieConsent.acceptedCategories.includes(category)}
-                  ref={element => {
-                    this.categoryCheckboxes[this.categories.indexOf(category)] = element;
-                  }}
-                ></input>
-                <p>{category}</p>
-              </div>
-            ))}
-            <button onClick={this.hideOptions}>{this.backText}</button>
-            <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
-          </div>
+          <more-options-banner
+            categories={this.categories}
+            backText={this.backText}
+            confirmText={this.confirmText}
+            acceptedCategories={this.cookieConsent.acceptedCategories}
+            acceptCategories={c => this.acceptCategories(c)}
+            hideOptions={() => this.hideOptions()}
+          ></more-options-banner>
         ) : (
-          <div class="consent-box">
-            {this.mainTextContent.includes(this.stringTokenForLink) ? (
-              <p class="info-text">
-                {this.mainTextContent.split(this.stringTokenForLink)[0]}
-                <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-                {this.mainTextContent.split(this.stringTokenForLink)[1]}
-              </p>
-            ) : (
-              <p class="info-text">
-                {this.mainTextContent} <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-              </p>
-            )}
-            <button onClick={this.showOptions}>{this.moreOptionsText}</button>
-            <button onClick={this.acceptAllCookies}>{this.rejectText}</button>
-            <button onClick={this.rejectAllCookies}>{this.acceptText}</button>
-          </div>
+          <primary-banner
+            categories={this.categories}
+            mainTextContent={this.mainTextContent}
+            linkText={this.linkText}
+            linkToPrivacyPolicy={this.linkToPrivacyPolicy}
+            acceptText={this.acceptText}
+            rejectText={this.rejectText}
+            moreOptionsText={this.moreOptionsText}
+            acceptCategories={c => this.acceptCategories(c)}
+            showOptions={() => this.showOptions()}
+          ></primary-banner>
         )}
       </div>
     );
