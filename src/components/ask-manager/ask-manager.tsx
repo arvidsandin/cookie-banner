@@ -17,6 +17,16 @@ export class AskManager {
    * can be any string that can be read by Date()
    */
   private cookiePolicyLastUpdated: string = null;
+  private readonly stringTokenForLink = '{Link}';
+
+  @State() mainTextContent: string = `Options have not been set - this cookie banner is non-functional. View the ${this.stringTokenForLink} for required options`;
+  @State() linkText: string = 'documentation';
+  @State() linkToPrivacyPolicy: string = 'https://github.com/arvidsandin/ask-manager#readme';
+  @State() acceptText: string = null;
+  @State() rejectText: string = null;
+  @State() moreOptionsText: string = null;
+  @State() backText: string = null;
+  @State() confirmText: string = null;
 
   /**
    * key to use when storing the consent in localStorage
@@ -26,13 +36,37 @@ export class AskManager {
   private readonly defaultOptions = {
     categories: [],
     cookiePolicyLastUpdated: null,
+    mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
+    linkText: 'privacy policy',
+    linkToPrivacyPolicy: null,
+    acceptText: 'Accept all',
+    rejectText: 'Reject non-essential',
+    moreOptionsText: 'More options',
+    backText: 'Back',
+    confirmText: 'Confirm selection',
   };
 
   @Method()
   async setOptions(userOptions) {
     const options = { ...this.defaultOptions, ...userOptions };
+
+    //check for empty string or only whitespace string
+    if (!options.linkToPrivacyPolicy.trim()) {
+      throw new Error('No linkToPrivacyPolicy provided');
+    }
+    if (!options.linkText.trim()) {
+      throw new Error('No linkText provided');
+    }
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
+    this.mainTextContent = options.mainTextContent;
+    this.linkText = options.linkText;
+    this.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
+    this.acceptText = options.acceptText;
+    this.rejectText = options.rejectText;
+    this.moreOptionsText = options.moreOptionsText;
+    this.backText = options.backText;
+    this.confirmText = options.confirmText;
 
     if (this.cookiePolicyLastUpdated == null) {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
@@ -99,18 +133,25 @@ export class AskManager {
                 <p>{category}</p>
               </div>
             ))}
-            <button onClick={this.hideOptions}>Back</button>
-            <button onClick={this.acceptSelectedCookies}>Confirm selection</button>
+            <button onClick={this.hideOptions}>{this.backText}</button>
+            <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
           </div>
         ) : (
           <div class="consent-box">
-            <p class="info-text">
-              This website uses cookies for functional, analytical and marketing purposes. Read more in our <a href="https://example.com">privacy policy</a> You can manage your
-              choices at any time.
-            </p>
-            <button onClick={this.showOptions}>More options</button>
-            <button onClick={this.acceptAllCookies}>Reject non-essential</button>
-            <button onClick={this.rejectAllCookies}>Accept all</button>
+            {this.mainTextContent.includes(this.stringTokenForLink) ? (
+              <p class="info-text">
+                {this.mainTextContent.split(this.stringTokenForLink)[0]}
+                <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
+                {this.mainTextContent.split(this.stringTokenForLink)[1]}
+              </p>
+            ) : (
+              <p class="info-text">
+                {this.mainTextContent} <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
+              </p>
+            )}
+            <button onClick={this.showOptions}>{this.moreOptionsText}</button>
+            <button onClick={this.acceptAllCookies}>{this.rejectText}</button>
+            <button onClick={this.rejectAllCookies}>{this.acceptText}</button>
           </div>
         )}
       </div>
