@@ -1,6 +1,8 @@
 import { AskManager } from './ask-manager';
 
-describe('my-component', () => {
+jest.useFakeTimers();
+
+describe('ask-manager', () => {
   it('initializes with correct default values', async () => {
     const theAskManager = new AskManager();
 
@@ -8,28 +10,23 @@ describe('my-component', () => {
     expect(theAskManager.cookieConsent).toEqual({ lastAccepted: null, acceptedCategories: [] });
   });
 
-  //short sleep to ensure different timestamps
-  function sleep() {
-    return new Promise(resolve => setTimeout(resolve, 10));
-  }
-
   it('accept all and reject all changes relevant values', async () => {
     const theAskManager = new AskManager();
-    var timeBefore = new Date();
-    await sleep();
+    let timeBefore = new Date();
+    jest.advanceTimersByTime(10);
     theAskManager.categories = ['functional', 'analytical'];
     theAskManager.acceptAllCookies();
-    await sleep();
-    var timeAfter = new Date();
+    jest.advanceTimersByTime(10);
+    let timeAfter = new Date();
 
     expect(theAskManager.cookieConsent.acceptedCategories).toEqual(['functional', 'analytical']);
     expect(theAskManager.cookieConsent.lastAccepted > timeBefore).toBeTruthy();
     expect(theAskManager.cookieConsent.lastAccepted < timeAfter).toBeTruthy();
 
     timeBefore = new Date();
-    await sleep();
+    jest.advanceTimersByTime(10);
     theAskManager.rejectAllCookies();
-    await sleep();
+    jest.advanceTimersByTime(10);
     timeAfter = new Date();
 
     expect(theAskManager.cookieConsent.acceptedCategories).toEqual([]);

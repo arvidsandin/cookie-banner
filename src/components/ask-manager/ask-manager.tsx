@@ -82,7 +82,7 @@ export class AskManager {
 
   render() {
     return (
-      <div class="dimmable-background">
+      <div class="dimmable-backdrop">
         {this.isInOptionsView ? (
           <div class="options-box">
             {this.categories.map(category => (
