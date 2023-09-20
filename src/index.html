@@ -9,6 +9,14 @@
     <script nomodule src="/build/ask-manager.js"></script>
   </head>
   <body>
-    <ask-manager cookie-policy-last-updated="2023-09-13"></ask-manager>
+    <ask-manager></ask-manager>
   </body>
+  <script>
+    customElements.whenDefined('ask-manager').then(() => {
+      document.querySelector('ask-manager').setOptions({
+        categories: ['functional', 'analytical', 'marketing'],
+        cookiePolicyLastUpdated: '2023-09-13',
+      });
+    });
+  </script>
 </html>

@@ -1,6 +1,7 @@
 {
     "parserOptions": {
-        "project": "./tsconfig.json"
+        "project": "./tsconfig.json",
+        "ecmaVersion": 2017
     },
     "extends": [
         "plugin:@stencil-community/recommended",
@@ -8,5 +9,8 @@
     ],
     "plugins": [
         "html"
-    ]
+    ],
+    "rules": {
+        "@stencil-community/strict-boolean-conditions": 0
+    }
 }

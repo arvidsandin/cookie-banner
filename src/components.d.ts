@@ -7,14 +7,7 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AskManager {
-        /**
-          * list of categories of the cookies
-         */
-        "categories": string[];
-        /**
-          * last time the privacy policy or which cookies that are used by the website was updated used to know if updated consent is needed can be any string that can be read by Date()
-         */
-        "cookiePolicyLastUpdated": string;
+        "setOptions": (userOptions: any) => Promise<void>;
     }
 }
 declare global {
@@ -30,14 +23,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AskManager {
-        /**
-          * list of categories of the cookies
-         */
-        "categories"?: string[];
-        /**
-          * last time the privacy policy or which cookies that are used by the website was updated used to know if updated consent is needed can be any string that can be read by Date()
-         */
-        "cookiePolicyLastUpdated": string;
     }
     interface IntrinsicElements {
         "ask-manager": AskManager;
