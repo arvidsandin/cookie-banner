@@ -1,4 +1,4 @@
-import { Component, Method, Prop, State, h } from '@stencil/core';
+import { Component, Method, State, h } from '@stencil/core';
 
 @Component({
   tag: 'ask-manager',
@@ -9,7 +9,7 @@ export class AskManager {
   /**
    * list of categories of the cookies
    */
-  categories: string[] = [];
+  private categories: string[] = [];
 
   /**
    * last time the privacy policy or which cookies that are used by the website was updated
@@ -31,11 +31,12 @@ export class AskManager {
   /**
    * key to use when storing the consent in localStorage
    */
-  @Prop() storageName: string = 'cookie-consent';
+  private storageName: string = null;
 
   private readonly defaultOptions = {
     categories: [],
     cookiePolicyLastUpdated: null,
+    storageName: 'cookie-consent',
     mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
     linkText: 'privacy policy',
     linkToPrivacyPolicy: null,
@@ -57,6 +58,7 @@ export class AskManager {
     if (!options.linkText.trim()) {
       throw new Error('No linkText provided');
     }
+    this.storageName = options.storageName;
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
     this.mainTextContent = options.mainTextContent;
@@ -72,18 +74,22 @@ export class AskManager {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
       this.cookiePolicyLastUpdated = new Date().toISOString();
     }
+    this.cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+      lastAccepted: null,
+      acceptedCategories: [],
+    };
   }
 
   @State() isInOptionsView: boolean = false;
 
-  categoryCheckboxes = [];
+  private categoryCheckboxes = [];
 
-  cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+  private cookieConsent = {
     lastAccepted: null,
     acceptedCategories: [],
   };
 
-  acceptCategories(categories: string[]) {
+  private acceptCategories(categories: string[]) {
     this.cookieConsent = {
       lastAccepted: new Date(),
       acceptedCategories: categories,
@@ -91,19 +97,14 @@ export class AskManager {
     localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
   }
 
-  showOptions = () => {
+  private showOptions = () => {
     this.isInOptionsView = true;
   };
-  hideOptions = () => {
+  private hideOptions = () => {
     this.isInOptionsView = false;
   };
   acceptSelectedCookies = () => {
-    let selectedCategories = [];
-    for (const option of this.categoryCheckboxes) {
-      if (option.checked) {
-        selectedCategories.push(option.value);
-      }
-    }
+    const selectedCategories = this.categoryCheckboxes.filter(option => option.checked).map(option => option.value);
     this.acceptCategories(selectedCategories);
     this.isInOptionsView = false;
   };

@@ -8,10 +8,6 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AskManager {
         "setOptions": (userOptions: any) => Promise<void>;
-        /**
-          * key to use when storing the consent in localStorage
-         */
-        "storageName": string;
     }
     interface MoreOptionsBanner {
         "acceptCategories": (categories: string[]) => void;
@@ -60,10 +56,6 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AskManager {
-        /**
-          * key to use when storing the consent in localStorage
-         */
-        "storageName"?: string;
     }
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;
