@@ -1,4 +1,5 @@
 import { Component, Host, Method, State, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'ask-manager',
@@ -58,7 +59,7 @@ export class AskManager {
     if (!options.linkText || !options.linkText.trim()) {
       throw new Error('Empty linkText provided');
     }
-    this.storageName = options.storageName;
+    state.storageName = options.storageName;
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
     this.mainTextContent = options.mainTextContent;
@@ -74,29 +75,19 @@ export class AskManager {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
       this.cookiePolicyLastUpdated = new Date().toISOString();
     }
-    this.cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
-      lastAccepted: null,
-      acceptedCategories: [],
-    };
   }
 
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;
   private bannerVisible() {
-    return this.forceBannerVisibility || new Date(this.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
+    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
   }
 
-  @State() cookieConsent = {
-    lastAccepted: null,
-    acceptedCategories: [],
-  };
-
   private acceptCategories(categories: string[]) {
-    this.cookieConsent = {
+    state.cookieConsent = {
       lastAccepted: new Date().toISOString(),
       acceptedCategories: categories,
     };
-    localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
     this.forceBannerVisibility = false;
   }
 
@@ -121,7 +112,7 @@ export class AskManager {
               categories={this.categories}
               backText={this.backText}
               confirmText={this.confirmText}
-              acceptedCategories={this.cookieConsent.acceptedCategories}
+              acceptedCategories={state.cookieConsent.acceptedCategories}
               acceptCategories={c => this.acceptCategories(c)}
               hideOptions={() => this.hideOptions()}
             ></more-options-banner>
