@@ -8,6 +8,7 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface AskManager {
         "setOptions": (userOptions: any) => Promise<void>;
+        "showBanner": () => Promise<void>;
     }
     interface MoreOptionsBanner {
         "acceptCategories": (categories: string[]) => void;

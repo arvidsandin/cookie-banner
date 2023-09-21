@@ -1,4 +1,4 @@
-import { Component, Method, State, h } from '@stencil/core';
+import { Component, Host, Method, State, h } from '@stencil/core';
 
 @Component({
   tag: 'ask-manager',
@@ -81,18 +81,28 @@ export class AskManager {
   }
 
   @State() isInOptionsView: boolean = false;
+  @State() forceBannerVisibility = false;
+  private bannerVisible() {
+    return this.forceBannerVisibility || new Date(this.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
+  }
 
-  private cookieConsent = {
+  @State() cookieConsent = {
     lastAccepted: null,
     acceptedCategories: [],
   };
 
   private acceptCategories(categories: string[]) {
     this.cookieConsent = {
-      lastAccepted: new Date(),
+      lastAccepted: new Date().toISOString(),
       acceptedCategories: categories,
     };
     localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
+    this.forceBannerVisibility = false;
+  }
+
+  @Method()
+  async showBanner() {
+    this.forceBannerVisibility = true;
   }
 
   private showOptions = () => {
@@ -104,31 +114,33 @@ export class AskManager {
 
   render() {
     return (
-      <div class="dimmable-backdrop">
-        {this.isInOptionsView ? (
-          <more-options-banner
-            categories={this.categories}
-            backText={this.backText}
-            confirmText={this.confirmText}
-            acceptedCategories={this.cookieConsent.acceptedCategories}
-            acceptCategories={c => this.acceptCategories(c)}
-            hideOptions={() => this.hideOptions()}
-          ></more-options-banner>
-        ) : (
-          <primary-banner
-            categories={this.categories}
-            mainTextContent={this.mainTextContent}
-            linkText={this.linkText}
-            linkToPrivacyPolicy={this.linkToPrivacyPolicy}
-            acceptText={this.acceptText}
-            rejectText={this.rejectText}
-            moreOptionsText={this.moreOptionsText}
-            stringTokenForLink={this.stringTokenForLink}
-            acceptCategories={c => this.acceptCategories(c)}
-            showOptions={() => this.showOptions()}
-          ></primary-banner>
-        )}
-      </div>
+      <Host style={this.bannerVisible() ? {} : { display: 'none' }}>
+        <div class="dimmable-backdrop">
+          {this.isInOptionsView ? (
+            <more-options-banner
+              categories={this.categories}
+              backText={this.backText}
+              confirmText={this.confirmText}
+              acceptedCategories={this.cookieConsent.acceptedCategories}
+              acceptCategories={c => this.acceptCategories(c)}
+              hideOptions={() => this.hideOptions()}
+            ></more-options-banner>
+          ) : (
+            <primary-banner
+              categories={this.categories}
+              mainTextContent={this.mainTextContent}
+              linkText={this.linkText}
+              linkToPrivacyPolicy={this.linkToPrivacyPolicy}
+              acceptText={this.acceptText}
+              rejectText={this.rejectText}
+              moreOptionsText={this.moreOptionsText}
+              stringTokenForLink={this.stringTokenForLink}
+              acceptCategories={c => this.acceptCategories(c)}
+              showOptions={() => this.showOptions()}
+            ></primary-banner>
+          )}
+        </div>
+      </Host>
     );
   }
 }
