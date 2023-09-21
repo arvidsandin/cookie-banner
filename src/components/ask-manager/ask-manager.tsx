@@ -82,8 +82,6 @@ export class AskManager {
 
   @State() isInOptionsView: boolean = false;
 
-  private categoryCheckboxes = [];
-
   private cookieConsent = {
     lastAccepted: null,
     acceptedCategories: [],
@@ -125,6 +123,7 @@ export class AskManager {
             acceptText={this.acceptText}
             rejectText={this.rejectText}
             moreOptionsText={this.moreOptionsText}
+            stringTokenForLink={this.stringTokenForLink}
             acceptCategories={c => this.acceptCategories(c)}
             showOptions={() => this.showOptions()}
           ></primary-banner>

@@ -5,15 +5,14 @@ import { Component, Prop, h } from '@stencil/core';
   shadow: false,
 })
 export class PrimaryBanner {
-  private readonly stringTokenForLink = '{Link}';
-
-  @Prop() categories;
-  @Prop() mainTextContent: string = `Options have not been set - this cookie banner is non-functional. View the ${this.stringTokenForLink} for required options`;
-  @Prop() linkText: string = 'documentation';
-  @Prop() linkToPrivacyPolicy: string = 'https://github.com/arvidsandin/ask-manager#readme';
-  @Prop() acceptText: string = null;
-  @Prop() rejectText: string = null;
-  @Prop() moreOptionsText: string = null;
+  @Prop() categories: string[];
+  @Prop() mainTextContent: string;
+  @Prop() linkText: string;
+  @Prop() linkToPrivacyPolicy: string;
+  @Prop() acceptText: string;
+  @Prop() rejectText: string;
+  @Prop() moreOptionsText: string;
+  @Prop() stringTokenForLink: string;
 
   @Prop() acceptCategories: (categories: string[]) => void;
   @Prop() showOptions: () => void;

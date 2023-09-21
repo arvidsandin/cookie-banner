@@ -20,13 +20,14 @@ export namespace Components {
     interface PrimaryBanner {
         "acceptCategories": (categories: string[]) => void;
         "acceptText": string;
-        "categories": any;
+        "categories": string[];
         "linkText": string;
         "linkToPrivacyPolicy": string;
         "mainTextContent": string;
         "moreOptionsText": string;
         "rejectText": string;
         "showOptions": () => void;
+        "stringTokenForLink": string;
     }
 }
 declare global {
@@ -68,13 +69,14 @@ declare namespace LocalJSX {
     interface PrimaryBanner {
         "acceptCategories"?: (categories: string[]) => void;
         "acceptText"?: string;
-        "categories"?: any;
+        "categories"?: string[];
         "linkText"?: string;
         "linkToPrivacyPolicy"?: string;
         "mainTextContent"?: string;
         "moreOptionsText"?: string;
         "rejectText"?: string;
         "showOptions"?: () => void;
+        "stringTokenForLink"?: string;
     }
     interface IntrinsicElements {
         "ask-manager": AskManager;
