@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'primary-banner',
@@ -6,12 +7,6 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class PrimaryBanner {
   @Prop() categories: string[];
-  @Prop() mainTextContent: string;
-  @Prop() linkText: string;
-  @Prop() linkToPrivacyPolicy: string;
-  @Prop() acceptText: string;
-  @Prop() rejectText: string;
-  @Prop() moreOptionsText: string;
   @Prop() stringTokenForLink: string;
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -27,20 +22,20 @@ export class PrimaryBanner {
   render() {
     return (
       <div class="consent-box">
-        {this.mainTextContent.includes(this.stringTokenForLink) ? (
+        {state.texts.mainTextContent.includes(this.stringTokenForLink) ? (
           <p class="info-text">
-            {this.mainTextContent.split(this.stringTokenForLink)[0]}
-            <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-            {this.mainTextContent.split(this.stringTokenForLink)[1]}
+            {state.texts.mainTextContent.split(this.stringTokenForLink)[0]}
+            <a href={state.linkToPrivacyPolicy}>{state.texts.linkText}</a>
+            {state.texts.mainTextContent.split(this.stringTokenForLink)[1]}
           </p>
         ) : (
           <p class="info-text">
-            {this.mainTextContent} <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
+            {state.texts.mainTextContent} <a href={state.linkToPrivacyPolicy}>{state.texts.linkText}</a>
           </p>
         )}
-        <button onClick={this.showOptions}>{this.moreOptionsText}</button>
-        <button onClick={this.rejectAllCookies}>{this.rejectText}</button>
-        <button onClick={this.acceptAllCookies}>{this.acceptText}</button>
+        <button onClick={this.showOptions}>{state.texts.moreOptionsText}</button>
+        <button onClick={this.rejectAllCookies}>{state.texts.rejectText}</button>
+        <button onClick={this.acceptAllCookies}>{state.texts.acceptText}</button>
       </div>
     );
   }

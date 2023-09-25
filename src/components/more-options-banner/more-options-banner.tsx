@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'more-options-banner',
@@ -6,8 +7,6 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class MoreOptionsBanner {
   @Prop() categories: string[] = [];
-  @Prop() backText: string = null;
-  @Prop() confirmText: string = null;
   @Prop() acceptedCategories: string[] = [];
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -38,8 +37,8 @@ export class MoreOptionsBanner {
             <p>{category}</p>
           </div>
         ))}
-        <button onClick={this.hideOptions}>{this.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
+        <button onClick={this.hideOptions}>{state.texts.backText}</button>
+        <button onClick={this.acceptSelectedCookies}>{state.texts.confirmText}</button>
       </div>
     );
   }

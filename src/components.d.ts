@@ -13,20 +13,12 @@ export namespace Components {
     interface MoreOptionsBanner {
         "acceptCategories": (categories: string[]) => void;
         "acceptedCategories": string[];
-        "backText": string;
         "categories": string[];
-        "confirmText": string;
         "hideOptions": () => void;
     }
     interface PrimaryBanner {
         "acceptCategories": (categories: string[]) => void;
-        "acceptText": string;
         "categories": string[];
-        "linkText": string;
-        "linkToPrivacyPolicy": string;
-        "mainTextContent": string;
-        "moreOptionsText": string;
-        "rejectText": string;
         "showOptions": () => void;
         "stringTokenForLink": string;
     }
@@ -62,20 +54,12 @@ declare namespace LocalJSX {
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;
         "acceptedCategories"?: string[];
-        "backText"?: string;
         "categories"?: string[];
-        "confirmText"?: string;
         "hideOptions"?: () => void;
     }
     interface PrimaryBanner {
         "acceptCategories"?: (categories: string[]) => void;
-        "acceptText"?: string;
         "categories"?: string[];
-        "linkText"?: string;
-        "linkToPrivacyPolicy"?: string;
-        "mainTextContent"?: string;
-        "moreOptionsText"?: string;
-        "rejectText"?: string;
         "showOptions"?: () => void;
         "stringTokenForLink"?: string;
     }

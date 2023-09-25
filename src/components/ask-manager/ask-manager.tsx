@@ -20,20 +20,6 @@ export class AskManager {
   private cookiePolicyLastUpdated: string = null;
   private readonly stringTokenForLink = '{Link}';
 
-  @State() mainTextContent: string = `Options have not been set - this cookie banner is non-functional. View the ${this.stringTokenForLink} for required options`;
-  @State() linkText: string = 'documentation';
-  @State() linkToPrivacyPolicy: string = 'https://github.com/arvidsandin/ask-manager#readme';
-  @State() acceptText: string = null;
-  @State() rejectText: string = null;
-  @State() moreOptionsText: string = null;
-  @State() backText: string = null;
-  @State() confirmText: string = null;
-
-  /**
-   * key to use when storing the consent in localStorage
-   */
-  private storageName: string = null;
-
   private readonly defaultOptions = {
     categories: [],
     cookiePolicyLastUpdated: null,
@@ -62,14 +48,14 @@ export class AskManager {
     state.storageName = options.storageName;
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    this.mainTextContent = options.mainTextContent;
-    this.linkText = options.linkText;
-    this.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    this.acceptText = options.acceptText;
-    this.rejectText = options.rejectText;
-    this.moreOptionsText = options.moreOptionsText;
-    this.backText = options.backText;
-    this.confirmText = options.confirmText;
+    state.texts.mainTextContent = options.mainTextContent;
+    state.texts.linkText = options.linkText;
+    state.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
+    state.texts.acceptText = options.acceptText;
+    state.texts.rejectText = options.rejectText;
+    state.texts.moreOptionsText = options.moreOptionsText;
+    state.texts.backText = options.backText;
+    state.texts.confirmText = options.confirmText;
 
     if (this.cookiePolicyLastUpdated == null) {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
@@ -110,8 +96,6 @@ export class AskManager {
           {this.isInOptionsView ? (
             <more-options-banner
               categories={this.categories}
-              backText={this.backText}
-              confirmText={this.confirmText}
               acceptedCategories={state.cookieConsent.acceptedCategories}
               acceptCategories={c => this.acceptCategories(c)}
               hideOptions={() => this.hideOptions()}
@@ -119,12 +103,6 @@ export class AskManager {
           ) : (
             <primary-banner
               categories={this.categories}
-              mainTextContent={this.mainTextContent}
-              linkText={this.linkText}
-              linkToPrivacyPolicy={this.linkToPrivacyPolicy}
-              acceptText={this.acceptText}
-              rejectText={this.rejectText}
-              moreOptionsText={this.moreOptionsText}
               stringTokenForLink={this.stringTokenForLink}
               acceptCategories={c => this.acceptCategories(c)}
               showOptions={() => this.showOptions()}
