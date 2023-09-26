@@ -27,17 +27,7 @@ export class PrimaryBanner {
   render() {
     return (
       <div class="consent-box">
-        {this.mainTextContent.includes(this.stringTokenForLink) ? (
-          <p class="info-text">
-            {this.mainTextContent.split(this.stringTokenForLink)[0]}
-            <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-            {this.mainTextContent.split(this.stringTokenForLink)[1]}
-          </p>
-        ) : (
-          <p class="info-text">
-            {this.mainTextContent} <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-          </p>
-        )}
+        <p class="info-text">{this.mainTextContent}</p>
         <button onClick={this.showOptions}>{this.moreOptionsText}</button>
         <button onClick={this.rejectAllCookies}>{this.rejectText}</button>
         <button onClick={this.acceptAllCookies}>{this.acceptText}</button>

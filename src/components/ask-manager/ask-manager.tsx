@@ -37,38 +37,44 @@ export class AskManager {
     categories: [],
     cookiePolicyLastUpdated: null,
     storageName: 'cookie-consent',
-    mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
-    linkText: 'privacy policy',
     linkToPrivacyPolicy: null,
-    acceptText: 'Accept all',
-    rejectText: 'Reject non-essential',
-    moreOptionsText: 'More options',
-    backText: 'Back',
-    confirmText: 'Confirm selection',
+    texts: {
+      mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
+      linkText: 'privacy policy',
+      acceptText: 'Accept all',
+      rejectText: 'Reject non-essential',
+      moreOptionsText: 'More options',
+      backText: 'Back',
+      confirmText: 'Confirm selection',
+    },
   };
 
   @Method()
   async setOptions(userOptions) {
     const options = { ...this.defaultOptions, ...userOptions };
+    this.validateOptions(options);
 
-    //check for empty string or only whitespace string
-    if (!options.linkToPrivacyPolicy || !options.linkToPrivacyPolicy.trim()) {
-      throw new Error('No linkToPrivacyPolicy provided');
-    }
-    if (!options.linkText || !options.linkText.trim()) {
-      throw new Error('Empty linkText provided');
-    }
     this.storageName = options.storageName;
     this.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    this.mainTextContent = options.mainTextContent;
-    this.linkText = options.linkText;
     this.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    this.acceptText = options.acceptText;
-    this.rejectText = options.rejectText;
-    this.moreOptionsText = options.moreOptionsText;
-    this.backText = options.backText;
-    this.confirmText = options.confirmText;
+    this.linkText = options.texts.linkText;
+    this.acceptText = options.texts.acceptText;
+    this.rejectText = options.texts.rejectText;
+    this.moreOptionsText = options.texts.moreOptionsText;
+    this.backText = options.texts.backText;
+    this.confirmText = options.texts.confirmText;
+    this.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
+      <span>
+        {options.texts.mainTextContent.split(this.stringTokenForLink)[0]}
+        <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
+        {options.texts.mainTextContent.split(this.stringTokenForLink)[1]}
+      </span>
+    ) : (
+      <span>
+        {options.texts.mainTextContent} <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
+      </span>
+    );
 
     if (this.cookiePolicyLastUpdated == null) {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
@@ -79,6 +85,16 @@ export class AskManager {
       acceptedCategories: [],
     };
   }
+
+  private validateOptions = (options: any) => {
+    //check for empty string or only whitespace string
+    if (!options.linkToPrivacyPolicy?.trim()) {
+      throw new Error('No linkToPrivacyPolicy provided');
+    }
+    if (!options.texts?.linkText?.trim()) {
+      throw new Error('Empty linkText provided');
+    }
+  };
 
   @State() isInOptionsView: boolean = false;
 
