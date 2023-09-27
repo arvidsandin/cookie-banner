@@ -13,7 +13,6 @@ export namespace Components {
     interface MoreOptionsBanner {
         "acceptCategories": (categories: string[]) => void;
         "acceptedCategories": string[];
-        "categories": string[];
         "hideOptions": () => void;
     }
     interface PrimaryBanner {
@@ -54,7 +53,6 @@ declare namespace LocalJSX {
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;
         "acceptedCategories"?: string[];
-        "categories"?: string[];
         "hideOptions"?: () => void;
     }
     interface PrimaryBanner {

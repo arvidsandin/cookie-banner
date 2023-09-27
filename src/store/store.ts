@@ -16,6 +16,7 @@ const { state, onChange } = createStore({
     backText: null,
     confirmText: null,
   },
+  categories: [],
 });
 
 onChange('storageName', value => {

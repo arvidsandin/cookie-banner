@@ -8,11 +8,6 @@ import state from '../../store/store';
 })
 export class AskManager {
   /**
-   * list of categories of the cookies
-   */
-  private categories: string[] = [];
-
-  /**
    * last time the privacy policy or which cookies that are used by the website was updated
    * used to know if updated consent is needed
    * can be any string that can be read by Date()
@@ -42,7 +37,7 @@ export class AskManager {
     this.validateOptions(options);
 
     state.storageName = options.storageName;
-    this.categories = options.categories;
+    state.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
     state.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
     state.texts.linkText = options.texts.linkText;
@@ -111,18 +106,12 @@ export class AskManager {
         <div class="dimmable-backdrop">
           {this.isInOptionsView ? (
             <more-options-banner
-              categories={this.categories}
               acceptedCategories={state.cookieConsent.acceptedCategories}
               acceptCategories={c => this.acceptCategories(c)}
               hideOptions={() => this.hideOptions()}
             ></more-options-banner>
           ) : (
-            <primary-banner
-              categories={this.categories}
-              stringTokenForLink={this.stringTokenForLink}
-              acceptCategories={c => this.acceptCategories(c)}
-              showOptions={() => this.showOptions()}
-            ></primary-banner>
+            <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
           )}
         </div>
       </Host>

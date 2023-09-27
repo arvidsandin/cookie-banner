@@ -6,7 +6,6 @@ import state from '../../store/store';
   shadow: false,
 })
 export class MoreOptionsBanner {
-  @Prop() categories: string[] = [];
   @Prop() acceptedCategories: string[] = [];
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -23,7 +22,7 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {this.categories.map(category => (
+        {state.categories.map(category => (
           <div key={category}>
             <input
               type="checkbox"
@@ -31,7 +30,7 @@ export class MoreOptionsBanner {
               value={category}
               checked={this.acceptedCategories.includes(category)}
               ref={element => {
-                this.categoryCheckboxes[this.categories.indexOf(category)] = element;
+                this.categoryCheckboxes[state.categories.indexOf(category)] = element;
               }}
             ></input>
             <p>{category}</p>
