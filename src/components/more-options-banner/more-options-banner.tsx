@@ -24,22 +24,29 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {this.categories.map(category => (
-          <div key={category}>
-            <input
-              type="checkbox"
-              class="checkbox"
-              value={category}
-              checked={this.acceptedCategories.includes(category)}
-              ref={element => {
-                this.categoryCheckboxes[this.categories.indexOf(category)] = element;
-              }}
-            ></input>
-            <p>{category}</p>
-          </div>
-        ))}
-        <button onClick={this.hideOptions}>{this.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
+        <div class="options">
+          {this.categories.map(category => (
+            <div class="option" key={category}>
+              <p>{category}</p>
+              <label class="checkbox-container">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  value={category}
+                  checked={this.acceptedCategories.includes(category)}
+                  ref={element => {
+                    this.categoryCheckboxes[this.categories.indexOf(category)] = element;
+                  }}
+                ></input>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          ))}
+        </div>
+        <div class="options-banner-buttons">
+          <button onClick={this.hideOptions}>{this.backText}</button>
+          <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
+        </div>
       </div>
     );
   }
