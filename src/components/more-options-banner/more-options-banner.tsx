@@ -43,7 +43,7 @@ export class MoreOptionsBanner {
             </div>
           ))}
         </div>
-        <div class="options-banner-buttons">
+        <div class="options-banner-buttons buttons">
           <button onClick={this.hideOptions}>{this.backText}</button>
           <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
         </div>

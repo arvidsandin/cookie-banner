@@ -15,7 +15,6 @@ button {
   -webkit-appearance: none;
   background: none;
   box-shadow: none;
-  padding: 0;
   border: none;
   font: inherit;
   color: #ffffff;
@@ -25,7 +24,7 @@ button {
   width: 12em;
   height: 3.5em;
   padding: 10px;
-  margin: auto 2em;
+  margin: auto 2%;
 }
 
 button:hover{
@@ -132,21 +131,38 @@ input:focus-visible~.checkmark {
   transform: rotate(45deg);
 }
 
-.options-banner-buttons{
+.buttons{
   display: flex;
   justify-content: center;
 }
 
 .info-text{
   width: 50%;
+  height: auto;
   overflow-y: auto;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .primary-banner-buttons{
+    flex-direction: column;
+  }
+    .primary-banner-buttons > button{
+    margin: 0.3em auto;
+  }
+  .consent-box{
+    max-height: 50%;
+  }
 }
 
 @media only screen and (max-width: 700px) {
   .consent-box, .options-box {
     flex-direction: column;
-    max-height: 50%;
+    min-height: 300px;
     padding: 10px;
+  }
+  .consent-box{
+    max-height: 60%;
   }
 
   .info-text{
