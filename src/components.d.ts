@@ -5,9 +5,11 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Options } from "./utils/options";
+export { Options } from "./utils/options";
 export namespace Components {
     interface AskManager {
-        "setOptions": (userOptions: any) => Promise<void>;
+        "setOptions": (userOptions: Options) => Promise<void>;
         "showBanner": () => Promise<void>;
     }
     interface MoreOptionsBanner {

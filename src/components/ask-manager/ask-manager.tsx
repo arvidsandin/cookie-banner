@@ -1,5 +1,6 @@
 import { Component, Host, Method, State, h } from '@stencil/core';
 import state from '../../store/store';
+import { Options } from '../../utils/options';
 
 @Component({
   tag: 'ask-manager',
@@ -7,12 +8,6 @@ import state from '../../store/store';
   shadow: true,
 })
 export class AskManager {
-  /**
-   * last time the privacy policy or which cookies that are used by the website was updated
-   * used to know if updated consent is needed
-   * can be any string that can be read by Date()
-   */
-  private cookiePolicyLastUpdated: string = null;
   private readonly stringTokenForLink = '{Link}';
 
   private readonly defaultOptions = {
@@ -32,21 +27,11 @@ export class AskManager {
   };
 
   @Method()
-  async setOptions(userOptions) {
+  async setOptions(userOptions: Options) {
     const options = { ...this.defaultOptions, ...userOptions };
     this.validateOptions(options);
 
-    state.storageName = options.storageName;
-    state.categories = options.categories;
-    this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    state.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    state.texts.linkText = options.texts.linkText;
-    state.texts.acceptText = options.texts.acceptText;
-    state.texts.rejectText = options.texts.rejectText;
-    state.texts.moreOptionsText = options.texts.moreOptionsText;
-    state.texts.backText = options.texts.backText;
-    state.texts.confirmText = options.texts.confirmText;
-    state.texts.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
+    options.texts.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
       <span>
         {options.texts.mainTextContent.split(this.stringTokenForLink)[0]}
         <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
@@ -58,13 +43,15 @@ export class AskManager {
       </span>
     );
 
-    if (this.cookiePolicyLastUpdated == null) {
+    if (options.cookiePolicyLastUpdated == null) {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
-      this.cookiePolicyLastUpdated = new Date().toISOString();
+      options.cookiePolicyLastUpdated = new Date().toISOString();
     }
+
+    state.options = options;
   }
 
-  private validateOptions = (options: any) => {
+  private validateOptions = (options: Options) => {
     //check for empty string or only whitespace string
     if (!options.linkToPrivacyPolicy?.trim()) {
       throw new Error('No linkToPrivacyPolicy provided');
@@ -77,7 +64,7 @@ export class AskManager {
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;
   private bannerVisible() {
-    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
+    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated);
   }
 
   private acceptCategories(categories: string[]) {

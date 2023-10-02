@@ -22,7 +22,7 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {state.categories.map(category => (
+        {state.options.categories.map(category => (
           <div key={category}>
             <input
               type="checkbox"
@@ -30,14 +30,14 @@ export class MoreOptionsBanner {
               value={category}
               checked={this.acceptedCategories.includes(category)}
               ref={element => {
-                this.categoryCheckboxes[state.categories.indexOf(category)] = element;
+                this.categoryCheckboxes[state.options.categories.indexOf(category)] = element;
               }}
             ></input>
             <p>{category}</p>
           </div>
         ))}
-        <button onClick={this.hideOptions}>{state.texts.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{state.texts.confirmText}</button>
+        <button onClick={this.hideOptions}>{state.options.texts.backText}</button>
+        <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirmText}</button>
       </div>
     );
   }
