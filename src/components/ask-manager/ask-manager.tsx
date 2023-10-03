@@ -1,4 +1,4 @@
-import { Component, Host, Method, State, h } from '@stencil/core';
+import { Component, Method, State, h } from '@stencil/core';
 import state from '../../store/store';
 
 @Component({
