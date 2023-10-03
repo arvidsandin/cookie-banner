@@ -1,13 +1,11 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'more-options-banner',
   shadow: false,
 })
 export class MoreOptionsBanner {
-  @Prop() categories: string[] = [];
-  @Prop() backText: string = null;
-  @Prop() confirmText: string = null;
   @Prop() acceptedCategories: string[] = [];
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -24,7 +22,7 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {this.categories.map(category => (
+        {state.categories.map((category, index) => (
           <div key={category}>
             <input
               type="checkbox"
@@ -32,14 +30,14 @@ export class MoreOptionsBanner {
               value={category}
               checked={this.acceptedCategories.includes(category)}
               ref={element => {
-                this.categoryCheckboxes[this.categories.indexOf(category)] = element;
+                this.categoryCheckboxes[index] = element;
               }}
             ></input>
             <p>{category}</p>
           </div>
         ))}
-        <button onClick={this.hideOptions}>{this.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
+        <button onClick={this.hideOptions}>{state.texts.backText}</button>
+        <button onClick={this.acceptSelectedCookies}>{state.texts.confirmText}</button>
       </div>
     );
   }

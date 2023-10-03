@@ -1,4 +1,5 @@
 import { Component, Method, State, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'ask-manager',
@@ -7,31 +8,12 @@ import { Component, Method, State, h } from '@stencil/core';
 })
 export class AskManager {
   /**
-   * list of categories of the cookies
-   */
-  private categories: string[] = [];
-
-  /**
    * last time the privacy policy or which cookies that are used by the website was updated
    * used to know if updated consent is needed
    * can be any string that can be read by Date()
    */
   private cookiePolicyLastUpdated: string = null;
   private readonly stringTokenForLink = '{Link}';
-
-  @State() mainTextContent: string = `Options have not been set - this cookie banner is non-functional. View the ${this.stringTokenForLink} for required options`;
-  @State() linkText: string = 'documentation';
-  @State() linkToPrivacyPolicy: string = 'https://github.com/arvidsandin/ask-manager#readme';
-  @State() acceptText: string = null;
-  @State() rejectText: string = null;
-  @State() moreOptionsText: string = null;
-  @State() backText: string = null;
-  @State() confirmText: string = null;
-
-  /**
-   * key to use when storing the consent in localStorage
-   */
-  private storageName: string = null;
 
   private readonly defaultOptions = {
     categories: [],
@@ -54,17 +36,17 @@ export class AskManager {
     const options = { ...this.defaultOptions, ...userOptions };
     this.validateOptions(options);
 
-    this.storageName = options.storageName;
-    this.categories = options.categories;
+    state.storageName = options.storageName;
+    state.categories = options.categories;
     this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    this.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    this.linkText = options.texts.linkText;
-    this.acceptText = options.texts.acceptText;
-    this.rejectText = options.texts.rejectText;
-    this.moreOptionsText = options.texts.moreOptionsText;
-    this.backText = options.texts.backText;
-    this.confirmText = options.texts.confirmText;
-    this.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
+    state.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
+    state.texts.linkText = options.texts.linkText;
+    state.texts.acceptText = options.texts.acceptText;
+    state.texts.rejectText = options.texts.rejectText;
+    state.texts.moreOptionsText = options.texts.moreOptionsText;
+    state.texts.backText = options.texts.backText;
+    state.texts.confirmText = options.texts.confirmText;
+    state.texts.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
       <span>
         {options.texts.mainTextContent.split(this.stringTokenForLink)[0]}
         <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
@@ -80,10 +62,6 @@ export class AskManager {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
       this.cookiePolicyLastUpdated = new Date().toISOString();
     }
-    this.cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
-      lastAccepted: null,
-      acceptedCategories: [],
-    };
   }
 
   private validateOptions = (options: any) => {
@@ -97,18 +75,22 @@ export class AskManager {
   };
 
   @State() isInOptionsView: boolean = false;
-
-  private cookieConsent = {
-    lastAccepted: null,
-    acceptedCategories: [],
-  };
+  @State() forceBannerVisibility = false;
+  private bannerVisible() {
+    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
+  }
 
   private acceptCategories(categories: string[]) {
-    this.cookieConsent = {
-      lastAccepted: new Date(),
+    state.cookieConsent = {
+      lastAccepted: new Date().toISOString(),
       acceptedCategories: categories,
     };
-    localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
+    this.forceBannerVisibility = false;
+  }
+
+  @Method()
+  async showBanner() {
+    this.forceBannerVisibility = true;
   }
 
   private showOptions = () => {
@@ -119,32 +101,18 @@ export class AskManager {
   };
 
   render() {
-    return (
+    return this.bannerVisible() ? (
       <div class="dimmable-backdrop">
         {this.isInOptionsView ? (
           <more-options-banner
-            categories={this.categories}
-            backText={this.backText}
-            confirmText={this.confirmText}
-            acceptedCategories={this.cookieConsent.acceptedCategories}
+            acceptedCategories={state.cookieConsent.acceptedCategories}
             acceptCategories={c => this.acceptCategories(c)}
             hideOptions={() => this.hideOptions()}
           ></more-options-banner>
         ) : (
-          <primary-banner
-            categories={this.categories}
-            mainTextContent={this.mainTextContent}
-            linkText={this.linkText}
-            linkToPrivacyPolicy={this.linkToPrivacyPolicy}
-            acceptText={this.acceptText}
-            rejectText={this.rejectText}
-            moreOptionsText={this.moreOptionsText}
-            stringTokenForLink={this.stringTokenForLink}
-            acceptCategories={c => this.acceptCategories(c)}
-            showOptions={() => this.showOptions()}
-          ></primary-banner>
+          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
         )}
       </div>
-    );
+    ) : null;
   }
 }

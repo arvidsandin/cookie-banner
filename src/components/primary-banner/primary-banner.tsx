@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'primary-banner',
@@ -6,12 +7,6 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class PrimaryBanner {
   @Prop() categories: string[];
-  @Prop() mainTextContent: string;
-  @Prop() linkText: string;
-  @Prop() linkToPrivacyPolicy: string;
-  @Prop() acceptText: string;
-  @Prop() rejectText: string;
-  @Prop() moreOptionsText: string;
   @Prop() stringTokenForLink: string;
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -21,16 +16,16 @@ export class PrimaryBanner {
     this.acceptCategories([]);
   };
   private acceptAllCookies = () => {
-    this.acceptCategories(this.categories);
+    this.acceptCategories(state.categories);
   };
 
   render() {
     return (
       <div class="consent-box">
-        <p class="info-text">{this.mainTextContent}</p>
-        <button onClick={this.showOptions}>{this.moreOptionsText}</button>
-        <button onClick={this.rejectAllCookies}>{this.rejectText}</button>
-        <button onClick={this.acceptAllCookies}>{this.acceptText}</button>
+        <p class="info-text">{state.texts.mainTextContent}</p>
+        <button onClick={this.showOptions}>{state.texts.moreOptionsText}</button>
+        <button onClick={this.rejectAllCookies}>{state.texts.rejectText}</button>
+        <button onClick={this.acceptAllCookies}>{state.texts.acceptText}</button>
       </div>
     );
   }
