@@ -101,20 +101,18 @@ export class AskManager {
   };
 
   render() {
-    return (
-      <Host style={this.bannerVisible() ? {} : { display: 'none' }}>
-        <div class="dimmable-backdrop">
-          {this.isInOptionsView ? (
-            <more-options-banner
-              acceptedCategories={state.cookieConsent.acceptedCategories}
-              acceptCategories={c => this.acceptCategories(c)}
-              hideOptions={() => this.hideOptions()}
-            ></more-options-banner>
-          ) : (
-            <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
-          )}
-        </div>
-      </Host>
-    );
+    return this.bannerVisible() ? (
+      <div class="dimmable-backdrop">
+        {this.isInOptionsView ? (
+          <more-options-banner
+            acceptedCategories={state.cookieConsent.acceptedCategories}
+            acceptCategories={c => this.acceptCategories(c)}
+            hideOptions={() => this.hideOptions()}
+          ></more-options-banner>
+        ) : (
+          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
+        )}
+      </div>
+    ) : null;
   }
 }

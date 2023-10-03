@@ -22,7 +22,7 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {state.categories.map(category => (
+        {state.categories.map((category, index) => (
           <div key={category}>
             <input
               type="checkbox"
@@ -30,7 +30,7 @@ export class MoreOptionsBanner {
               value={category}
               checked={this.acceptedCategories.includes(category)}
               ref={element => {
-                this.categoryCheckboxes[state.categories.indexOf(category)] = element;
+                this.categoryCheckboxes[index] = element;
               }}
             ></input>
             <p>{category}</p>
