@@ -16,13 +16,13 @@ export class AskManager {
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
     texts: {
-      mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
+      mainContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
       linkText: 'privacy policy',
-      acceptText: 'Accept all',
-      rejectText: 'Reject non-essential',
-      moreOptionsText: 'More options',
-      backText: 'Back',
-      confirmText: 'Confirm selection',
+      accept: 'Accept all',
+      reject: 'Reject non-essential',
+      moreOptions: 'More options',
+      back: 'Back',
+      confirm: 'Confirm selection',
     },
   };
 
@@ -31,15 +31,15 @@ export class AskManager {
     const options = { ...this.defaultOptions, ...userOptions };
     this.validateOptions(options);
 
-    options.texts.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
+    options.texts.mainContent = options.texts.mainContent.includes(this.stringTokenForLink) ? (
       <span>
-        {options.texts.mainTextContent.split(this.stringTokenForLink)[0]}
+        {options.texts.mainContent.split(this.stringTokenForLink)[0]}
         <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
-        {options.texts.mainTextContent.split(this.stringTokenForLink)[1]}
+        {options.texts.mainContent.split(this.stringTokenForLink)[1]}
       </span>
     ) : (
       <span>
-        {options.texts.mainTextContent} <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
+        {options.texts.mainContent} <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
       </span>
     );
 

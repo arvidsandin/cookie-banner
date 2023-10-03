@@ -22,7 +22,7 @@ export interface Options {
      * text to show in the primary view of the banner
      * write {Link} instead of the word that should link to the privacy policy
      */
-    mainTextContent?: string;
+    mainContent?: string;
     /**
      * the word(s) to replace {Link} with
      */
@@ -30,22 +30,22 @@ export interface Options {
     /**
      * Text on the "Accept all" button
      */
-    acceptText?: string;
+    accept?: string;
     /**
      * text on the "Reject all" button
      */
-    rejectText?: string;
+    reject?: string;
     /**
      * text on the "More options" button
      */
-    moreOptionsText?: string;
+    moreOptions?: string;
     /**
      * text on the "Back" button
      */
-    backText?: string;
+    back?: string;
     /**
      * text on the "Confirm selection" button
      */
-    confirmText?: string;
+    confirm?: string;
   };
 }

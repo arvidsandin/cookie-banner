@@ -36,8 +36,8 @@ export class MoreOptionsBanner {
             <p>{category}</p>
           </div>
         ))}
-        <button onClick={this.hideOptions}>{state.options.texts.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirmText}</button>
+        <button onClick={this.hideOptions}>{state.options.texts.back}</button>
+        <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirm}</button>
       </div>
     );
   }
