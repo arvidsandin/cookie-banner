@@ -16,7 +16,7 @@ export class AskManager {
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
     texts: {
-      mainContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
+      mainContent: null,
       linkText: 'privacy policy',
       accept: 'Accept all',
       reject: 'Reject non-essential',
@@ -26,10 +26,35 @@ export class AskManager {
     },
   };
 
+  @Event() consentUpdated: EventEmitter<string[]>;
+
   @Method()
   async setOptions(userOptions: Options) {
     const options = { ...this.defaultOptions, ...userOptions };
     this.validateOptions(options);
+    this.formatOptions(options);
+    state.options = options;
+  }
+
+  private validateOptions = (options: Options) => {
+    //check for empty string or only whitespace string
+    if (!options.linkToPrivacyPolicy?.trim()) {
+      throw new Error('No linkToPrivacyPolicy provided');
+    }
+    if (!options.texts?.linkText?.trim()) {
+      throw new Error('Empty linkText provided');
+    }
+    if (!options.texts?.mainContent && options.categories?.filter(c => !c.adjective).length) {
+      throw new Error('No adjectives to insert in default text');
+    }
+  };
+
+  private formatOptions = (options: Options) => {
+    if (!options.texts.mainContent) {
+      options.texts.mainContent = `This website uses cookies for ${this.listToString(options.categories.map(c => c.adjective))} purposes. Read more in our ${
+        this.stringTokenForLink
+      }. You can manage your choices at any time.`;
+    }
 
     options.texts.mainContent = options.texts.mainContent.includes(this.stringTokenForLink) ? (
       <span>
@@ -47,21 +72,11 @@ export class AskManager {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
       options.cookiePolicyLastUpdated = new Date().toISOString();
     }
-
-    state.options = options;
-  }
-
-  @Event() consentUpdated: EventEmitter<string[]>;
-
-  private validateOptions = (options: Options) => {
-    //check for empty string or only whitespace string
-    if (!options.linkToPrivacyPolicy?.trim()) {
-      throw new Error('No linkToPrivacyPolicy provided');
-    }
-    if (!options.texts?.linkText?.trim()) {
-      throw new Error('Empty linkText provided');
-    }
   };
+
+  private listToString(list) {
+    return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
+  }
 
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;

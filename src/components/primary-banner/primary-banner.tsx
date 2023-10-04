@@ -16,7 +16,7 @@ export class PrimaryBanner {
     this.acceptCategories([]);
   };
   private acceptAllCookies = () => {
-    this.acceptCategories(state.options.categories);
+    this.acceptCategories(state.options.categories.map(c => c.key));
   };
 
   render() {

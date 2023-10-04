@@ -1,3 +1,4 @@
+import { Category } from './category';
 export interface Options {
   /**
    * last time the privacy policy or which cookies that are used by the website was updated
@@ -16,7 +17,7 @@ export interface Options {
   /**
    * the categories of cookies to ask for consent for
    */
-  categories?: string[];
+  categories?: Category[];
   texts?: {
     /**
      * text to show in the primary view of the banner
