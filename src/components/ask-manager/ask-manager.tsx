@@ -1,4 +1,4 @@
-import { Component, Host, Method, State, h } from '@stencil/core';
+import { Component, Host, Method, State, Event, EventEmitter, h } from '@stencil/core';
 import state from '../../store/store';
 import { Options } from '../../utils/options';
 
@@ -51,6 +51,8 @@ export class AskManager {
     state.options = options;
   }
 
+  @Event() consentUpdated: EventEmitter<string[]>;
+
   private validateOptions = (options: Options) => {
     //check for empty string or only whitespace string
     if (!options.linkToPrivacyPolicy?.trim()) {
@@ -73,6 +75,7 @@ export class AskManager {
       acceptedCategories: categories,
     };
     this.forceBannerVisibility = false;
+    this.consentUpdated.emit(state.cookieConsent.acceptedCategories);
   }
 
   @Method()
@@ -87,6 +90,16 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
+  @Method()
+  async hasConsent(key: string) {
+    return state.cookieConsent.acceptedCategories.includes(key);
+  }
+
+  @Method()
+  async getCategoriesWithConsent() {
+    return state.cookieConsent.acceptedCategories;
+  }
+
   render() {
     return (
       <Host style={this.bannerVisible() ? {} : { display: 'none' }}>
@@ -95,10 +108,10 @@ export class AskManager {
             <more-options-banner
               acceptedCategories={state.cookieConsent.acceptedCategories}
               acceptCategories={c => this.acceptCategories(c)}
-              hideOptions={() => this.hideOptions()}
+              hideOptions={this.hideOptions}
             ></more-options-banner>
           ) : (
-            <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
+            <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
           )}
         </div>
       </Host>

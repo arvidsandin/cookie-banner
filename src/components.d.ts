@@ -9,6 +9,8 @@ import { Options } from "./utils/options";
 export { Options } from "./utils/options";
 export namespace Components {
     interface AskManager {
+        "getCategoriesWithConsent": () => Promise<any[]>;
+        "hasConsent": (key: string) => Promise<boolean>;
         "setOptions": (userOptions: Options) => Promise<void>;
         "showBanner": () => Promise<void>;
     }
@@ -23,6 +25,10 @@ export namespace Components {
         "showOptions": () => void;
         "stringTokenForLink": string;
     }
+}
+export interface AskManagerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAskManagerElement;
 }
 declare global {
     interface HTMLAskManagerElement extends Components.AskManager, HTMLStencilElement {
@@ -51,6 +57,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AskManager {
+        "onConsentUpdated"?: (event: AskManagerCustomEvent<string[]>) => void;
     }
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;

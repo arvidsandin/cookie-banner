@@ -9,7 +9,10 @@
     <script nomodule src="/build/ask-manager.js"></script>
   </head>
   <body>
-    <button onclick="document.querySelector('ask-manager').showBanner()">Show banner</button>
+    <button onclick="showConsent()">Show consent</button>
+    <button onclick="document.querySelector('ask-manager').showBanner()">Change consent</button>
+    <button onclick="localStorage.removeItem('cookie-consent')">Delete consent</button>
+    <p id="what-is-accepted">You have accepted essential cookies</p>
     <ask-manager></ask-manager>
   </body>
   <script>
@@ -19,6 +22,24 @@
         cookiePolicyLastUpdated: '2023-09-13',
         linkToPrivacyPolicy: 'https://example.com',
       });
+      document.querySelector('ask-manager').addEventListener('consentUpdated', e => {
+        e.detail.unshift('essential');
+        document.getElementById('what-is-accepted').innerText = `You have accepted ${listToString(e.detail)} cookies`;
+      });
     });
+
+    async function showConsent() {
+      let consent = ['essential'];
+      for (const category of ['functional', 'analytical', 'marketing']) {
+        if (await document.querySelector('ask-manager').hasConsent(category)) {
+          consent.push(category);
+        }
+      }
+      alert(`You have accepted ${listToString(consent)} cookies`);
+    }
+
+    function listToString(list) {
+      return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
+    }
   </script>
 </html>
