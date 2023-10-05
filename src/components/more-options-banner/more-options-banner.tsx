@@ -30,7 +30,7 @@ export class MoreOptionsBanner {
               value={category.key}
               checked={this.acceptedCategories.includes(category.key)}
               ref={element => {
-                this.categoryCheckboxes[state.options.categories.indexOf(category)] = element;
+                this.categoryCheckboxes[index] = element;
               }}
             ></input>
             <p>{category.name}</p>
