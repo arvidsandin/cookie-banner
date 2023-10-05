@@ -30,9 +30,9 @@ export class AskManager {
 
   @Method()
   async setOptions(userOptions: Options) {
-    const options = { ...this.defaultOptions, ...userOptions };
+    let options = { ...this.defaultOptions, ...userOptions };
     this.validateOptions(options);
-    this.formatOptions(options);
+    options = this.formatOptions(options);
     state.options = options;
   }
 
@@ -50,28 +50,34 @@ export class AskManager {
   };
 
   private formatOptions = (options: Options) => {
-    if (!options.texts.mainContent) {
-      options.texts.mainContent = `This website uses cookies for ${this.listToString(options.categories.map(c => c.adjective))} purposes. Read more in our ${
+    let formattedOptions = options;
+    //Generate text if no text is provided
+    if (!formattedOptions.texts.mainContent) {
+      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.adjective))} purposes. Read more in our ${
         this.stringTokenForLink
       }. You can manage your choices at any time.`;
     }
 
-    options.texts.mainContent = options.texts.mainContent.includes(this.stringTokenForLink) ? (
+    //Turn text into html
+    formattedOptions.texts.mainContent = formattedOptions.texts.mainContent.includes(this.stringTokenForLink) ? (
       <span>
-        {options.texts.mainContent.split(this.stringTokenForLink)[0]}
-        <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
-        {options.texts.mainContent.split(this.stringTokenForLink)[1]}
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[0]}
+        <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[1]}
       </span>
     ) : (
       <span>
-        {options.texts.mainContent} <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
+        {formattedOptions.texts.mainContent} <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
       </span>
     );
 
-    if (options.cookiePolicyLastUpdated == null) {
+    //Add datetime if missing
+    if (formattedOptions.cookiePolicyLastUpdated == null) {
       console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
-      options.cookiePolicyLastUpdated = new Date().toISOString();
+      formattedOptions.cookiePolicyLastUpdated = new Date().toISOString();
     }
+
+    return formattedOptions;
   };
 
   private listToString(list) {
