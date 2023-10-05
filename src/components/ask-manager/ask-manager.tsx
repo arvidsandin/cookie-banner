@@ -8,9 +8,30 @@ import { Options } from '../../utils/options';
   shadow: true,
 })
 export class AskManager {
+  @Method()
+  async hasConsent(key: string) {
+    return state.cookieConsent.acceptedCategories.includes(key);
+  }
+  @Method()
+  async getCategoriesWithConsent() {
+    return state.cookieConsent.acceptedCategories;
+  }
+  @Method()
+  async setOptions(userOptions: Options) {
+    let options = { ...this.defaultOptions, ...userOptions };
+    this.validateOptions(options);
+    options = this.formatOptions(options);
+    state.options = options;
+  }
+  @Method()
+  async showBanner() {
+    this.forceBannerVisibility = true;
+  }
+  @Event() consentUpdated: EventEmitter<string[]>;
+
   private readonly stringTokenForLink = '{Link}';
 
-  private readonly defaultOptions = {
+  private readonly defaultOptions: Options = {
     categories: [],
     cookiePolicyLastUpdated: null,
     storageName: 'cookie-consent',
@@ -26,16 +47,6 @@ export class AskManager {
     },
   };
 
-  @Event() consentUpdated: EventEmitter<string[]>;
-
-  @Method()
-  async setOptions(userOptions: Options) {
-    let options = { ...this.defaultOptions, ...userOptions };
-    this.validateOptions(options);
-    options = this.formatOptions(options);
-    state.options = options;
-  }
-
   private validateOptions = (options: Options) => {
     //check for empty string or only whitespace string
     if (!options.linkToPrivacyPolicy?.trim()) {
@@ -44,6 +55,7 @@ export class AskManager {
     if (!options.texts?.linkText?.trim()) {
       throw new Error('Empty linkText provided');
     }
+
     if (!options.texts?.mainContent && options.categories?.filter(c => !c.adjective).length) {
       throw new Error('No adjectives to insert in default text');
     }
@@ -80,7 +92,7 @@ export class AskManager {
     return formattedOptions;
   };
 
-  private listToString(list) {
+  private listToString(list: string[]) {
     return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
   }
 
@@ -99,27 +111,12 @@ export class AskManager {
     this.consentUpdated.emit(state.cookieConsent.acceptedCategories);
   }
 
-  @Method()
-  async showBanner() {
-    this.forceBannerVisibility = true;
-  }
-
   private showOptions = () => {
     this.isInOptionsView = true;
   };
   private hideOptions = () => {
     this.isInOptionsView = false;
   };
-
-  @Method()
-  async hasConsent(key: string) {
-    return state.cookieConsent.acceptedCategories.includes(key);
-  }
-
-  @Method()
-  async getCategoriesWithConsent() {
-    return state.cookieConsent.acceptedCategories;
-  }
 
   render() {
     return this.bannerVisible() ? (
