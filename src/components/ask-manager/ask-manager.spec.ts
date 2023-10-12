@@ -93,7 +93,7 @@ describe('ask-manager', () => {
           name: 'Functional cookies',
         },
       ],
-      errorMessage: 'No adjectives to insert in default text',
+      errorMessage: 'Missing "purpose" in Category object to insert in default text',
     },
     {
       categories: [
@@ -101,22 +101,22 @@ describe('ask-manager', () => {
           key: 'functional',
           description: 'Gives functionality',
           name: 'Functional cookies',
-          adjective: 'functional',
+          purpose: 'functional',
         },
         {
           key: 'analytical',
           description: 'Analyzes',
           name: 'Analytical cookies',
-          adjective: 'functional',
+          purpose: 'functional',
         },
         {
           key: 'marketing',
           description: 'Gives targeted ads',
           name: 'Marketing Cookies',
-          adjective: '',
+          purpose: '',
         },
       ],
-      errorMessage: 'No adjectives to insert in default text',
+      errorMessage: 'Missing "purpose" in Category object to insert in default text',
     },
   ].forEach(({ categories, errorMessage }) =>
     it(`throw ${errorMessage} when categories is ${JSON.stringify(categories)}`, () => {
@@ -141,7 +141,7 @@ describe('ask-manager', () => {
           key: 'functional',
           description: 'Gives functionality',
           name: 'Functional cookies',
-          adjective: 'functional',
+          purpose: 'functional',
         },
       ],
     };

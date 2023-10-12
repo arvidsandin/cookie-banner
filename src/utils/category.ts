@@ -1,6 +1,6 @@
 export interface Category {
   key: string;
-  adjective?: string;
+  purpose?: string; //written as an adjective
   description: string;
   name: string;
 }

@@ -19,9 +19,9 @@
     customElements.whenDefined('ask-manager').then(() => {
       document.querySelector('ask-manager').setOptions({
         categories: [
-          { key: 'functional', name: 'Functional Cookies', adjective: 'functional', description: 'Required for some of the functionalities of the website' },
-          { key: 'analytical', name: 'Analytical Cookies', adjective: 'analytical', description: 'Used to improve the website' },
-          { key: 'marketing', name: 'Marketing Cookies', adjective: 'marketing', description: 'Used for targeted advertisement' },
+          { key: 'functional', name: 'Functional Cookies', purpose: 'functional', description: 'Required for some of the functionalities of the website' },
+          { key: 'analytical', name: 'Analytical Cookies', purpose: 'analytical', description: 'Used to improve the website' },
+          { key: 'marketing', name: 'Marketing Cookies', purpose: 'marketing', description: 'Used for targeted advertisement' },
         ],
         cookiePolicyLastUpdated: '2023-09-13',
         linkToPrivacyPolicy: 'https://example.com',

@@ -30,7 +30,7 @@ const options = {
          key: 'analytics',
          name: 'Analytical Cookies',
          description: 'Allows analytic to be used to improve the usability of the website in the future',
-         adjective: 'analytical',
+         purpose: 'analytical',
          },
    ],
    cookiePolicyLastUpdated: '2023-09-13',
@@ -44,7 +44,7 @@ Here is a list of all the properties in the options object:
 |-----------------------------|--------------|-----------|--------------------------|--------------|
 | `cookiePolicyLastUpdated`   | `string`     | yes       | n/a                      | A date of the last time the cookie policy was updated. If the user consented earlier than this date, new consent will be required. Can be any string parsable by the Date() function in Javascript. |
 | `linkToPrivacyPolicy`       | `string`     | yes       | n/a                      | A relative or absolute link to the privacy policy. |
-| `categories`                | `Category[]` | no        | `[]`                       | The categories of non-essential cookies used on the website. See below for details about the Category type. Doesn't really make sense to leave empty as the GDPR does not require the same level of consent if only essential cookies are used |
+| `categories`                | `Category[]` | no*       | `[]`                     | The categories of non-essential cookies used on the website. See below for details about the Category type. *If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use ask-manager as the GDPR does not require the same level of consent if only essential cookies are used |
 | `storageName`               | `string`     | no        | `'cookie-consent'`       | The key to use for storing the consent in localStorage. |
 | `texts.mainContent`         | `string`     | no        | `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time.'` | The text viewed in the first layer of the cookie banner. If not set, it will automatically insert the categories defined in `categories` in the text. Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`. If no occurence of {Link} is found, the word and link will be appended at the end. To comply with the GDPR, this text must contain the purposes (categories) of the cookies used, a link to an information page (privacy policy) and information that the user can withdraw their consent at any time. |
 | `texts.linkText`            | `string`     | no        | `'privacy policy'`       | The word(s) that should link to the privacy policy. Will replace {Link} in `texts.mainContent` |
@@ -60,7 +60,7 @@ The Category object looks as follows:
 | `key`           | string | yes       | n/a             | The key used for the category when storing the consent and check the status of the consent. Example: `analytics` |
 | `name`          | string | yes       | n/a             | The name of the category displayed in the second layer of the cookie banner. Example: `Analytical cookies` |
 | `description`   | string | yes       | n/a             | The desriptions diplayed in the second layer of the cookie banner |
-| `adjective`     | string | no*       | n/a             | The adjective to use in `options.texts.mainContent` before the word "purposes" Example: `analytical` *this is required if `options.texts.mainContent` is not set, otherwise it will not be used at all. |
+| `purpose`       | string | no*       | n/a             | The adjective to use in `options.texts.mainContent` before the word "purposes" Example: `analytical`. *this is required if `options.texts.mainContent` is not set, otherwise it will not be used at all. |
 
 ## Development
 

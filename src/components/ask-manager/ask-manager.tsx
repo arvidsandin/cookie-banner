@@ -60,8 +60,8 @@ export class AskManager {
       throw new Error('Empty linkText provided');
     }
 
-    if (!options.texts?.mainContent && options.categories?.filter(c => !c.adjective).length) {
-      throw new Error('No adjectives to insert in default text');
+    if (!options.texts?.mainContent && options.categories?.filter(c => !c.purpose).length) {
+      throw new Error('Missing "purpose" in Category object to insert in default text');
     }
   };
 
@@ -69,7 +69,7 @@ export class AskManager {
     let formattedOptions = options;
     //Generate text if no text is provided
     if (!formattedOptions.texts.mainContent) {
-      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.adjective))} purposes. Read more in our ${
+      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
         this.stringTokenForLink
       }. You can manage your choices at any time.`;
     }
