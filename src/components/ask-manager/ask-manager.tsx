@@ -27,6 +27,10 @@ export class AskManager {
   async showBanner() {
     this.forceBannerVisibility = true;
   }
+  @Method()
+  async deleteConsent() {
+    localStorage.removeItem(state.options.storageName);
+  }
   @Event() consentUpdated: EventEmitter<string[]>;
 
   private readonly stringTokenForLink = '{Link}';

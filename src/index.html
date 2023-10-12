@@ -11,7 +11,7 @@
   <body>
     <button onclick="showConsent()">Show consent</button>
     <button onclick="document.querySelector('ask-manager').showBanner()">Change consent</button>
-    <button onclick="localStorage.removeItem('cookie-consent')">Delete consent</button>
+    <button onclick="document.querySelector('ask-manager').deleteConsent()">Delete consent</button>
     <p id="what-is-accepted">You have accepted essential cookies</p>
     <ask-manager></ask-manager>
   </body>

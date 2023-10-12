@@ -9,6 +9,7 @@ import { Options } from "./utils/options";
 export { Options } from "./utils/options";
 export namespace Components {
     interface AskManager {
+        "deleteConsent": () => Promise<void>;
         "getCategoriesWithConsent": () => Promise<any[]>;
         "hasConsent": (key: string) => Promise<boolean>;
         "setOptions": (userOptions: Options) => Promise<void>;
