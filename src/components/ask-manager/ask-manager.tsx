@@ -29,7 +29,10 @@ export class AskManager {
   }
   @Method()
   async deleteConsent() {
-    localStorage.removeItem(state.options.storageName);
+    state.cookieConsent = {
+      lastAccepted: null,
+      acceptedCategories: [],
+    };
   }
   @Event() consentUpdated: EventEmitter<string[]>;
 
