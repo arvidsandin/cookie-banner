@@ -18,9 +18,8 @@ TODO
 ### Usage
 After adding the `<ask-manager></ask-manager>` component, a setup is required. This can be done by running a function after the component is defined:
 ```js
-customElements.whenDefined('ask-manager').then(() => {
-   document.querySelector('ask-manager').setOptions(options)
-})
+await customElements.whenDefined('ask-mananger');
+document.querySelector('ask-manager').setOptions(options)
 ```
 Here is a minimal example of how the options object can look:
 ```js
