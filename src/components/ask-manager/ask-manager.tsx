@@ -1,5 +1,6 @@
-import { Component, Method, State, h } from '@stencil/core';
+import { Component, Method, State, Event, EventEmitter, h } from '@stencil/core';
 import state from '../../store/store';
+import { Options } from '../../utils/options';
 
 @Component({
   tag: 'ask-manager',
@@ -7,64 +8,53 @@ import state from '../../store/store';
   shadow: true,
 })
 export class AskManager {
-  /**
-   * last time the privacy policy or which cookies that are used by the website was updated
-   * used to know if updated consent is needed
-   * can be any string that can be read by Date()
-   */
-  private cookiePolicyLastUpdated: string = null;
+  @Method()
+  async hasConsent(key: string) {
+    return state.cookieConsent.acceptedCategories.includes(key);
+  }
+  @Method()
+  async getCategoriesWithConsent() {
+    return state.cookieConsent.acceptedCategories;
+  }
+  @Method()
+  async setOptions(userOptions: Options) {
+    let options = { ...this.defaultOptions, ...userOptions };
+    this.validateOptions(options);
+    options = this.formatOptions(options);
+    state.options = options;
+  }
+  @Method()
+  async showBanner() {
+    this.forceBannerVisibility = true;
+  }
+  @Method()
+  async deleteConsent() {
+    state.cookieConsent = {
+      lastAccepted: null,
+      acceptedCategories: [],
+    };
+  }
+  @Event() consentUpdated: EventEmitter<string[]>;
+
   private readonly stringTokenForLink = '{Link}';
 
-  private readonly defaultOptions = {
+  private readonly defaultOptions: Options = {
     categories: [],
     cookiePolicyLastUpdated: null,
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
     texts: {
-      mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
+      mainContent: null,
       linkText: 'privacy policy',
-      acceptText: 'Accept all',
-      rejectText: 'Reject non-essential',
-      moreOptionsText: 'More options',
-      backText: 'Back',
-      confirmText: 'Confirm selection',
+      accept: 'Accept all',
+      reject: 'Reject non-essential',
+      moreOptions: 'More options',
+      back: 'Back',
+      confirm: 'Confirm selection',
     },
   };
 
-  @Method()
-  async setOptions(userOptions) {
-    const options = { ...this.defaultOptions, ...userOptions };
-    this.validateOptions(options);
-
-    state.storageName = options.storageName;
-    state.categories = options.categories;
-    this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    state.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    state.texts.linkText = options.texts.linkText;
-    state.texts.acceptText = options.texts.acceptText;
-    state.texts.rejectText = options.texts.rejectText;
-    state.texts.moreOptionsText = options.texts.moreOptionsText;
-    state.texts.backText = options.texts.backText;
-    state.texts.confirmText = options.texts.confirmText;
-    state.texts.mainTextContent = options.texts.mainTextContent.includes(this.stringTokenForLink) ? (
-      <span>
-        {options.texts.mainTextContent.split(this.stringTokenForLink)[0]}
-        <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
-        {options.texts.mainTextContent.split(this.stringTokenForLink)[1]}
-      </span>
-    ) : (
-      <span>
-        {options.texts.mainTextContent} <a href={options.linkToPrivacyPolicy}>{options.texts.linkText}</a>
-      </span>
-    );
-
-    if (this.cookiePolicyLastUpdated == null) {
-      console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
-      this.cookiePolicyLastUpdated = new Date().toISOString();
-    }
-  }
-
-  private validateOptions = (options: any) => {
+  private validateOptions = (options: Options) => {
     //check for empty string or only whitespace string
     if (!options.linkToPrivacyPolicy?.trim()) {
       throw new Error('No linkToPrivacyPolicy provided');
@@ -72,12 +62,51 @@ export class AskManager {
     if (!options.texts?.linkText?.trim()) {
       throw new Error('Empty linkText provided');
     }
+
+    if (!options.texts?.mainContent && options.categories?.filter(c => !c.purpose).length) {
+      throw new Error('Missing "purpose" in Category object to insert in default text');
+    }
   };
+
+  private formatOptions = (options: Options) => {
+    let formattedOptions = options;
+    //Generate text if no text is provided
+    if (!formattedOptions.texts.mainContent) {
+      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
+        this.stringTokenForLink
+      }. You can manage your choices at any time.`;
+    }
+
+    //Turn text into html
+    formattedOptions.texts.mainContent = formattedOptions.texts.mainContent.includes(this.stringTokenForLink) ? (
+      <span>
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[0]}
+        <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[1]}
+      </span>
+    ) : (
+      <span>
+        {formattedOptions.texts.mainContent} <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
+      </span>
+    );
+
+    //Add datetime if missing
+    if (formattedOptions.cookiePolicyLastUpdated == null) {
+      console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
+      formattedOptions.cookiePolicyLastUpdated = new Date().toISOString();
+    }
+
+    return formattedOptions;
+  };
+
+  private listToString(list: string[]) {
+    return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
+  }
 
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;
   private bannerVisible() {
-    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(this.cookiePolicyLastUpdated);
+    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated);
   }
 
   private acceptCategories(categories: string[]) {
@@ -86,11 +115,7 @@ export class AskManager {
       acceptedCategories: categories,
     };
     this.forceBannerVisibility = false;
-  }
-
-  @Method()
-  async showBanner() {
-    this.forceBannerVisibility = true;
+    this.consentUpdated.emit(state.cookieConsent.acceptedCategories);
   }
 
   private showOptions = () => {
@@ -107,10 +132,10 @@ export class AskManager {
           <more-options-banner
             acceptedCategories={state.cookieConsent.acceptedCategories}
             acceptCategories={c => this.acceptCategories(c)}
-            hideOptions={() => this.hideOptions()}
+            hideOptions={this.hideOptions}
           ></more-options-banner>
         ) : (
-          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={() => this.showOptions()}></primary-banner>
+          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
         )}
       </div>
     ) : null;

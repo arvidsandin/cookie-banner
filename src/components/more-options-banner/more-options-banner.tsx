@@ -22,22 +22,23 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {state.categories.map((category, index) => (
-          <div key={category}>
+        {state.options.categories.map((category, index) => (
+          <div key={category.key}>
             <input
               type="checkbox"
               class="checkbox"
-              value={category}
-              checked={this.acceptedCategories.includes(category)}
+              value={category.key}
+              checked={this.acceptedCategories.includes(category.key)}
               ref={element => {
                 this.categoryCheckboxes[index] = element;
               }}
             ></input>
-            <p>{category}</p>
+            <p>{category.name}</p>
+            <p>{category.description}</p>
           </div>
         ))}
-        <button onClick={this.hideOptions}>{state.texts.backText}</button>
-        <button onClick={this.acceptSelectedCookies}>{state.texts.confirmText}</button>
+        <button onClick={this.hideOptions}>{state.options.texts.back}</button>
+        <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirm}</button>
       </div>
     );
   }

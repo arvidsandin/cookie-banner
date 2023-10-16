@@ -5,9 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Options } from "./utils/options";
+export { Options } from "./utils/options";
 export namespace Components {
     interface AskManager {
-        "setOptions": (userOptions: any) => Promise<void>;
+        "deleteConsent": () => Promise<void>;
+        "getCategoriesWithConsent": () => Promise<any[]>;
+        "hasConsent": (key: string) => Promise<boolean>;
+        "setOptions": (userOptions: Options) => Promise<void>;
         "showBanner": () => Promise<void>;
     }
     interface MoreOptionsBanner {
@@ -21,6 +26,10 @@ export namespace Components {
         "showOptions": () => void;
         "stringTokenForLink": string;
     }
+}
+export interface AskManagerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAskManagerElement;
 }
 declare global {
     interface HTMLAskManagerElement extends Components.AskManager, HTMLStencilElement {
@@ -49,6 +58,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface AskManager {
+        "onConsentUpdated"?: (event: AskManagerCustomEvent<string[]>) => void;
     }
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;
