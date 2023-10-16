@@ -1,13 +1,11 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'more-options-banner',
   shadow: false,
 })
 export class MoreOptionsBanner {
-  @Prop() categories: string[] = [];
-  @Prop() backText: string = null;
-  @Prop() confirmText: string = null;
   @Prop() acceptedCategories: string[] = [];
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -25,17 +23,18 @@ export class MoreOptionsBanner {
     return (
       <div class="options-box">
         <div class="options">
-          {this.categories.map(category => (
-            <div class="option" key={category}>
-              <p>{category}</p>
+          {state.options.categories.map((category, index) => (
+            <div class="option" key={category.key}>
+              <p>{category.name}</p>
+              <p>{category.description}</p>
               <label class="checkbox-container">
                 <input
                   type="checkbox"
                   class="checkbox"
-                  value={category}
-                  checked={this.acceptedCategories.includes(category)}
+                  value={category.key}
+                  checked={this.acceptedCategories.includes(category.key)}
                   ref={element => {
-                    this.categoryCheckboxes[this.categories.indexOf(category)] = element;
+                    this.categoryCheckboxes[index] = element;
                   }}
                 ></input>
                 <span class="checkmark"></span>
@@ -44,8 +43,8 @@ export class MoreOptionsBanner {
           ))}
         </div>
         <div class="options-banner-buttons buttons">
-          <button onClick={this.hideOptions}>{this.backText}</button>
-          <button onClick={this.acceptSelectedCookies}>{this.confirmText}</button>
+          <button onClick={this.hideOptions}>{state.options.texts.back}</button>
+          <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirm}</button>
         </div>
       </div>
     );

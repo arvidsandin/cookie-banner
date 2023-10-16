@@ -1,4 +1,5 @@
 import { Component, Prop, h } from '@stencil/core';
+import state from '../../store/store';
 
 @Component({
   tag: 'primary-banner',
@@ -6,12 +7,6 @@ import { Component, Prop, h } from '@stencil/core';
 })
 export class PrimaryBanner {
   @Prop() categories: string[];
-  @Prop() mainTextContent: string;
-  @Prop() linkText: string;
-  @Prop() linkToPrivacyPolicy: string;
-  @Prop() acceptText: string;
-  @Prop() rejectText: string;
-  @Prop() moreOptionsText: string;
   @Prop() stringTokenForLink: string;
 
   @Prop() acceptCategories: (categories: string[]) => void;
@@ -21,29 +16,24 @@ export class PrimaryBanner {
     this.acceptCategories([]);
   };
   private acceptAllCookies = () => {
-    this.acceptCategories(this.categories);
+    this.acceptCategories(state.options.categories.map(c => c.key));
   };
+
+  // Copy to not interfere with Stencil's renderer cache
+  private getCopyOfMainContent() {
+    return JSON.parse(JSON.stringify(state.options.texts.mainContent));
+  }
 
   render() {
     return (
       <div class="consent-box">
         <div class="info-text">
-          {this.mainTextContent.includes(this.stringTokenForLink) ? (
-            <p>
-              {this.mainTextContent.split(this.stringTokenForLink)[0]}
-              <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-              {this.mainTextContent.split(this.stringTokenForLink)[1]}
-            </p>
-          ) : (
-            <p>
-              {this.mainTextContent} <a href={this.linkToPrivacyPolicy}>{this.linkText}</a>
-            </p>
-          )}
+          <p>{this.getCopyOfMainContent()}</p>
         </div>
         <div class="primary-banner-buttons buttons">
-          <button onClick={this.showOptions}>{this.moreOptionsText}</button>
-          <button onClick={this.rejectAllCookies}>{this.rejectText}</button>
-          <button onClick={this.acceptAllCookies}>{this.acceptText}</button>
+          <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
+          <button onClick={this.rejectAllCookies}>{state.options.texts.reject}</button>
+          <button onClick={this.acceptAllCookies}>{state.options.texts.accept}</button>
         </div>
       </div>
     );

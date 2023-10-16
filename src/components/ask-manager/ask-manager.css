@@ -1,5 +1,5 @@
-:host {
-  display: block;
+.dimmable-backdrop {
+  background-color: #00000080;
   position: fixed;
   width: 100vw;
   height: 100vh;

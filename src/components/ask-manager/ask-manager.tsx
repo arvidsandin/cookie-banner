@@ -1,4 +1,6 @@
-import { Component, Method, State, h } from '@stencil/core';
+import { Component, Method, State, Event, EventEmitter, h } from '@stencil/core';
+import state from '../../store/store';
+import { Options } from '../../utils/options';
 
 @Component({
   tag: 'ask-manager',
@@ -6,93 +8,114 @@ import { Component, Method, State, h } from '@stencil/core';
   shadow: true,
 })
 export class AskManager {
-  /**
-   * list of categories of the cookies
-   */
-  private categories: string[] = [];
-
-  /**
-   * last time the privacy policy or which cookies that are used by the website was updated
-   * used to know if updated consent is needed
-   * can be any string that can be read by Date()
-   */
-  private cookiePolicyLastUpdated: string = null;
-  private readonly stringTokenForLink = '{Link}';
-
-  @State() mainTextContent: string = `Options have not been set - this cookie banner is non-functional. View the ${this.stringTokenForLink} for required options`;
-  @State() linkText: string = 'documentation';
-  @State() linkToPrivacyPolicy: string = 'https://github.com/arvidsandin/ask-manager#readme';
-  @State() acceptText: string = null;
-  @State() rejectText: string = null;
-  @State() moreOptionsText: string = null;
-  @State() backText: string = null;
-  @State() confirmText: string = null;
-
-  /**
-   * key to use when storing the consent in localStorage
-   */
-  private storageName: string = null;
-
-  private readonly defaultOptions = {
-    categories: [],
-    cookiePolicyLastUpdated: null,
-    storageName: 'cookie-consent',
-    mainTextContent: `This website uses cookies for functional, analytical and marketing purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time.`,
-    linkText: 'privacy policy',
-    linkToPrivacyPolicy: null,
-    acceptText: 'Accept all',
-    rejectText: 'Reject non-essential',
-    moreOptionsText: 'More options',
-    backText: 'Back',
-    confirmText: 'Confirm selection',
-  };
-
   @Method()
-  async setOptions(userOptions) {
-    const options = { ...this.defaultOptions, ...userOptions };
-
-    //check for empty string or only whitespace string
-    if (!options.linkToPrivacyPolicy || !options.linkToPrivacyPolicy.trim()) {
-      throw new Error('No linkToPrivacyPolicy provided');
-    }
-    if (!options.linkText || !options.linkText.trim()) {
-      throw new Error('Empty linkText provided');
-    }
-    this.storageName = options.storageName;
-    this.categories = options.categories;
-    this.cookiePolicyLastUpdated = options.cookiePolicyLastUpdated;
-    this.mainTextContent = options.mainTextContent;
-    this.linkText = options.linkText;
-    this.linkToPrivacyPolicy = options.linkToPrivacyPolicy;
-    this.acceptText = options.acceptText;
-    this.rejectText = options.rejectText;
-    this.moreOptionsText = options.moreOptionsText;
-    this.backText = options.backText;
-    this.confirmText = options.confirmText;
-
-    if (this.cookiePolicyLastUpdated == null) {
-      console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
-      this.cookiePolicyLastUpdated = new Date().toISOString();
-    }
-    this.cookieConsent = JSON.parse(localStorage.getItem(this.storageName)) || {
+  async hasConsent(key: string) {
+    return state.cookieConsent.acceptedCategories.includes(key);
+  }
+  @Method()
+  async getCategoriesWithConsent() {
+    return state.cookieConsent.acceptedCategories;
+  }
+  @Method()
+  async setOptions(userOptions: Options) {
+    let options = { ...this.defaultOptions, ...userOptions };
+    this.validateOptions(options);
+    options = this.formatOptions(options);
+    state.options = options;
+  }
+  @Method()
+  async showBanner() {
+    this.forceBannerVisibility = true;
+  }
+  @Method()
+  async deleteConsent() {
+    state.cookieConsent = {
       lastAccepted: null,
       acceptedCategories: [],
     };
   }
+  @Event() consentUpdated: EventEmitter<string[]>;
 
-  @State() isInOptionsView: boolean = false;
+  private readonly stringTokenForLink = '{Link}';
 
-  private cookieConsent = {
-    lastAccepted: null,
-    acceptedCategories: [],
+  private readonly defaultOptions: Options = {
+    categories: [],
+    cookiePolicyLastUpdated: null,
+    storageName: 'cookie-consent',
+    linkToPrivacyPolicy: null,
+    texts: {
+      mainContent: null,
+      linkText: 'privacy policy',
+      accept: 'Accept all',
+      reject: 'Reject non-essential',
+      moreOptions: 'More options',
+      back: 'Back',
+      confirm: 'Confirm selection',
+    },
   };
 
+  private validateOptions = (options: Options) => {
+    //check for empty string or only whitespace string
+    if (!options.linkToPrivacyPolicy?.trim()) {
+      throw new Error('No linkToPrivacyPolicy provided');
+    }
+    if (!options.texts?.linkText?.trim()) {
+      throw new Error('Empty linkText provided');
+    }
+
+    if (!options.texts?.mainContent && options.categories?.filter(c => !c.purpose).length) {
+      throw new Error('Missing "purpose" in Category object to insert in default text');
+    }
+  };
+
+  private formatOptions = (options: Options) => {
+    let formattedOptions = options;
+    //Generate text if no text is provided
+    if (!formattedOptions.texts.mainContent) {
+      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
+        this.stringTokenForLink
+      }. You can manage your choices at any time.`;
+    }
+
+    //Turn text into html
+    formattedOptions.texts.mainContent = formattedOptions.texts.mainContent.includes(this.stringTokenForLink) ? (
+      <span>
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[0]}
+        <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
+        {formattedOptions.texts.mainContent.split(this.stringTokenForLink)[1]}
+      </span>
+    ) : (
+      <span>
+        {formattedOptions.texts.mainContent} <a href={formattedOptions.linkToPrivacyPolicy}>{formattedOptions.texts.linkText}</a>
+      </span>
+    );
+
+    //Add datetime if missing
+    if (formattedOptions.cookiePolicyLastUpdated == null) {
+      console.warn('No date for cookiePolicyLastUpdated chosen - Current datetime will be selected, which will show the banner on every reload!');
+      formattedOptions.cookiePolicyLastUpdated = new Date().toISOString();
+    }
+
+    return formattedOptions;
+  };
+
+  private listToString(list: string[]) {
+    return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
+  }
+
+  @State() isInOptionsView: boolean = false;
+  @State() forceBannerVisibility = false;
+  private bannerVisible() {
+    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated);
+  }
+
   private acceptCategories(categories: string[]) {
-    this.cookieConsent = {
-      lastAccepted: new Date(),
+    state.cookieConsent = {
+      lastAccepted: new Date().toISOString(),
       acceptedCategories: categories,
     };
-    localStorage.setItem(this.storageName, JSON.stringify(this.cookieConsent));
+    this.forceBannerVisibility = false;
+    this.consentUpdated.emit(state.cookieConsent.acceptedCategories);
   }
 
   private showOptions = () => {
@@ -103,32 +126,18 @@ export class AskManager {
   };
 
   render() {
-    return (
+    return this.bannerVisible() ? (
       <div class="dimmable-backdrop">
         {this.isInOptionsView ? (
           <more-options-banner
-            categories={this.categories}
-            backText={this.backText}
-            confirmText={this.confirmText}
-            acceptedCategories={this.cookieConsent.acceptedCategories}
+            acceptedCategories={state.cookieConsent.acceptedCategories}
             acceptCategories={c => this.acceptCategories(c)}
-            hideOptions={() => this.hideOptions()}
+            hideOptions={this.hideOptions}
           ></more-options-banner>
         ) : (
-          <primary-banner
-            categories={this.categories}
-            mainTextContent={this.mainTextContent}
-            linkText={this.linkText}
-            linkToPrivacyPolicy={this.linkToPrivacyPolicy}
-            acceptText={this.acceptText}
-            rejectText={this.rejectText}
-            moreOptionsText={this.moreOptionsText}
-            stringTokenForLink={this.stringTokenForLink}
-            acceptCategories={c => this.acceptCategories(c)}
-            showOptions={() => this.showOptions()}
-          ></primary-banner>
+          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
         )}
       </div>
-    );
+    ) : null;
   }
 }
