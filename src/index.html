@@ -19,9 +19,27 @@
     customElements.whenDefined('ask-manager').then(() => {
       document.querySelector('ask-manager').setOptions({
         categories: [
-          { key: 'functional', name: 'Functional Cookies', purpose: 'functional', description: 'Required for some of the functionalities of the website' },
-          { key: 'analytical', name: 'Analytical Cookies', purpose: 'analytical', description: 'Used to improve the website' },
-          { key: 'marketing', name: 'Marketing Cookies', purpose: 'marketing', description: 'Used for targeted advertisement' },
+          {
+            key: 'functional',
+            name: 'Functional Cookies',
+            purpose: 'functional',
+            description:
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pulvinar, tellus sit amet vestibulum convallis, eros lectus iaculis tortor, vitae viverra lorem metus id nulla. Praesent at dolor ac arcu interdum ultrices ut in quam. Duis eget ligula viverra, commodo elit vitae, cursus turpis. Sed aliquam lacus sem, blandit posuere mauris pharetra sit amet. Vivamus placerat dapibus pharetra.',
+          },
+          {
+            key: 'analytical',
+            name: 'Analytical Cookies',
+            purpose: 'analytical',
+            description:
+              'Proin at tempus magna, non luctus erat. Donec ultrices molestie dui in consequat. Mauris elementum nisi ac tellus scelerisque dictum. Praesent nec eros vestibulum, efficitur arcu ac, dignissim leo. Sed suscipit nulla vel ligula commodo, at consequat dui luctus. Vestibulum eget auctor nibh. Etiam eget imperdiet lacus.',
+          },
+          {
+            key: 'marketing',
+            name: 'Marketing Cookies',
+            purpose: 'marketing',
+            description:
+              'Mauris iaculis odio gravida dapibus vestibulum. Cras vehicula eget nisi at bibendum. Suspendisse tincidunt nisl erat, in fermentum odio sagittis vel. Phasellus in nulla in urna tincidunt interdum. Vestibulum quis porta nisl. In hac habitasse platea dictumst. Duis dictum enim vulputate condimentum tincidunt. Sed quis. ',
+          },
         ],
         cookiePolicyLastUpdated: '2023-09-13',
         linkToPrivacyPolicy: 'https://example.com',
