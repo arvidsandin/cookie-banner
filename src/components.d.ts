@@ -17,6 +17,7 @@ export namespace Components {
     }
     interface FloatingCookieButton {
         "changeColor": (background: string, foreground: string) => Promise<void>;
+        "showBanner": () => void;
     }
     interface MoreOptionsBanner {
         "acceptCategories": (categories: string[]) => void;
@@ -71,6 +72,7 @@ declare namespace LocalJSX {
         "onConsentUpdated"?: (event: AskManagerCustomEvent<string[]>) => void;
     }
     interface FloatingCookieButton {
+        "showBanner"?: () => void;
     }
     interface MoreOptionsBanner {
         "acceptCategories"?: (categories: string[]) => void;

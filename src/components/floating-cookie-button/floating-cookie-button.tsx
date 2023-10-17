@@ -1,10 +1,12 @@
-import { Component, Prop, Method, h } from '@stencil/core';
+import { Component, Method, Prop, h } from '@stencil/core';
 @Component({
   tag: 'floating-cookie-button',
   styleUrl: 'floating-cookie-button.css',
   shadow: true,
 })
 export class FloatingCookieButton {
+  @Prop() showBanner: () => void;
+
   @Method()
   async changeColor(background: string, foreground: string) {
     this.button.style.backgroundColor = background;
