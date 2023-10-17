@@ -43,6 +43,7 @@ export class AskManager {
     cookiePolicyLastUpdated: null,
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
+    useCookieButton: true,
     texts: {
       mainContent: null,
       linkText: 'privacy policy',
@@ -125,6 +126,8 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
+  private floatingCookieButton: HTMLFloatingCookieButtonElement;
+
   render() {
     return this.bannerVisible() ? (
       <div class="dimmable-backdrop">
@@ -137,6 +140,10 @@ export class AskManager {
         ) : (
           <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
         )}
+      </div>
+    ) : state.options.useCookieButton ? (
+      <div>
+        <floating-cookie-button showBanner={() => this.showBanner()} ref={el => (this.floatingCookieButton = el)}></floating-cookie-button>
       </div>
     ) : null;
   }
