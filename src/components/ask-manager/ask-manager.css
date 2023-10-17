@@ -38,7 +38,7 @@ button:hover{
   border: 1px solid black ;
   border-radius: 3px;
   justify-content: space-around;
-  padding: 5px 10px;
+  padding: 10px;
 }
 
 .consent-box{
@@ -59,11 +59,11 @@ button:hover{
 .option{
   margin: 1em;
   display: grid;
-  height: 25px;
+  min-height: 25px;
   grid-template-columns: 15% auto 25px;
 }
 .option p{
-  margin: auto;
+  margin: 0 auto;
 }
 
 .checkbox-container {
@@ -125,7 +125,10 @@ input:focus-visible~.checkmark {
 
 .buttons{
   display: flex;
-  justify-content: center;
+  justify-content: end;
+}
+.options-banner-buttons > button{
+  margin: auto 5px;
 }
 
 .info-text{
