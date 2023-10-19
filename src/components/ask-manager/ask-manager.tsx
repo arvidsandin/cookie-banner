@@ -75,7 +75,7 @@ export class AskManager {
     if (!formattedOptions.texts.mainContent) {
       formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
         this.stringTokenForLink
-      }. You can manage your choices at any time.`;
+      }. You can manage your choices at any time by clicking the cookie button.`;
     }
 
     //Turn text into html
