@@ -22,7 +22,6 @@ button {
   -webkit-appearance: none;
   background: none;
   box-shadow: none;
-  border: none;
   font: inherit;
   color: var(--text-color-button);
   background-color: var(--background-color-button);
