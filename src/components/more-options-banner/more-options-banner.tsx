@@ -22,23 +22,30 @@ export class MoreOptionsBanner {
   render() {
     return (
       <div class="options-box">
-        {state.options.categories.map((category, index) => (
-          <div key={category.key}>
-            <input
-              type="checkbox"
-              class="checkbox"
-              value={category.key}
-              checked={this.acceptedCategories.includes(category.key)}
-              ref={element => {
-                this.categoryCheckboxes[index] = element;
-              }}
-            ></input>
-            <p>{category.name}</p>
-            <p>{category.description}</p>
-          </div>
-        ))}
-        <button onClick={this.hideOptions}>{state.options.texts.back}</button>
-        <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirm}</button>
+        <div class="options">
+          {state.options.categories.map((category, index) => (
+            <div class="option" key={category.key}>
+              <p>{category.name}</p>
+              <p>{category.description}</p>
+              <label class="checkbox-container">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  value={category.key}
+                  checked={this.acceptedCategories.includes(category.key)}
+                  ref={element => {
+                    this.categoryCheckboxes[index] = element;
+                  }}
+                ></input>
+                <span class="checkmark"></span>
+              </label>
+            </div>
+          ))}
+        </div>
+        <div class="options-banner-buttons buttons">
+          <button onClick={this.hideOptions}>{state.options.texts.back}</button>
+          <button onClick={this.acceptSelectedCookies}>{state.options.texts.confirm}</button>
+        </div>
       </div>
     );
   }

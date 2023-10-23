@@ -127,7 +127,7 @@ export class AskManager {
 
   render() {
     return this.bannerVisible() ? (
-      <div class="dimmable-backdrop">
+      <div>
         {this.isInOptionsView ? (
           <more-options-banner
             acceptedCategories={state.cookieConsent.acceptedCategories}

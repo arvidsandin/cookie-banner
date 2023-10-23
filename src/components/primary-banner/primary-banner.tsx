@@ -27,10 +27,14 @@ export class PrimaryBanner {
   render() {
     return (
       <div class="consent-box">
-        <p class="info-text">{this.getCopyOfMainContent()}</p>
-        <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
-        <button onClick={this.rejectAllCookies}>{state.options.texts.reject}</button>
-        <button onClick={this.acceptAllCookies}>{state.options.texts.accept}</button>
+        <div class="info-text">
+          <p>{this.getCopyOfMainContent()}</p>
+        </div>
+        <div class="primary-banner-buttons buttons">
+          <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
+          <button onClick={this.rejectAllCookies}>{state.options.texts.reject}</button>
+          <button onClick={this.acceptAllCookies}>{state.options.texts.accept}</button>
+        </div>
       </div>
     );
   }
