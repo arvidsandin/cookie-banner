@@ -8,14 +8,27 @@ import { Options } from '../../utils/options';
   shadow: true,
 })
 export class AskManager {
+  /**
+   * Check if the user has conseted to a particular category
+   * @param key The category of cookie to check consent status for
+   * @returns Whether the user has consented to that cookie
+   */
   @Method()
   async hasConsent(key: string) {
     return state.cookieConsent.acceptedCategories.includes(key);
   }
+  /**
+   * Get the categories that the user has consented to
+   * @returns An array with the keys of all cookies that the user has consented to
+   */
   @Method()
   async getCategoriesWithConsent() {
     return state.cookieConsent.acceptedCategories;
   }
+  /**
+   * Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
+   * @param userOptions The Options object that contains the settings for the component
+   */
   @Method()
   async setOptions(userOptions: Options) {
     let options = { ...this.defaultOptions, ...userOptions };
@@ -23,10 +36,16 @@ export class AskManager {
     options = this.formatOptions(options);
     state.options = options;
   }
+  /**
+   * Make the banner reappear
+   */
   @Method()
   async showBanner() {
     this.forceBannerVisibility = true;
   }
+  /**
+   * Delete all previous set consents
+   */
   @Method()
   async deleteConsent() {
     state.cookieConsent = {
@@ -34,6 +53,11 @@ export class AskManager {
       acceptedCategories: [],
     };
   }
+  /**
+   * Event when the user has updated their consent
+   * @event consentUpdated
+   * @property {string[]} detail - An array with the keys of all cookies that the user has consented to
+   */
   @Event() consentUpdated: EventEmitter<string[]>;
 
   private readonly stringTokenForLink = '{Link}';
@@ -135,7 +159,7 @@ export class AskManager {
             hideOptions={this.hideOptions}
           ></more-options-banner>
         ) : (
-          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
+          <primary-banner acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
         )}
       </div>
     ) : null;

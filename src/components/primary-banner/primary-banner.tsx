@@ -6,10 +6,13 @@ import state from '../../store/store';
   shadow: false,
 })
 export class PrimaryBanner {
-  @Prop() categories: string[];
-  @Prop() stringTokenForLink: string;
-
+  /**
+   * A function to use when accepting categories
+   */
   @Prop() acceptCategories: (categories: string[]) => void;
+  /**
+   * A function to set the options view as the active one
+   */
   @Prop() showOptions: () => void;
 
   private rejectAllCookies = () => {
