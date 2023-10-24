@@ -13,6 +13,9 @@ const initialOptions: Options = {
     moreOptions: null,
     back: null,
     confirm: null,
+    essentialCategoryName: null,
+    essentialPurpose: null,
+    essentialDescription: null,
   },
   categories: [],
 };
