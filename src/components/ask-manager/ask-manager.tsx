@@ -1,6 +1,7 @@
-import { Component, Method, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Method, State, Event, Element, EventEmitter, h } from '@stencil/core';
 import state from '../../store/store';
 import { Options } from '../../utils/options';
+import { StylingOptions } from '../../utils/stylingOptions';
 
 @Component({
   tag: 'ask-manager',
@@ -34,9 +35,29 @@ export class AskManager {
       acceptedCategories: [],
     };
   }
+  @Method()
+  async setStyling(userStyling: StylingOptions) {
+    const styling: StylingOptions = { ...this.defaultStyling, ...userStyling };
+    for (const [key, value] of Object.entries(styling)) {
+      this.el.style.setProperty('--' + key, value);
+    }
+  }
+  @Element() el: HTMLAskManagerElement;
   @Event() consentUpdated: EventEmitter<string[]>;
 
   private readonly stringTokenForLink = '{Link}';
+
+  private readonly defaultStyling: StylingOptions = {
+    borderRadiusMainbox: '3px',
+    borderRadiusButton: '10px',
+    borderRadiusButtonMobile: '1.5em',
+    backgroundColorButton: '#000000',
+    borderColorButton: '#000000',
+    textColorButton: '#ffffff',
+    textColorMainBox: '#000000',
+    backgroundColorMainBox: '#ffffff',
+    borderColorMainBox: '#000000',
+  };
 
   private readonly defaultOptions: Options = {
     categories: [],

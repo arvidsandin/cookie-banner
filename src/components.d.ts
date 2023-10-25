@@ -6,13 +6,16 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Options } from "./utils/options";
+import { StylingOptions } from "./utils/stylingOptions";
 export { Options } from "./utils/options";
+export { StylingOptions } from "./utils/stylingOptions";
 export namespace Components {
     interface AskManager {
         "deleteConsent": () => Promise<void>;
         "getCategoriesWithConsent": () => Promise<any[]>;
         "hasConsent": (key: string) => Promise<boolean>;
         "setOptions": (userOptions: Options) => Promise<void>;
+        "setStyling": (userStyling: StylingOptions) => Promise<void>;
         "showBanner": () => Promise<void>;
     }
     interface MoreOptionsBanner {
