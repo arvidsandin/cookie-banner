@@ -23,7 +23,7 @@
 button {
   -webkit-appearance: none;
   background: none;
-  box-shadow: none;
+  box-shadow: #00000033 4px 4px 5px;
   font: inherit;
   color: var(--textColorButton);
   background-color: var(--backgroundColorButton);
@@ -34,10 +34,14 @@ button {
   height: 3.5em;
   padding: 10px;
   margin: auto 2%;
+  transition: transform ease-in-out 0.03s;
 }
 
 button:hover{
   cursor: pointer;
+}
+button:active{
+  transform:scale(0.97);
 }
 
 .consent-box, .options-box {
