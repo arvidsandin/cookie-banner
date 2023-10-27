@@ -19,9 +19,11 @@
 
 • **description**: `string`
 
+The descriptions diplayed in the second layer of the cookie banner.
+
 #### Defined in
 
-[category.ts:4](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/category.ts#L4)
+[category.ts:18](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L18)
 
 ___
 
@@ -29,9 +31,13 @@ ___
 
 • **key**: `string`
 
+The key used for the category when storing the consent and check the status of the consent.
+
+Example: `'analytics'`
+
 #### Defined in
 
-[category.ts:2](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/category.ts#L2)
+[category.ts:7](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L7)
 
 ___
 
@@ -39,9 +45,13 @@ ___
 
 • **name**: `string`
 
+The name of the category displayed in the second layer of the cookie banner.
+
+Example: `'Analytical cookies'`
+
 #### Defined in
 
-[category.ts:5](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/category.ts#L5)
+[category.ts:24](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L24)
 
 ___
 
@@ -49,6 +59,11 @@ ___
 
 • `Optional` **purpose**: `string`
 
+The adjective to use in `options.texts.mainContent` before the word "purposes".
+This is **required** if `options.texts.mainContent` is not set, otherwise it will not be used at all.
+
+Example: `'analytical'`
+
 #### Defined in
 
-[category.ts:3](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/category.ts#L3)
+[category.ts:14](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L14)

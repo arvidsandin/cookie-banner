@@ -1,51 +1,67 @@
 import { Category } from './category';
 export interface Options {
   /**
-   * last time the privacy policy or which cookies that are used by the website was updated
-   * used to know if updated consent is needed
-   * can be any string that can be read by Date()
+   * A date of the last time the cookie policy was updated.
+   * If the user consented earlier than this date, new consent will be required.
+   * Can be any string parsable by the Date() function in Javascript.
    */
   cookiePolicyLastUpdated: string;
   /**
-   * name to use for the key in localStorage
-   */
-  storageName?: string;
-  /**
-   * relative or absolute link to privacy policy
+   * A relative or absolute link to the privacy policy.
    */
   linkToPrivacyPolicy: string;
   /**
-   * the categories of cookies to ask for consent for
+   * The key to use for storing the consent in localStorage.
+   * @default `'cookie-consent'`
+   */
+  storageName?: string;
+  /**
+   * The categories of non-essential cookies used on the website.
+   * See below for details about the Category type.
+   * If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use ask-manager, as the GDPR does not require the same level of consent when only essential cookies are used.
+   * @default `[]`
    */
   categories?: Category[];
   texts?: {
     /**
-     * text to show in the primary view of the banner
-     * write {Link} instead of the word that should link to the privacy policy
+     * The text viewed in the first layer of the cookie banner.
+     * If not set, it will automatically insert the categories defined in `categories` in the text.
+     * Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`.
+     * If no occurence of { Link } is found, the word and link will be appended at the end.
+     * To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that.
+     * @default `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time.'`
      */
     mainContent?: string;
     /**
-     * the word(s) to replace {Link} with
+     * The word(s) that should link to the privacy policy.
+     * Will replace {Link} in `texts.mainContent`.
+     * @default `'privacy policy'`
      */
     linkText?: string;
     /**
-     * Text on the "Accept all" button
+     * The text on the button that accepts all cookies.
+     * **Do not** write something ambiguous like "Okay" or "I understand"(understanding is not the same as consenting), as the consent is not valid according to the GDPR if the user has not unambiguously given it.
+     * @default `'Accept all'`
      */
     accept?: string;
     /**
-     * text on the "Reject all" button
+     * The text on the button that rejects all non - essential cookies.
+     * @default `'Reject non-essential'`
      */
     reject?: string;
     /**
-     * text on the "More options" button
+     * The text on the button that takes the user to the second layer of the cookie banner.
+     * @default `'More options'`
      */
     moreOptions?: string;
     /**
-     * text on the "Back" button
+     * The text on the button that takes the user back to the first layer from the second layer of the cookie banner.
+     * @default `'Back'`
      */
     back?: string;
     /**
-     * text on the "Confirm selection" button
+     * The text on the button that confirms the user's selected options.
+     * @default `'Confirm selection'`
      */
     confirm?: string;
   };

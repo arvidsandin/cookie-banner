@@ -20,11 +20,17 @@
 
 • `Optional` **categories**: [`Category`](category.Category.md)[]
 
-the categories of cookies to ask for consent for
+The categories of non-essential cookies used on the website.
+See below for details about the Category type.
+If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use ask-manager, as the GDPR does not require the same level of consent when only essential cookies are used.
+
+**`Default`**
+
+`[]`
 
 #### Defined in
 
-[options.ts:20](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/options.ts#L20)
+[options.ts:24](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/options.ts#L24)
 
 ___
 
@@ -32,13 +38,13 @@ ___
 
 • **cookiePolicyLastUpdated**: `string`
 
-last time the privacy policy or which cookies that are used by the website was updated
-used to know if updated consent is needed
-can be any string that can be read by Date()
+A date of the last time the cookie policy was updated.
+If the user consented earlier than this date, new consent will be required.
+Can be any string parsable by the Date() function in Javascript.
 
 #### Defined in
 
-[options.ts:8](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/options.ts#L8)
+[options.ts:8](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/options.ts#L8)
 
 ___
 
@@ -46,11 +52,11 @@ ___
 
 • **linkToPrivacyPolicy**: `string`
 
-relative or absolute link to privacy policy
+A relative or absolute link to the privacy policy.
 
 #### Defined in
 
-[options.ts:16](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/options.ts#L16)
+[options.ts:12](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/options.ts#L12)
 
 ___
 
@@ -58,11 +64,15 @@ ___
 
 • `Optional` **storageName**: `string`
 
-name to use for the key in localStorage
+The key to use for storing the consent in localStorage.
+
+**`Default`**
+
+`'cookie-consent'`
 
 #### Defined in
 
-[options.ts:12](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/options.ts#L12)
+[options.ts:17](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/options.ts#L17)
 
 ___
 
@@ -74,14 +84,14 @@ ___
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `accept?` | `string` | Text on the "Accept all" button |
-| `back?` | `string` | text on the "Back" button |
-| `confirm?` | `string` | text on the "Confirm selection" button |
-| `linkText?` | `string` | the word(s) to replace {Link} with |
-| `mainContent?` | `string` | text to show in the primary view of the banner write {Link} instead of the word that should link to the privacy policy |
-| `moreOptions?` | `string` | text on the "More options" button |
-| `reject?` | `string` | text on the "Reject all" button |
+| `accept?` | `string` | The text on the button that accepts all cookies. **Do not** write something ambiguous like "Okay" or "I understand"(understanding is not the same as consenting), as the consent is not valid according to the GDPR if the user has not unambiguously given it. **`Default`** `'Accept all'` |
+| `back?` | `string` | The text on the button that takes the user back to the first layer from the second layer of the cookie banner. **`Default`** `'Back'` |
+| `confirm?` | `string` | The text on the button that confirms the user's selected options. **`Default`** `'Confirm selection'` |
+| `linkText?` | `string` | The word(s) that should link to the privacy policy. Will replace {Link} in `texts.mainContent`. **`Default`** `'privacy policy'` |
+| `mainContent?` | `string` | The text viewed in the first layer of the cookie banner. If not set, it will automatically insert the categories defined in `categories` in the text. Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`. If no occurence of { Link } is found, the word and link will be appended at the end. To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that. **`Default`** `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time.'` |
+| `moreOptions?` | `string` | The text on the button that takes the user to the second layer of the cookie banner. **`Default`** `'More options'` |
+| `reject?` | `string` | The text on the button that rejects all non - essential cookies. **`Default`** `'Reject non-essential'` |
 
 #### Defined in
 
-[options.ts:21](https://github.com/arvidsandin/ask-manager/blob/3883aa0/src/utils/options.ts#L21)
+[options.ts:25](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/options.ts#L25)

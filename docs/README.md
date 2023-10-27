@@ -8,4 +8,3 @@ ask-manager
 
 - [category](modules/category.md)
 - [options](modules/options.md)
-- [utils](modules/utils.md)
