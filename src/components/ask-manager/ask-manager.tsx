@@ -38,8 +38,8 @@ export class AskManager {
   @Method()
   async setStyling(userStyling: StylingOptions) {
     const styling: StylingOptions = { ...this.defaultStyling, ...userStyling };
-    for (const [key, value] of Object.entries(styling)) {
-      this.el.style.setProperty('--' + key, value);
+    for (const key in styling) {
+      this.el.style.setProperty('--' + key, styling[key]);
     }
   }
   @Element() el: HTMLAskManagerElement;
