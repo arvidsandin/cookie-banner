@@ -36,8 +36,8 @@ export class AskManager {
     };
   }
   @Method()
-  async setStyling(userStyling: StylingOptions) {
-    const styling: StylingOptions = { ...this.defaultStyling, ...userStyling };
+  async setStyling(newStyling: StylingOptions) {
+    const styling: StylingOptions = { ...this.getCurrentStyling(), ...newStyling };
     for (const key in styling) {
       this.el.style.setProperty('--' + key, styling[key]);
     }
@@ -47,7 +47,19 @@ export class AskManager {
 
   private readonly stringTokenForLink = '{Link}';
 
-  private defaultStyling: StylingOptions;
+  private getCurrentStyling(): StylingOptions {
+    return {
+      borderRadiusMainbox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
+      borderRadiusButton: getComputedStyle(this.el).getPropertyValue('--borderRadiusButton'),
+      borderRadiusButtonMobile: getComputedStyle(this.el).getPropertyValue('--borderRadiusButtonMobile'),
+      backgroundColorButton: getComputedStyle(this.el).getPropertyValue('--backgroundColorButton'),
+      borderColorButton: getComputedStyle(this.el).getPropertyValue('--borderColorButton'),
+      textColorButton: getComputedStyle(this.el).getPropertyValue('--textColorButton'),
+      textColorMainBox: getComputedStyle(this.el).getPropertyValue('--textColorMainBox'),
+      backgroundColorMainBox: getComputedStyle(this.el).getPropertyValue('--backgroundColorMainBox'),
+      borderColorMainBox: getComputedStyle(this.el).getPropertyValue('--borderColorMainBox'),
+    };
+  }
   private readonly defaultOptions: Options = {
     categories: [],
     cookiePolicyLastUpdated: null,
@@ -134,20 +146,6 @@ export class AskManager {
   private hideOptions = () => {
     this.isInOptionsView = false;
   };
-
-  componentDidLoad() {
-    this.defaultStyling = {
-      borderRadiusMainbox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
-      borderRadiusButton: getComputedStyle(this.el).getPropertyValue('--borderRadiusButton'),
-      borderRadiusButtonMobile: getComputedStyle(this.el).getPropertyValue('--borderRadiusButtonMobile'),
-      backgroundColorButton: getComputedStyle(this.el).getPropertyValue('--backgroundColorButton'),
-      borderColorButton: getComputedStyle(this.el).getPropertyValue('--borderColorButton'),
-      textColorButton: getComputedStyle(this.el).getPropertyValue('--textColorButton'),
-      textColorMainBox: getComputedStyle(this.el).getPropertyValue('--textColorMainBox'),
-      backgroundColorMainBox: getComputedStyle(this.el).getPropertyValue('--backgroundColorMainBox'),
-      borderColorMainBox: getComputedStyle(this.el).getPropertyValue('--borderColorMainBox'),
-    };
-  }
 
   render() {
     return this.bannerVisible() ? (

@@ -15,7 +15,7 @@ export namespace Components {
         "getCategoriesWithConsent": () => Promise<any[]>;
         "hasConsent": (key: string) => Promise<boolean>;
         "setOptions": (userOptions: Options) => Promise<void>;
-        "setStyling": (userStyling: StylingOptions) => Promise<void>;
+        "setStyling": (newStyling: StylingOptions) => Promise<void>;
         "showBanner": () => Promise<void>;
     }
     interface MoreOptionsBanner {
