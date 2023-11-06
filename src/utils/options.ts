@@ -18,6 +18,10 @@ export interface Options {
    * the categories of cookies to ask for consent for
    */
   categories?: Category[];
+  /**
+   * Whether to use a floating button
+   */
+  useCookieButton?: boolean;
   texts?: {
     /**
      * text to show in the primary view of the banner
