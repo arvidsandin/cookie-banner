@@ -3,22 +3,11 @@ import { Options } from '../utils/options';
 
 const initialOptions: Options = {
   cookiePolicyLastUpdated: new Date().toISOString(),
-  storageName: null,
   linkToPrivacyPolicy: 'https://github.com/arvidsandin/ask-manager#readme',
-  useCookieButton: true,
   texts: {
     mainContent: `Options have not been set - this cookie banner is non-functional. View the documentation for required options`,
     linkText: 'documentation',
-    accept: null,
-    reject: null,
-    moreOptions: null,
-    back: null,
-    confirm: null,
-    essentialCategoryName: null,
-    essentialPurpose: null,
-    essentialDescription: null,
   },
-  categories: [],
 };
 
 const { state, onChange } = createStore({
