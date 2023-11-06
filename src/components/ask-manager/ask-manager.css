@@ -36,7 +36,6 @@ button {
   margin: auto 2%;
   transition: transform ease-in-out 0.03s;
 }
-
 button:hover{
   cursor: pointer;
 }
@@ -44,6 +43,9 @@ button:active{
   transform:scale(0.97);
 }
 
+.visibility-animation {
+  transition: opacity ease-in-out 0.2s, visibility ease-in-out 0.2s;
+}
 .consent-box, .options-box {
   display: flex;
   position: absolute;

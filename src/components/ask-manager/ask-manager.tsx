@@ -147,19 +147,30 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
+  moreOptionsVisible() {
+    return this.isInOptionsView && this.bannerVisible();
+  }
+  primaryVisible() {
+    return !this.isInOptionsView && this.bannerVisible();
+  }
   render() {
-    return this.bannerVisible() ? (
-      <div>
-        {this.isInOptionsView ? (
-          <more-options-banner
-            acceptedCategories={state.cookieConsent.acceptedCategories}
-            acceptCategories={c => this.acceptCategories(c)}
-            hideOptions={this.hideOptions}
-          ></more-options-banner>
-        ) : (
-          <primary-banner stringTokenForLink={this.stringTokenForLink} acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
-        )}
+    return (
+      <div id="ask-manager">
+        <more-options-banner
+          style={{ visibility: this.moreOptionsVisible() ? 'visible' : 'hidden', opacity: this.moreOptionsVisible() ? '1' : '0' }}
+          class="visibility-animation"
+          acceptedCategories={state.cookieConsent.acceptedCategories}
+          acceptCategories={c => this.acceptCategories(c)}
+          hideOptions={this.hideOptions}
+        ></more-options-banner>
+        <primary-banner
+          style={{ visibility: this.primaryVisible() ? 'visible' : 'hidden', opacity: this.primaryVisible() ? '1' : '0' }}
+          class="visibility-animation"
+          stringTokenForLink={this.stringTokenForLink}
+          acceptCategories={c => this.acceptCategories(c)}
+          showOptions={this.showOptions}
+        ></primary-banner>
       </div>
-    ) : null;
+    );
   }
 }
