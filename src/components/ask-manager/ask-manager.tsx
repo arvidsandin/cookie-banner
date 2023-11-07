@@ -65,6 +65,7 @@ export class AskManager {
     cookiePolicyLastUpdated: null,
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
+    useCookieButton: true,
     texts: {
       mainContent: null,
       linkText: 'privacy policy',
@@ -96,7 +97,7 @@ export class AskManager {
     if (!formattedOptions.texts.mainContent) {
       formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
         this.stringTokenForLink
-      }. You can manage your choices at any time.`;
+      }. You can manage your choices at any time by clicking the cookie button.`;
     }
 
     //Turn text into html
@@ -147,6 +148,8 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
+  private floatingCookieButton: HTMLFloatingCookieButtonElement;
+
   moreOptionsVisible() {
     return this.isInOptionsView && this.bannerVisible();
   }
@@ -170,6 +173,9 @@ export class AskManager {
           acceptCategories={c => this.acceptCategories(c)}
           showOptions={this.showOptions}
         ></primary-banner>
+        {state.options.useCookieButton && !this.bannerVisible() ? (
+          <floating-cookie-button showBanner={() => this.showBanner()} ref={el => (this.floatingCookieButton = el)}></floating-cookie-button>
+        ) : null}
       </div>
     );
   }
