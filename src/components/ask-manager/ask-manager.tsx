@@ -74,6 +74,10 @@ export class AskManager {
       moreOptions: 'More options',
       back: 'Back',
       confirm: 'Confirm selection',
+      essentialCategoryName: 'Essential cookies',
+      essentialPurpose: 'essential',
+      essentialDescription:
+        'Essental cookies are cookies that are strictly necessary for the core functionalities of the website. These are required to ensure proper behaviour when using the website and can not be disabled.',
     },
   };
 
@@ -95,9 +99,9 @@ export class AskManager {
     let formattedOptions = options;
     //Generate text if no text is provided
     if (!formattedOptions.texts.mainContent) {
-      formattedOptions.texts.mainContent = `This website uses cookies for ${this.listToString(formattedOptions.categories.map(c => c.purpose))} purposes. Read more in our ${
-        this.stringTokenForLink
-      }. You can manage your choices at any time by clicking the cookie button.`;
+      formattedOptions.texts.mainContent = `This website uses ${formattedOptions.texts.essentialPurpose} cookies, as well as cookies for ${this.listToString(
+        formattedOptions.categories.map(c => c.purpose),
+      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button..`;
     }
 
     //Turn text into html

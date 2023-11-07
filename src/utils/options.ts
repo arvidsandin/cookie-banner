@@ -52,5 +52,17 @@ export interface Options {
      * text on the "Confirm selection" button
      */
     confirm?: string;
+    /**
+     * name of the "essential cookies" category
+     */
+    essentialCategoryName?: string;
+    /**
+     * purpose of the "essential cookies" category, written as an adjective
+     */
+    essentialPurpose?: string;
+    /**
+     * description of the "essential cookies" category
+     */
+    essentialDescription?: string;
   };
 }
