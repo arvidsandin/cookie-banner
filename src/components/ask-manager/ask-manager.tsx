@@ -154,8 +154,6 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
-  private floatingCookieButton: HTMLFloatingCookieButtonElement;
-
   render() {
     return this.bannerVisible() ? (
       <div>
@@ -171,7 +169,7 @@ export class AskManager {
       </div>
     ) : state.options.useCookieButton ? (
       <div>
-        <floating-cookie-button showBanner={() => this.showBanner()} ref={el => (this.floatingCookieButton = el)}></floating-cookie-button>
+        <floating-cookie-button showBanner={() => this.showBanner()}></floating-cookie-button>
       </div>
     ) : null;
   }
