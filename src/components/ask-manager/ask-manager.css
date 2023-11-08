@@ -113,6 +113,10 @@ button:hover{
 .checkbox-container input:checked~.checkmark {
   background-color: #278e56;
 }
+.checkbox-container input:disabled~.checkmark {
+  background-color: #8e8e8e;
+  cursor:not-allowed;
+}
 .checkmark:after {
   content: "";
   position: absolute;

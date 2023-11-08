@@ -22,6 +22,11 @@ export interface Options {
    * @default `[]`
    */
   categories?: Category[];
+  /**
+   * Whether to include a floating button to change consent in the future. If set to `false`, another action that calls the `ask-manager.showBanner()` method has to be offered on to the user, such as through a link in the footer of the website.
+   * @default `true`
+   */
+  useCookieButton?: boolean;
   texts?: {
     /**
      * The text viewed in the first layer of the cookie banner.
@@ -64,5 +69,20 @@ export interface Options {
      * @default `'Confirm selection'`
      */
     confirm?: string;
+    /**
+     * The name of the "essential" category displayed in the second layer of the cookie banner.
+     * @default `'Essential cookies'`
+     */
+    essentialCategoryName?: string;
+    /**
+     * The adjective to use in `options.texts.mainContent` before the word "cookies". This is required if `options.texts.mainContent` is not set, otherwise it will not be used at all.
+     * @default `'essential'`
+     */
+    essentialPurpose?: string;
+    /**
+     * The desription of the "essential cookies" category diplayed in the second layer of the cookie banner
+     * @default `'Essental cookies are cookies that are strictly necessary for the core functionalities of the website. These are required to ensure proper behaviour when using the website and can not be disabled.'`
+     */
+    essentialDescription?: string;
   };
 }

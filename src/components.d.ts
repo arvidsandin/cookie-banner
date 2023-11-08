@@ -34,6 +34,10 @@ export namespace Components {
          */
         "showBanner": () => Promise<void>;
     }
+    interface FloatingCookieButton {
+        "changeColor": (background: string, foreground: string) => Promise<void>;
+        "showBanner": () => void;
+    }
     interface MoreOptionsBanner {
         /**
           * A function to use when accepting categories
@@ -70,6 +74,12 @@ declare global {
         prototype: HTMLAskManagerElement;
         new (): HTMLAskManagerElement;
     };
+    interface HTMLFloatingCookieButtonElement extends Components.FloatingCookieButton, HTMLStencilElement {
+    }
+    var HTMLFloatingCookieButtonElement: {
+        prototype: HTMLFloatingCookieButtonElement;
+        new (): HTMLFloatingCookieButtonElement;
+    };
     interface HTMLMoreOptionsBannerElement extends Components.MoreOptionsBanner, HTMLStencilElement {
     }
     var HTMLMoreOptionsBannerElement: {
@@ -84,6 +94,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "ask-manager": HTMLAskManagerElement;
+        "floating-cookie-button": HTMLFloatingCookieButtonElement;
         "more-options-banner": HTMLMoreOptionsBannerElement;
         "primary-banner": HTMLPrimaryBannerElement;
     }
@@ -96,6 +107,9 @@ declare namespace LocalJSX {
           * @property {string[]} detail - An array with the keys of all cookies that the user has consented to
          */
         "onConsentUpdated"?: (event: AskManagerCustomEvent<string[]>) => void;
+    }
+    interface FloatingCookieButton {
+        "showBanner"?: () => void;
     }
     interface MoreOptionsBanner {
         /**
@@ -123,6 +137,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "ask-manager": AskManager;
+        "floating-cookie-button": FloatingCookieButton;
         "more-options-banner": MoreOptionsBanner;
         "primary-banner": PrimaryBanner;
     }
@@ -132,6 +147,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ask-manager": LocalJSX.AskManager & JSXBase.HTMLAttributes<HTMLAskManagerElement>;
+            "floating-cookie-button": LocalJSX.FloatingCookieButton & JSXBase.HTMLAttributes<HTMLFloatingCookieButtonElement>;
             "more-options-banner": LocalJSX.MoreOptionsBanner & JSXBase.HTMLAttributes<HTMLMoreOptionsBannerElement>;
             "primary-banner": LocalJSX.PrimaryBanner & JSXBase.HTMLAttributes<HTMLPrimaryBannerElement>;
         }

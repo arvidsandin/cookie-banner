@@ -71,12 +71,14 @@ Type: `Promise<void>`
 
 - [more-options-banner](../more-options-banner)
 - [primary-banner](../primary-banner)
+- [floating-cookie-button](../floating-cookie-button)
 
 ### Graph
 ```mermaid
 graph TD;
   ask-manager --> more-options-banner
   ask-manager --> primary-banner
+  ask-manager --> floating-cookie-button
   style ask-manager fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

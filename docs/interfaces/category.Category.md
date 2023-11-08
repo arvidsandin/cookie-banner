@@ -23,7 +23,7 @@ The descriptions diplayed in the second layer of the cookie banner.
 
 #### Defined in
 
-[category.ts:18](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L18)
+[category.ts:18](https://github.com/arvidsandin/ask-manager/blob/ed85c09/src/utils/category.ts#L18)
 
 ___
 
@@ -37,7 +37,7 @@ Example: `'analytics'`
 
 #### Defined in
 
-[category.ts:7](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L7)
+[category.ts:7](https://github.com/arvidsandin/ask-manager/blob/ed85c09/src/utils/category.ts#L7)
 
 ___
 
@@ -51,7 +51,7 @@ Example: `'Analytical cookies'`
 
 #### Defined in
 
-[category.ts:24](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L24)
+[category.ts:24](https://github.com/arvidsandin/ask-manager/blob/ed85c09/src/utils/category.ts#L24)
 
 ___
 
@@ -66,4 +66,4 @@ Example: `'analytical'`
 
 #### Defined in
 
-[category.ts:14](https://github.com/arvidsandin/ask-manager/blob/315be4e/src/utils/category.ts#L14)
+[category.ts:14](https://github.com/arvidsandin/ask-manager/blob/ed85c09/src/utils/category.ts#L14)

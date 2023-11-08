@@ -31,6 +31,16 @@ export class MoreOptionsBanner {
     return (
       <div class="options-box">
         <div class="options">
+          {
+            <div class="option">
+              <p>{state.options.texts.essentialCategoryName}</p>
+              <p>{state.options.texts.essentialDescription}</p>
+              <label class="checkbox-container">
+                <input type="checkbox" class="checkbox" value="essential" checked={true} disabled={true}></input>
+                <span class="checkmark disabled"></span>
+              </label>
+            </div>
+          }
           {state.options.categories.map((category, index) => (
             <div class="option" key={category.key}>
               <p>{category.name}</p>
