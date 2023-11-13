@@ -3,6 +3,7 @@
 }
 :host {
   --marginButton: 0.3em;
+  --heightButton: 3em;
   --maxHeightConsentBox: 30%;
   --maxHeightConsentBoxTablet: 50%;
   --maxHeightConsentBoxMobile: 60%;
@@ -31,7 +32,7 @@ button {
   border: 1px solid var(--borderColorButton);
   min-width: fit-content;
   width: 12em;
-  height: 3.5em;
+  height: var(--heightButton);
   padding: 10px;
   margin: auto 2%;
   transition: transform ease-in-out 0.03s;
@@ -47,25 +48,40 @@ button:active{
   transition: opacity ease-in-out 0.2s, visibility ease-in-out 0.2s;
 }
 .consent-box, .options-box {
-  display: flex;
   position: absolute;
   bottom: 15px;
-  margin: 0 5%;
-  width: 90%;
   color: var(--textColorMainBox);
   background-color: var(--backgroundColorMainBox);
   border: 1px solid var(--borderColorMainBox);
   border-radius: var(--borderRadiusMainBox);
-  justify-content: space-around;
   padding: 10px;
 }
 
+.primary-banner-buttons {
+  flex-direction: column;
+}
+
+.primary-banner-buttons>button {
+  margin: var(--marginButton) auto;
+}
 .consent-box{
+  display: grid;
+  grid-template-rows: 30px auto;
+  grid-template-columns: auto auto;
   max-height: var(--maxHeightConsentBox);
+  min-height: 225px;
+  width: 30%;
+  min-width: 400px;
+  margin: 0 auto 0 2%;
+  column-gap: 10px;
 }
 
 .options-box{
   max-height: var(--maxHeightOptionsBox);
+  width: 90%;
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-around;
   flex-direction: column;
 }
 
@@ -155,9 +171,25 @@ input:focus-visible~.checkmark {
 }
 
 .info-text{
-  width: 50%;
+  width: 100%;
   height: auto;
   overflow-y: auto;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.close-button{
+  background-color: #00000000;
+  color: #000000;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  line-height: 25px;
+  height: 25px;
+  width: 25px;
+  font-size: 1.5em;
+  margin-left: auto;
+  margin-bottom: auto;
 }
 
 
@@ -170,31 +202,42 @@ input:focus-visible~.checkmark {
   }
   .consent-box{
     max-height: var(--maxHeightConsentBoxTablet);
+    width: 90%;
   }
 }
 
 @media only screen and (max-width: 700px) {
   .consent-box, .options-box {
-    flex-direction: column;
     min-height: 300px;
     padding: 10px;
   }
   .consent-box{
     max-height: var(--maxHeightConsentBoxMobile);
+    min-width: unset;
+    grid-template-rows: auto auto;
+    grid-template-columns: auto 30px;
+    column-gap: 5px;
+  }
+  .options-box{
+    flex-direction: column;
   }
 
   .info-text{
     width: auto;
+    grid-row-start: 1;
+    grid-row-end: 1;
   }
 
   button {
     text-align: center;
     width: 90%;
-    height: 3.2em;
     border-radius: var(--borderRadiusButtonMobile);
     margin: var(--marginButton) auto;
   }
-  
+  .primary-banner-buttons {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
   .options-banner-buttons button{
     margin:var(--marginButton)
   }

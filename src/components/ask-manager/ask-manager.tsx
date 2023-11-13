@@ -27,6 +27,12 @@ export class AskManager {
   @Method()
   async showBanner() {
     this.forceBannerVisibility = true;
+    this.bannerHidden = false;
+  }
+  @Method()
+  async hideBanner() {
+    this.forceBannerVisibility = false;
+    this.bannerHidden = true;
   }
   @Method()
   async deleteConsent() {
@@ -132,8 +138,9 @@ export class AskManager {
 
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;
+  @State() bannerHidden = false;
   private bannerVisible() {
-    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated);
+    return (this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated)) && !this.bannerHidden;
   }
 
   private acceptCategories(categories: string[]) {
@@ -176,6 +183,7 @@ export class AskManager {
           stringTokenForLink={this.stringTokenForLink}
           acceptCategories={c => this.acceptCategories(c)}
           showOptions={this.showOptions}
+          hideBanner={() => this.hideBanner()}
         ></primary-banner>
         {state.options.useCookieButton && !this.bannerVisible() ? (
           <floating-cookie-button showBanner={() => this.showBanner()} ref={el => (this.floatingCookieButton = el)}></floating-cookie-button>

@@ -14,6 +14,7 @@ export namespace Components {
         "deleteConsent": () => Promise<void>;
         "getCategoriesWithConsent": () => Promise<any[]>;
         "hasConsent": (key: string) => Promise<boolean>;
+        "hideBanner": () => Promise<void>;
         "setOptions": (userOptions: Options) => Promise<void>;
         "setStyling": (newStyling: StylingOptions) => Promise<void>;
         "showBanner": () => Promise<void>;
@@ -30,6 +31,7 @@ export namespace Components {
     interface PrimaryBanner {
         "acceptCategories": (categories: string[]) => void;
         "categories": string[];
+        "hideBanner": () => void;
         "showOptions": () => void;
         "stringTokenForLink": string;
     }
@@ -85,6 +87,7 @@ declare namespace LocalJSX {
     interface PrimaryBanner {
         "acceptCategories"?: (categories: string[]) => void;
         "categories"?: string[];
+        "hideBanner"?: () => void;
         "showOptions"?: () => void;
         "stringTokenForLink"?: string;
     }

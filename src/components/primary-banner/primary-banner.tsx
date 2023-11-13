@@ -11,6 +11,7 @@ export class PrimaryBanner {
 
   @Prop() acceptCategories: (categories: string[]) => void;
   @Prop() showOptions: () => void;
+  @Prop() hideBanner: () => void;
 
   private rejectAllCookies = () => {
     this.acceptCategories([]);
@@ -30,6 +31,9 @@ export class PrimaryBanner {
         <div class="info-text">
           <p>{this.getCopyOfMainContent()}</p>
         </div>
+        <button type="button" aria-label="Close cookie banner" class="close-button" onClick={this.hideBanner}>
+          ✖
+        </button>
         <div class="primary-banner-buttons buttons">
           <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
           <button onClick={this.rejectAllCookies}>{state.options.texts.reject}</button>
