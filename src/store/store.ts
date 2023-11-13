@@ -8,6 +8,7 @@ const initialOptions: Options = {
     mainContent: `Options have not been set - this cookie banner is non-functional. View the documentation for required options`,
     linkText: 'documentation',
   },
+  categories: [],
 };
 
 const { state, onChange } = createStore({
