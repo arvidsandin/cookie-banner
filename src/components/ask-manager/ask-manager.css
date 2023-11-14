@@ -50,6 +50,7 @@ button:active{
 .consent-box, .options-box {
   position: absolute;
   bottom: 15px;
+  left: 0;
   color: var(--textColorMainBox);
   background-color: var(--backgroundColorMainBox);
   border: 1px solid var(--borderColorMainBox);
@@ -203,6 +204,7 @@ input:focus-visible~.checkmark {
   .consent-box{
     max-height: var(--maxHeightConsentBoxTablet);
     width: 90%;
+    margin: 0 5%;
   }
 }
 
