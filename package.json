@@ -20,7 +20,7 @@
     "loader/"
   ],
   "scripts": {
-    "build": "stencil build --docs",
+    "build": "stencil build --docs && typedoc src/utils/*.ts",
     "start": "stencil build --dev --watch --serve",
     "unitTest": "stencil test --spec",
     "test": "stencil test --spec --e2e",
@@ -46,7 +46,9 @@
     "jest-cli": "^27.5.1",
     "lint-staged": "^14.0.1",
     "prettier": "3.0.3",
-    "puppeteer": "^21.0.3"
+    "puppeteer": "^21.0.3",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-markdown": "^3.16.0"
   },
   "license": "MIT"
 }

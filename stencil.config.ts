@@ -12,6 +12,8 @@ export const config: Config = {
     },
     {
       type: 'docs-readme',
+      dir: 'docs',
+      strict: true,
     },
     {
       type: 'www',
@@ -19,6 +21,6 @@ export const config: Config = {
     },
   ],
   testing: {
-    browserHeadless: "new",
+    browserHeadless: 'new',
   },
 };
