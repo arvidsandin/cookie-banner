@@ -32,7 +32,7 @@ export class PrimaryBanner {
           <p>{this.getCopyOfMainContent()}</p>
         </div>
         <button type="button" aria-label="Close cookie banner" class="close-button" onClick={this.hideBanner}>
-          ✖
+          <span aria-hidden="true">✖</span>
         </button>
         <div class="primary-banner-buttons buttons">
           <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
