@@ -93,19 +93,21 @@ button:active{
 }
 
 .option{
-  margin: 1em;
+  margin: 0.8em;
   display: grid;
-  min-height: 25px;
   grid-template-columns: 15% auto 25px;
 }
 .option p{
-  margin: 0 auto;
+  margin: 0;
+}
+.category-name{
+  font-weight: bold;
 }
 
 .checkbox-container {
   display: block;
   position: relative;
-  padding-left: 35px;
+  padding-left: 25px;
   margin-bottom: 12px;
   cursor: pointer;
   font-size: 22px;
@@ -113,6 +115,8 @@ button:active{
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  width: 25px;
+  height: 25px;
 }
 /* Hide the browser's default checkbox */
 .checkbox-container input {
@@ -242,5 +246,24 @@ input:focus-visible~.checkmark {
   }
   .options-banner-buttons button{
     margin:var(--marginButton)
+  }
+
+  .option{
+    grid-template-columns: auto 25px;
+    grid-template-rows: 25px auto;
+  }
+  .category-name{
+    grid-column: 1 / 2;
+    grid-row: 1 / 1;
+    margin-left: 0;
+    margin-right: auto;
+  }
+  .checkbox-container{
+    grid-column: 2 / 2;
+    grid-row: 1 / 2;
+  }
+  .category-description{
+    grid-column: 1 / 2;
+    grid-row: 2 / 2;
   }
 }
