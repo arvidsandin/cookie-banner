@@ -4,9 +4,9 @@
 :host {
   --marginButton: 0.3em;
   --heightButton: 3em;
-  --maxHeightConsentBox: 30%;
-  --maxHeightConsentBoxTablet: 50%;
-  --maxHeightConsentBoxMobile: 60%;
+  --heightConsentBox: 30%;
+  --heightConsentBoxTablet: 50%;
+  --heightConsentBoxMobile: 60%;
   --maxHeightOptionsBox: 80%;
 
   /* Can be changed in TypeScript */
@@ -69,10 +69,10 @@ button:active{
   display: grid;
   grid-template-rows: 30px auto;
   grid-template-columns: auto auto;
-  max-height: var(--maxHeightConsentBox);
-  min-height: 225px;
+  height: var(--heightConsentBox);
+  min-height: 250px;
   width: 30%;
-  min-width: 400px;
+  min-width: 450px;
   margin: 0 auto 0 2%;
   column-gap: 10px;
 }
@@ -206,7 +206,7 @@ input:focus-visible~.checkmark {
     margin: var(--marginButton) auto;
   }
   .consent-box{
-    max-height: var(--maxHeightConsentBoxTablet);
+    height: var(--heightConsentBoxTablet);
     width: 90%;
     margin: 0 5%;
   }
@@ -218,7 +218,7 @@ input:focus-visible~.checkmark {
     padding: 10px;
   }
   .consent-box{
-    max-height: var(--maxHeightConsentBoxMobile);
+    height: var(--heightConsentBoxMobile);
     min-width: unset;
     grid-template-rows: auto auto;
     grid-template-columns: auto 30px;
