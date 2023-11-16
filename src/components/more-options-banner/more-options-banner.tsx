@@ -6,14 +6,22 @@ import state from '../../store/store';
   shadow: false,
 })
 export class MoreOptionsBanner {
+  /**
+   * The categories that are already accepted and should be shown as pre-checked to the user
+   */
   @Prop() acceptedCategories: string[] = [];
-
+  /**
+   * A function to use when accepting categories
+   */
   @Prop() acceptCategories: (categories: string[]) => void;
+  /**
+   * A function to no longer set the options view as the active one
+   */
   @Prop() hideOptions: () => void;
 
   private categoryCheckboxes = [];
 
-  acceptSelectedCookies = () => {
+  private acceptSelectedCookies = () => {
     const selectedCategories = this.categoryCheckboxes.filter(option => option.checked).map(option => option.value);
     this.acceptCategories(selectedCategories);
     this.hideOptions();

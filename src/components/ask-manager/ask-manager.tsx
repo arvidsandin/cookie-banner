@@ -9,14 +9,27 @@ import { StylingOptions } from '../../utils/stylingOptions';
   shadow: true,
 })
 export class AskManager {
+  /**
+   * Check if the user has conseted to a particular category
+   * @param key The category of cookie to check consent status for
+   * @returns Whether the user has consented to that cookie
+   */
   @Method()
   async hasConsent(key: string) {
     return state.cookieConsent.acceptedCategories.includes(key);
   }
+  /**
+   * Get the categories that the user has consented to
+   * @returns An array with the keys of all cookies that the user has consented to
+   */
   @Method()
   async getCategoriesWithConsent() {
     return state.cookieConsent.acceptedCategories;
   }
+  /**
+   * Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
+   * @param userOptions The Options object that contains the settings for the component
+   */
   @Method()
   async setOptions(userOptions: Options) {
     let options = { ...this.defaultOptions, ...userOptions };
@@ -24,6 +37,9 @@ export class AskManager {
     options = this.formatOptions(options);
     state.options = options;
   }
+  /**
+   * Make the banner reappear
+   */
   @Method()
   async showBanner() {
     this.forceBannerVisibility = true;
@@ -34,6 +50,9 @@ export class AskManager {
     this.forceBannerVisibility = false;
     this.bannerHidden = true;
   }
+  /**
+   * Delete all previous set consents
+   */
   @Method()
   async deleteConsent() {
     state.cookieConsent = {
@@ -41,6 +60,12 @@ export class AskManager {
       acceptedCategories: [],
     };
   }
+  /**
+   * Set the styling used for the component.
+   * Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined.
+   * Can be run any number of times.
+   * @param newStyling The StylingOptions object that contains the stylingt for the component. View the documentation of the StylingOptions object to see available styling options.
+   */
   @Method()
   async setStyling(newStyling: StylingOptions) {
     const styling: StylingOptions = { ...this.getCurrentStyling(), ...newStyling };
@@ -49,6 +74,11 @@ export class AskManager {
     }
   }
   @Element() el: HTMLAskManagerElement;
+  /**
+   * Event when the user has updated their consent
+   * @event consentUpdated
+   * @property {string[]} detail - An array with the keys of all cookies that the user has consented to
+   */
   @Event() consentUpdated: EventEmitter<string[]>;
 
   private readonly stringTokenForLink = '{Link}';
@@ -159,8 +189,6 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
-  private floatingCookieButton: HTMLFloatingCookieButtonElement;
-
   moreOptionsVisible() {
     return this.isInOptionsView && this.bannerVisible();
   }
@@ -180,14 +208,11 @@ export class AskManager {
         <primary-banner
           style={{ visibility: this.primaryVisible() ? 'visible' : 'hidden', opacity: this.primaryVisible() ? '1' : '0' }}
           class="visibility-animation"
-          stringTokenForLink={this.stringTokenForLink}
           acceptCategories={c => this.acceptCategories(c)}
           showOptions={this.showOptions}
           hideBanner={() => this.hideBanner()}
         ></primary-banner>
-        {state.options.useCookieButton && !this.bannerVisible() ? (
-          <floating-cookie-button showBanner={() => this.showBanner()} ref={el => (this.floatingCookieButton = el)}></floating-cookie-button>
-        ) : null}
+        {state.options.useCookieButton && !this.bannerVisible() ? <floating-cookie-button showBanner={() => this.showBanner()}></floating-cookie-button> : null}
       </div>
     );
   }
