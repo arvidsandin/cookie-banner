@@ -31,7 +31,7 @@ If left empty, it implies only essential cookies are used, in which case it does
 
 #### Defined in
 
-[options.ts:24](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L24)
+[options.ts:24](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L24)
 
 ___
 
@@ -45,7 +45,7 @@ Can be any string parsable by the Date() function in Javascript.
 
 #### Defined in
 
-[options.ts:8](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L8)
+[options.ts:8](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L8)
 
 ___
 
@@ -57,7 +57,7 @@ A relative or absolute link to the privacy policy.
 
 #### Defined in
 
-[options.ts:12](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L12)
+[options.ts:12](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L12)
 
 ___
 
@@ -73,7 +73,7 @@ The key to use for storing the consent in localStorage.
 
 #### Defined in
 
-[options.ts:17](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L17)
+[options.ts:17](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L17)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[options.ts:30](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L30)
+[options.ts:30](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L30)
 
 ___
 
@@ -114,4 +114,4 @@ Whether to include a floating button to change consent in the future. If set to 
 
 #### Defined in
 
-[options.ts:29](https://github.com/arvidsandin/ask-manager/blob/0b5f043/src/utils/options.ts#L29)
+[options.ts:29](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L29)

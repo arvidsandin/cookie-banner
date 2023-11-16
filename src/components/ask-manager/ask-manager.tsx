@@ -46,6 +46,9 @@ export class AskManager {
     this.bannerHidden = false;
   }
   @Method()
+  /**
+   * Hide the banner
+   */
   async hideBanner() {
     this.forceBannerVisibility = false;
     this.bannerHidden = true;

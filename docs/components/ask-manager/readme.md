@@ -44,6 +44,16 @@ Type: `Promise<boolean>`
 
 Whether the user has consented to that cookie
 
+### `hideBanner() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `setOptions(userOptions: Options) => Promise<void>`
 
 Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
@@ -56,7 +66,7 @@ Type: `Promise<void>`
 
 ### `setStyling(newStyling: StylingOptions) => Promise<void>`
 
-Set the styling used for the component. 
+Set the styling used for the component.
 Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined.
 Can be run any number of times.
 
