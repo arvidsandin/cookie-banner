@@ -10,7 +10,7 @@
   --maxHeightOptionsBox: 80%;
 
   /* Can be changed in TypeScript */
-  --borderRadiusMainbox: 3px;
+  --borderRadiusMainBox: 3px;
   --borderRadiusButton: 10px;
   --borderRadiusButtonMobile: 1.5em;
   --backgroundColorButton: #000000;
