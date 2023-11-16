@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { Options } from "./utils/options";
+import { StylingOptions } from "./utils/stylingOptions";
 export { Options } from "./utils/options";
+export { StylingOptions } from "./utils/stylingOptions";
 export namespace Components {
     interface AskManager {
         /**
@@ -29,6 +31,11 @@ export namespace Components {
           * @param userOptions The Options object that contains the settings for the component
          */
         "setOptions": (userOptions: Options) => Promise<void>;
+        /**
+          * Set the styling used for the component.  Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined. Can be run any number of times.
+          * @param newStyling The StylingOptions object that contains the stylingt for the component. View the documentation of the StylingOptions object to see available styling options.
+         */
+        "setStyling": (newStyling: StylingOptions) => Promise<void>;
         /**
           * Make the banner reappear
          */

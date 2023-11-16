@@ -2,7 +2,7 @@ import { createStore } from '@stencil/store';
 import { Options } from '../utils/options';
 
 const initialOptions: Options = {
-  cookiePolicyLastUpdated: new Date().toISOString(),
+  cookiePolicyLastUpdated: null,
   linkToPrivacyPolicy: 'https://github.com/arvidsandin/ask-manager#readme',
   texts: {
     mainContent: `Options have not been set - this cookie banner is non-functional. View the documentation for required options`,

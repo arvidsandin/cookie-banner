@@ -1,6 +1,7 @@
-import { Component, Method, State, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Method, State, Event, Element, EventEmitter, h } from '@stencil/core';
 import state from '../../store/store';
 import { Options } from '../../utils/options';
+import { StylingOptions } from '../../utils/stylingOptions';
 
 @Component({
   tag: 'ask-manager',
@@ -54,6 +55,20 @@ export class AskManager {
     };
   }
   /**
+   * Set the styling used for the component.
+   * Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined.
+   * Can be run any number of times.
+   * @param newStyling The StylingOptions object that contains the stylingt for the component. View the documentation of the StylingOptions object to see available styling options.
+   */
+  @Method()
+  async setStyling(newStyling: StylingOptions) {
+    const styling: StylingOptions = { ...this.getCurrentStyling(), ...newStyling };
+    for (const key in styling) {
+      this.el.style.setProperty('--' + key, styling[key]);
+    }
+  }
+  @Element() el: HTMLAskManagerElement;
+  /**
    * Event when the user has updated their consent
    * @event consentUpdated
    * @property {string[]} detail - An array with the keys of all cookies that the user has consented to
@@ -62,6 +77,19 @@ export class AskManager {
 
   private readonly stringTokenForLink = '{Link}';
 
+  private getCurrentStyling(): StylingOptions {
+    return {
+      borderRadiusMainbox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
+      borderRadiusButton: getComputedStyle(this.el).getPropertyValue('--borderRadiusButton'),
+      borderRadiusButtonMobile: getComputedStyle(this.el).getPropertyValue('--borderRadiusButtonMobile'),
+      backgroundColorButton: getComputedStyle(this.el).getPropertyValue('--backgroundColorButton'),
+      borderColorButton: getComputedStyle(this.el).getPropertyValue('--borderColorButton'),
+      textColorButton: getComputedStyle(this.el).getPropertyValue('--textColorButton'),
+      textColorMainBox: getComputedStyle(this.el).getPropertyValue('--textColorMainBox'),
+      backgroundColorMainBox: getComputedStyle(this.el).getPropertyValue('--backgroundColorMainBox'),
+      borderColorMainBox: getComputedStyle(this.el).getPropertyValue('--borderColorMainBox'),
+    };
+  }
   private readonly defaultOptions: Options = {
     categories: [],
     cookiePolicyLastUpdated: null,
@@ -154,23 +182,30 @@ export class AskManager {
     this.isInOptionsView = false;
   };
 
+  moreOptionsVisible() {
+    return this.isInOptionsView && this.bannerVisible();
+  }
+  primaryVisible() {
+    return !this.isInOptionsView && this.bannerVisible();
+  }
   render() {
-    return this.bannerVisible() ? (
-      <div>
-        {this.isInOptionsView ? (
-          <more-options-banner
-            acceptedCategories={state.cookieConsent.acceptedCategories}
-            acceptCategories={c => this.acceptCategories(c)}
-            hideOptions={this.hideOptions}
-          ></more-options-banner>
-        ) : (
-          <primary-banner acceptCategories={c => this.acceptCategories(c)} showOptions={this.showOptions}></primary-banner>
-        )}
+    return (
+      <div id="ask-manager">
+        <more-options-banner
+          style={{ visibility: this.moreOptionsVisible() ? 'visible' : 'hidden', opacity: this.moreOptionsVisible() ? '1' : '0' }}
+          class="visibility-animation"
+          acceptedCategories={state.cookieConsent.acceptedCategories}
+          acceptCategories={c => this.acceptCategories(c)}
+          hideOptions={this.hideOptions}
+        ></more-options-banner>
+        <primary-banner
+          style={{ visibility: this.primaryVisible() ? 'visible' : 'hidden', opacity: this.primaryVisible() ? '1' : '0' }}
+          class="visibility-animation"
+          acceptCategories={c => this.acceptCategories(c)}
+          showOptions={this.showOptions}
+        ></primary-banner>
+        {state.options.useCookieButton && !this.bannerVisible() ? <floating-cookie-button showBanner={() => this.showBanner()}></floating-cookie-button> : null}
       </div>
-    ) : state.options.useCookieButton ? (
-      <div>
-        <floating-cookie-button showBanner={() => this.showBanner()}></floating-cookie-button>
-      </div>
-    ) : null;
+    );
   }
 }

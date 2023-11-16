@@ -54,6 +54,18 @@ Type: `Promise<void>`
 
 
 
+### `setStyling(newStyling: StylingOptions) => Promise<void>`
+
+Set the styling used for the component. 
+Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined.
+Can be run any number of times.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `showBanner() => Promise<void>`
 
 Make the banner reappear

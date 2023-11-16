@@ -2,62 +2,70 @@
   box-sizing: border-box;
 }
 :host {
-  --margin-button: 0.3em;
-  --border-radius-main-box: 3px;
-  --border-radius-button: 10px;
-  --border-radius-button-mobile: 1.5em;
-  --background-color-button: #000000;
-  --border-color-button: #000000;
-  --text-color-button: #ffffff;
-  --text-color-main-box: #000000;
-  --background-color-main-box: #ffffff;
-  --border-color-main-box: #000000;
-  --max-height-consent-box: 30%;
-  --max-height-consent-box-tablet: 50%;
-  --max-height-consent-box-mobile: 60%;
-  --max-height-options-box: 80%;
+  --marginButton: 0.3em;
+  --maxHeightConsentBox: 30%;
+  --maxHeightConsentBoxTablet: 50%;
+  --maxHeightConsentBoxMobile: 60%;
+  --maxHeightOptionsBox: 80%;
+
+  /* Can be changed in TypeScript */
+  --borderRadiusMainbox: 3px;
+  --borderRadiusButton: 10px;
+  --borderRadiusButtonMobile: 1.5em;
+  --backgroundColorButton: #000000;
+  --borderColorButton: #000000;
+  --textColorButton: #ffffff;
+  --textColorMainBox: #000000;
+  --backgroundColorMainBox: #ffffff;
+  --borderColorMainBox: #000000;
 }
 
 button {
   -webkit-appearance: none;
   background: none;
-  box-shadow: none;
+  box-shadow: #00000033 4px 4px 5px;
   font: inherit;
-  color: var(--text-color-button);
-  background-color: var(--background-color-button);
-  border-radius: var(--border-radius-button);
-  border: 1px solid var(--border-color-button);
+  color: var(--textColorButton);
+  background-color: var(--backgroundColorButton);
+  border-radius: var(--borderRadiusButton);
+  border: 1px solid var(--borderColorButton);
   min-width: fit-content;
   width: 12em;
   height: 3.5em;
   padding: 10px;
   margin: auto 2%;
+  transition: transform ease-in-out 0.03s;
 }
-
 button:hover{
   cursor: pointer;
 }
+button:active{
+  transform:scale(0.97);
+}
 
+.visibility-animation {
+  transition: opacity ease-in-out 0.2s, visibility ease-in-out 0.2s;
+}
 .consent-box, .options-box {
   display: flex;
   position: absolute;
   bottom: 15px;
   margin: 0 5%;
   width: 90%;
-  color: var(--text-color-main-box);
-  background-color: var(--background-color-main-box);
-  border: 1px solid var(--border-color-main-box);
-  border-radius: var(--border-radius-main-box);
+  color: var(--textColorMainBox);
+  background-color: var(--backgroundColorMainBox);
+  border: 1px solid var(--borderColorMainBox);
+  border-radius: var(--borderRadiusMainBox);
   justify-content: space-around;
   padding: 10px;
 }
 
 .consent-box{
-  max-height: var(--max-height-consent-box);
+  max-height: var(--maxHeightConsentBox);
 }
 
 .options-box{
-  max-height: var(--max-height-options-box);
+  max-height: var(--maxHeightOptionsBox);
   flex-direction: column;
 }
 
@@ -158,10 +166,10 @@ input:focus-visible~.checkmark {
     flex-direction: column;
   }
     .primary-banner-buttons > button{
-    margin: var(--margin-button) auto;
+    margin: var(--marginButton) auto;
   }
   .consent-box{
-    max-height: var(--max-height-consent-box-tablet);
+    max-height: var(--maxHeightConsentBoxTablet);
   }
 }
 
@@ -172,7 +180,7 @@ input:focus-visible~.checkmark {
     padding: 10px;
   }
   .consent-box{
-    max-height: var(--max-height-consent-box-mobile);
+    max-height: var(--maxHeightConsentBoxMobile);
   }
 
   .info-text{
@@ -183,11 +191,11 @@ input:focus-visible~.checkmark {
     text-align: center;
     width: 90%;
     height: 3.2em;
-    border-radius: var(--border-radius-button-mobile);
-    margin: var(--margin-button) auto;
+    border-radius: var(--borderRadiusButtonMobile);
+    margin: var(--marginButton) auto;
   }
   
   .options-banner-buttons button{
-    margin:var(--margin-button)
+    margin:var(--marginButton)
   }
 }
