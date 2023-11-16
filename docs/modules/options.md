@@ -1,4 +1,4 @@
-[ask-manager](../README.md) / options
+[cookie-banner](../README.md) / options
 
 # Module: options
 

@@ -3,7 +3,7 @@ import { Options } from '../utils/options';
 
 const initialOptions: Options = {
   cookiePolicyLastUpdated: null,
-  linkToPrivacyPolicy: 'https://github.com/arvidsandin/ask-manager#readme',
+  linkToPrivacyPolicy: 'https://github.com/arvidsandin/cookie-banner#readme',
   texts: {
     mainContent: `Options have not been set - this cookie banner is non-functional. View the documentation for required options`,
     linkText: 'documentation',
