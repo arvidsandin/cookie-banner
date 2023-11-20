@@ -1,4 +1,4 @@
-# ask-manager
+# cookie-banner
 
 
 
@@ -56,7 +56,7 @@ Type: `Promise<void>`
 
 ### `setStyling(newStyling: StylingOptions) => Promise<void>`
 
-Set the styling used for the component. 
+Set the styling used for the component.
 Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined.
 Can be run any number of times.
 
@@ -88,10 +88,10 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  ask-manager --> more-options-banner
-  ask-manager --> primary-banner
-  ask-manager --> floating-cookie-button
-  style ask-manager fill:#f9f,stroke:#333,stroke-width:4px
+  cookie-banner --> more-options-banner
+  cookie-banner --> primary-banner
+  cookie-banner --> floating-cookie-button
+  style cookie-banner fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

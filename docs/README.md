@@ -1,6 +1,6 @@
-ask-manager
+cookie-banner
 
-# ask-manager
+# cookie-banner
 
 ## Table of contents
 

@@ -10,7 +10,7 @@ import { StylingOptions } from "./utils/stylingOptions";
 export { Options } from "./utils/options";
 export { StylingOptions } from "./utils/stylingOptions";
 export namespace Components {
-    interface AskManager {
+    interface CookieBanner {
         /**
           * Delete all previous set consents
          */
@@ -32,7 +32,7 @@ export namespace Components {
          */
         "setOptions": (userOptions: Options) => Promise<void>;
         /**
-          * Set the styling used for the component.  Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined. Can be run any number of times.
+          * Set the styling used for the component. Any undefined properties will use the last defined value for that property, the default value are only used if it has never been defined. Can be run any number of times.
           * @param newStyling The StylingOptions object that contains the stylingt for the component. View the documentation of the StylingOptions object to see available styling options.
          */
         "setStyling": (newStyling: StylingOptions) => Promise<void>;
@@ -70,16 +70,16 @@ export namespace Components {
         "showOptions": () => void;
     }
 }
-export interface AskManagerCustomEvent<T> extends CustomEvent<T> {
+export interface CookieBannerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLAskManagerElement;
+    target: HTMLCookieBannerElement;
 }
 declare global {
-    interface HTMLAskManagerElement extends Components.AskManager, HTMLStencilElement {
+    interface HTMLCookieBannerElement extends Components.CookieBanner, HTMLStencilElement {
     }
-    var HTMLAskManagerElement: {
-        prototype: HTMLAskManagerElement;
-        new (): HTMLAskManagerElement;
+    var HTMLCookieBannerElement: {
+        prototype: HTMLCookieBannerElement;
+        new (): HTMLCookieBannerElement;
     };
     interface HTMLFloatingCookieButtonElement extends Components.FloatingCookieButton, HTMLStencilElement {
     }
@@ -100,20 +100,20 @@ declare global {
         new (): HTMLPrimaryBannerElement;
     };
     interface HTMLElementTagNameMap {
-        "ask-manager": HTMLAskManagerElement;
+        "cookie-banner": HTMLCookieBannerElement;
         "floating-cookie-button": HTMLFloatingCookieButtonElement;
         "more-options-banner": HTMLMoreOptionsBannerElement;
         "primary-banner": HTMLPrimaryBannerElement;
     }
 }
 declare namespace LocalJSX {
-    interface AskManager {
+    interface CookieBanner {
         /**
           * Event when the user has updated their consent
           * @event consentUpdated
           * @property {string[]} detail - An array with the keys of all cookies that the user has consented to
          */
-        "onConsentUpdated"?: (event: AskManagerCustomEvent<string[]>) => void;
+        "onConsentUpdated"?: (event: CookieBannerCustomEvent<string[]>) => void;
     }
     interface FloatingCookieButton {
         "showBanner"?: () => void;
@@ -143,7 +143,7 @@ declare namespace LocalJSX {
         "showOptions"?: () => void;
     }
     interface IntrinsicElements {
-        "ask-manager": AskManager;
+        "cookie-banner": CookieBanner;
         "floating-cookie-button": FloatingCookieButton;
         "more-options-banner": MoreOptionsBanner;
         "primary-banner": PrimaryBanner;
@@ -153,7 +153,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "ask-manager": LocalJSX.AskManager & JSXBase.HTMLAttributes<HTMLAskManagerElement>;
+            "cookie-banner": LocalJSX.CookieBanner & JSXBase.HTMLAttributes<HTMLCookieBannerElement>;
             "floating-cookie-button": LocalJSX.FloatingCookieButton & JSXBase.HTMLAttributes<HTMLFloatingCookieButtonElement>;
             "more-options-banner": LocalJSX.MoreOptionsBanner & JSXBase.HTMLAttributes<HTMLMoreOptionsBannerElement>;
             "primary-banner": LocalJSX.PrimaryBanner & JSXBase.HTMLAttributes<HTMLPrimaryBannerElement>;

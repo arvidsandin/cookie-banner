@@ -1,4 +1,4 @@
-[ask-manager](../README.md) / category
+[cookie-banner](../README.md) / category
 
 # Module: category
 

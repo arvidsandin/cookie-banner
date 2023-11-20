@@ -29,12 +29,12 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [ask-manager](../ask-manager)
+ - [cookie-banner](../cookie-banner)
 
 ### Graph
 ```mermaid
 graph TD;
-  ask-manager --> floating-cookie-button
+  cookie-banner --> floating-cookie-button
   style floating-cookie-button fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

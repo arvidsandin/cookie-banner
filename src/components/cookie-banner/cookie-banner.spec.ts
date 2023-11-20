@@ -1,5 +1,5 @@
 import { Options } from '../../components';
-import { AskManager } from './ask-manager';
+import { CookieBanner } from './cookie-banner';
 
 jest.useFakeTimers();
 
@@ -22,25 +22,25 @@ describe('linkToPrivacyPolicy', () => {
     },
   ].forEach(({ linkToPrivacyPolicy, errorMessage }) =>
     it(`throw ${errorMessage} when linkToPrivacyPolicy is ${linkToPrivacyPolicy}`, () => {
-      const theAskManager = new AskManager();
+      const theCookieBanner = new CookieBanner();
       const options = {
         cookiePolicyLastUpdated: '2023-01-01',
         linkToPrivacyPolicy,
       };
 
-      expect(theAskManager.setOptions(options)).rejects.toThrow(errorMessage);
+      expect(theCookieBanner.setOptions(options)).rejects.toThrow(errorMessage);
     }),
   );
 
   it('throws no error on valid input', async () => {
-    const theAskManager = new AskManager();
+    const theCookieBanner = new CookieBanner();
     let options: Options = {
       //To avoid warnings getting printed
       cookiePolicyLastUpdated: '2023-01-01',
       linkToPrivacyPolicy: 'https://example.com',
     };
 
-    expect(theAskManager.setOptions(options)).resolves.toBe(undefined);
+    expect(theCookieBanner.setOptions(options)).resolves.toBe(undefined);
   });
 });
 describe('linkText', () => {
@@ -59,19 +59,19 @@ describe('linkText', () => {
     },
   ].forEach(({ texts, errorMessage }) =>
     it(`throw ${errorMessage} when linkText is ${texts.linkText}`, () => {
-      const theAskManager = new AskManager();
+      const theCookieBanner = new CookieBanner();
       const options = {
         cookiePolicyLastUpdated: '2023-01-01',
         linkToPrivacyPolicy: 'http://example.com',
         texts,
       };
 
-      expect(theAskManager.setOptions(options)).rejects.toThrow(errorMessage);
+      expect(theCookieBanner.setOptions(options)).rejects.toThrow(errorMessage);
     }),
   );
 
   it('throws no error on valid input', async () => {
-    const theAskManager = new AskManager();
+    const theCookieBanner = new CookieBanner();
     let options: Options = {
       //To avoid warnings getting printed
       cookiePolicyLastUpdated: '2023-01-01',
@@ -79,11 +79,11 @@ describe('linkText', () => {
       linkToPrivacyPolicy: 'https://example.com',
     };
 
-    expect(theAskManager.setOptions(options)).resolves.toBe(undefined);
+    expect(theCookieBanner.setOptions(options)).resolves.toBe(undefined);
   });
 });
 
-describe('ask-manager', () => {
+describe('cookie-banner', () => {
   [
     {
       categories: [
@@ -120,19 +120,19 @@ describe('ask-manager', () => {
     },
   ].forEach(({ categories, errorMessage }) =>
     it(`throw ${errorMessage} when categories is ${JSON.stringify(categories)}`, () => {
-      const theAskManager = new AskManager();
+      const theCookieBanner = new CookieBanner();
       const options = {
         cookiePolicyLastUpdated: '2023-01-01',
         linkToPrivacyPolicy: 'https://example.com/',
         categories,
       };
 
-      expect(theAskManager.setOptions(options)).rejects.toThrow(errorMessage);
+      expect(theCookieBanner.setOptions(options)).rejects.toThrow(errorMessage);
     }),
   );
 
   it('throws no error on valid input', async () => {
-    const theAskManager = new AskManager();
+    const theCookieBanner = new CookieBanner();
     let options: Options = {
       cookiePolicyLastUpdated: '2023-01-01',
       linkToPrivacyPolicy: 'https://example.com',
@@ -145,11 +145,11 @@ describe('ask-manager', () => {
         },
       ],
     };
-    expect(theAskManager.setOptions(options)).resolves.toBe(undefined);
+    expect(theCookieBanner.setOptions(options)).resolves.toBe(undefined);
   });
 
   it('throws no error on valid input', async () => {
-    const theAskManager = new AskManager();
+    const theCookieBanner = new CookieBanner();
     let options: Options = {
       cookiePolicyLastUpdated: '2023-01-01',
       linkToPrivacyPolicy: 'https://example.com',
@@ -165,6 +165,6 @@ describe('ask-manager', () => {
         mainContent: 'We use functional cookies',
       },
     };
-    expect(theAskManager.setOptions(options)).resolves.toBe(undefined);
+    expect(theCookieBanner.setOptions(options)).resolves.toBe(undefined);
   });
 });

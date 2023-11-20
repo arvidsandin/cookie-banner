@@ -18,12 +18,12 @@ export interface Options {
   /**
    * The categories of non-essential cookies used on the website.
    * See below for details about the Category type.
-   * If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use ask-manager, as the GDPR does not require the same level of consent when only essential cookies are used.
+   * If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use `cookie-banner`, as the GDPR does not require the same level of consent when only essential cookies are used.
    * @default `[]`
    */
   categories?: Category[];
   /**
-   * Whether to include a floating button to change consent in the future. If set to `false`, another action that calls the `ask-manager.showBanner()` method has to be offered on to the user, such as through a link in the footer of the website.
+   * Whether to include a floating button to change consent in the future. If set to `false`, another action that calls the `cookie-banner.showBanner()` method has to be offered on to the user, such as through a link in the footer of the website.
    * @default `true`
    */
   useCookieButton?: boolean;
