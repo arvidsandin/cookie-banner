@@ -4,11 +4,11 @@ import { Options } from '../../utils/options';
 import { StylingOptions } from '../../utils/stylingOptions';
 
 @Component({
-  tag: 'ask-manager',
-  styleUrl: 'ask-manager.css',
+  tag: 'cookie-banner',
+  styleUrl: 'cookie-banner.css',
   shadow: true,
 })
-export class AskManager {
+export class CookieBanner {
   /**
    * Check if the user has conseted to a particular category
    * @param key The category of cookie to check consent status for
@@ -76,7 +76,7 @@ export class AskManager {
       this.el.style.setProperty('--' + key, styling[key]);
     }
   }
-  @Element() el: HTMLAskManagerElement;
+  @Element() el: HTMLCookieBannerElement;
   /**
    * Event when the user has updated their consent
    * @event consentUpdated
@@ -200,7 +200,7 @@ export class AskManager {
   }
   render() {
     return (
-      <div id="ask-manager">
+      <div id="cookie-banner">
         <more-options-banner
           style={{ visibility: this.moreOptionsVisible() ? 'visible' : 'hidden', opacity: this.moreOptionsVisible() ? '1' : '0' }}
           class="visibility-animation"

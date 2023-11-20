@@ -18,12 +18,12 @@
 
 ### Used by
 
- - [ask-manager](../ask-manager)
+ - [cookie-banner](../cookie-banner)
 
 ### Graph
 ```mermaid
 graph TD;
-  ask-manager --> primary-banner
+  cookie-banner --> primary-banner
   style primary-banner fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

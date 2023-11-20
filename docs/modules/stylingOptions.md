@@ -1,4 +1,4 @@
-[ask-manager](../README.md) / stylingOptions
+[cookie-banner](../README.md) / stylingOptions
 
 # Module: stylingOptions
 

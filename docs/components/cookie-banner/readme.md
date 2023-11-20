@@ -1,4 +1,4 @@
-# ask-manager
+# cookie-banner
 
 
 
@@ -98,10 +98,10 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  ask-manager --> more-options-banner
-  ask-manager --> primary-banner
-  ask-manager --> floating-cookie-button
-  style ask-manager fill:#f9f,stroke:#333,stroke-width:4px
+  cookie-banner --> more-options-banner
+  cookie-banner --> primary-banner
+  cookie-banner --> floating-cookie-button
+  style cookie-banner fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

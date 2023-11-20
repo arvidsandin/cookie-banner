@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
     <title>Stencil Component Starter</title>
 
-    <script type="module" src="/build/ask-manager.esm.js"></script>
-    <script nomodule src="/build/ask-manager.js"></script>
+    <script type="module" src="/build/cookie-banner.esm.js"></script>
+    <script nomodule src="/build/cookie-banner.js"></script>
   </head>
   <body>
     <button onclick="showConsent()">Show consent</button>
-    <button onclick="document.querySelector('ask-manager').showBanner()">Change consent</button>
-    <button onclick="document.querySelector('ask-manager').deleteConsent()">Delete consent</button>
+    <button onclick="document.querySelector('cookie-banner').showBanner()">Change consent</button>
+    <button onclick="document.querySelector('cookie-banner').deleteConsent()">Delete consent</button>
     <p id="what-is-accepted">You have accepted essential cookies</p>
-    <ask-manager></ask-manager>
+    <cookie-banner></cookie-banner>
   </body>
   <script>
-    customElements.whenDefined('ask-manager').then(() => {
-      document.querySelector('ask-manager').setOptions({
+    customElements.whenDefined('cookie-banner').then(() => {
+      document.querySelector('cookie-banner').setOptions({
         categories: [
           {
             key: 'functional',
@@ -44,7 +44,7 @@
         cookiePolicyLastUpdated: '2023-09-13',
         linkToPrivacyPolicy: 'https://example.com',
       });
-      document.querySelector('ask-manager').addEventListener('consentUpdated', e => {
+      document.querySelector('cookie-banner').addEventListener('consentUpdated', e => {
         e.detail.unshift('essential');
         document.getElementById('what-is-accepted').innerText = `You have accepted ${listToString(e.detail)} cookies`;
       });
@@ -53,7 +53,7 @@
     async function showConsent() {
       let consent = ['essential'];
       for (const category of ['functional', 'analytical', 'marketing']) {
-        if (await document.querySelector('ask-manager').hasConsent(category)) {
+        if (await document.querySelector('cookie-banner').hasConsent(category)) {
           consent.push(category);
         }
       }

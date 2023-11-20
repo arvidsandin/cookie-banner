@@ -1,4 +1,4 @@
-[ask-manager](../README.md) / [options](../modules/options.md) / Options
+[cookie-banner](../README.md) / [options](../modules/options.md) / Options
 
 # Interface: Options
 
@@ -23,7 +23,7 @@
 
 The categories of non-essential cookies used on the website.
 See below for details about the Category type.
-If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use ask-manager, as the GDPR does not require the same level of consent when only essential cookies are used.
+If left empty, it implies only essential cookies are used, in which case it doesn't really make sense to use `cookie-banner`, as the GDPR does not require the same level of consent when only essential cookies are used.
 
 **`Default`**
 
@@ -31,7 +31,7 @@ If left empty, it implies only essential cookies are used, in which case it does
 
 #### Defined in
 
-[options.ts:24](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L24)
+[options.ts:24](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L24)
 
 ___
 
@@ -45,7 +45,7 @@ Can be any string parsable by the Date() function in Javascript.
 
 #### Defined in
 
-[options.ts:8](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L8)
+[options.ts:8](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L8)
 
 ___
 
@@ -57,7 +57,7 @@ A relative or absolute link to the privacy policy.
 
 #### Defined in
 
-[options.ts:12](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L12)
+[options.ts:12](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L12)
 
 ___
 
@@ -73,7 +73,7 @@ The key to use for storing the consent in localStorage.
 
 #### Defined in
 
-[options.ts:17](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L17)
+[options.ts:17](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L17)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[options.ts:30](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L30)
+[options.ts:30](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L30)
 
 ___
 
@@ -106,7 +106,7 @@ ___
 
 • `Optional` **useCookieButton**: `boolean`
 
-Whether to include a floating button to change consent in the future. If set to `false`, another action that calls the `ask-manager.showBanner()` method has to be offered on to the user, such as through a link in the footer of the website.
+Whether to include a floating button to change consent in the future. If set to `false`, another action that calls the `cookie-banner.showBanner()` method has to be offered on to the user, such as through a link in the footer of the website.
 
 **`Default`**
 
@@ -114,4 +114,4 @@ Whether to include a floating button to change consent in the future. If set to 
 
 #### Defined in
 
-[options.ts:29](https://github.com/arvidsandin/ask-manager/blob/9941cfc/src/utils/options.ts#L29)
+[options.ts:29](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/options.ts#L29)
