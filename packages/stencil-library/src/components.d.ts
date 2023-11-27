@@ -75,7 +75,18 @@ export interface CookieBannerCustomEvent<T> extends CustomEvent<T> {
     target: HTMLCookieBannerElement;
 }
 declare global {
+    interface HTMLCookieBannerElementEventMap {
+        "consentUpdated": string[];
+    }
     interface HTMLCookieBannerElement extends Components.CookieBanner, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLCookieBannerElementEventMap>(type: K, listener: (this: HTMLCookieBannerElement, ev: CookieBannerCustomEvent<HTMLCookieBannerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLCookieBannerElementEventMap>(type: K, listener: (this: HTMLCookieBannerElement, ev: CookieBannerCustomEvent<HTMLCookieBannerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLCookieBannerElement: {
         prototype: HTMLCookieBannerElement;

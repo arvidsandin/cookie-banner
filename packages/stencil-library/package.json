@@ -1,0 +1,47 @@
+{
+  "name": "cookie-banner",
+  "version": "0.0.1",
+  "description": "GDPR compliant cookie consent tool",
+  "author": "Arvid Sandin <arvid.sandin.developer@gmail.com>",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/cookie-banner/cookie-banner.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs && typedoc src/utils/*.ts",
+    "start": "stencil build --dev --watch --serve",
+    "unitTest": "stencil test --spec",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@stencil/core": "^4.0.0"
+  },
+  "devDependencies": {
+    "@stencil/angular-output-target": "^0.8.3",
+    "@stencil/react-output-target": "^0.5.3",
+    "@stencil/store": "^2.0.9",
+    "@stencil/vue-output-target": "^0.8.7",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.11",
+    "jest": "^27.5.1",
+    "jest-cli": "^27.5.1",
+    "puppeteer": "^21.0.3",
+    "typedoc": "^0.25.2",
+    "typedoc-plugin-markdown": "^3.16.0"
+  },
+  "license": "MIT"
+}
