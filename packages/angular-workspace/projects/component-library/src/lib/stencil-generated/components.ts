@@ -7,7 +7,7 @@ import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 import { Components } from 'cookie-banner';
 
 @ProxyCmp({
-  methods: ['hasConsent', 'getCategoriesWithConsent', 'setOptions', 'showBanner', 'deleteConsent', 'setStyling'],
+  methods: ['hasConsent', 'getCategoriesWithConsent', 'setOptions', 'showBanner', 'hideBanner', 'deleteConsent', 'setStyling'],
 })
 @Component({
   selector: 'cookie-banner',
@@ -86,14 +86,14 @@ export class MoreOptionsBanner {
 export declare interface MoreOptionsBanner extends Components.MoreOptionsBanner {}
 
 @ProxyCmp({
-  inputs: ['acceptCategories', 'showOptions'],
+  inputs: ['acceptCategories', 'hideBanner', 'showOptions'],
 })
 @Component({
   selector: 'primary-banner',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: '<ng-content></ng-content>',
   // eslint-disable-next-line @angular-eslint/no-inputs-metadata-property
-  inputs: ['acceptCategories', 'showOptions'],
+  inputs: ['acceptCategories', 'hideBanner', 'showOptions'],
 })
 export class PrimaryBanner {
   protected el: HTMLElement;

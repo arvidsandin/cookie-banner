@@ -26,6 +26,7 @@ export namespace Components {
           * @returns Whether the user has consented to that cookie
          */
         "hasConsent": (key: string) => Promise<boolean>;
+        "hideBanner": () => Promise<void>;
         /**
           * Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
           * @param userOptions The Options object that contains the settings for the component
@@ -64,6 +65,7 @@ export namespace Components {
           * A function to use when accepting categories
          */
         "acceptCategories": (categories: string[]) => void;
+        "hideBanner": () => void;
         /**
           * A function to set the options view as the active one
          */
@@ -148,6 +150,7 @@ declare namespace LocalJSX {
           * A function to use when accepting categories
          */
         "acceptCategories"?: (categories: string[]) => void;
+        "hideBanner"?: () => void;
         /**
           * A function to set the options view as the active one
          */

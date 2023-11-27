@@ -11,4 +11,4 @@ export const FloatingCookieButton = /*@__PURE__*/ defineContainer<JSX.FloatingCo
 
 export const MoreOptionsBanner = /*@__PURE__*/ defineContainer<JSX.MoreOptionsBanner>('more-options-banner', undefined, ['acceptedCategories', 'acceptCategories', 'hideOptions']);
 
-export const PrimaryBanner = /*@__PURE__*/ defineContainer<JSX.PrimaryBanner>('primary-banner', undefined, ['acceptCategories', 'showOptions']);
+export const PrimaryBanner = /*@__PURE__*/ defineContainer<JSX.PrimaryBanner>('primary-banner', undefined, ['acceptCategories', 'showOptions', 'hideBanner']);

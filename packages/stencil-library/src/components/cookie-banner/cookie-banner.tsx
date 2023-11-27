@@ -43,6 +43,15 @@ export class CookieBanner {
   @Method()
   async showBanner() {
     this.forceBannerVisibility = true;
+    this.bannerHidden = false;
+  }
+  @Method()
+  /**
+   * Hide the banner
+   */
+  async hideBanner() {
+    this.forceBannerVisibility = false;
+    this.bannerHidden = true;
   }
   /**
    * Delete all previous set consents
@@ -162,8 +171,9 @@ export class CookieBanner {
 
   @State() isInOptionsView: boolean = false;
   @State() forceBannerVisibility = false;
+  @State() bannerHidden = false;
   private bannerVisible() {
-    return this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated);
+    return (this.forceBannerVisibility || new Date(state.cookieConsent.lastAccepted) < new Date(state.options.cookiePolicyLastUpdated)) && !this.bannerHidden;
   }
 
   private acceptCategories(categories: string[]) {
@@ -203,6 +213,7 @@ export class CookieBanner {
           class="visibility-animation"
           acceptCategories={c => this.acceptCategories(c)}
           showOptions={this.showOptions}
+          hideBanner={() => this.hideBanner()}
         ></primary-banner>
         {state.options.useCookieButton && !this.bannerVisible() ? <floating-cookie-button showBanner={() => this.showBanner()}></floating-cookie-button> : null}
       </div>

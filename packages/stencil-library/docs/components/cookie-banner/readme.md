@@ -44,6 +44,16 @@ Type: `Promise<boolean>`
 
 Whether the user has consented to that cookie
 
+### `hideBanner() => Promise<void>`
+
+
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `setOptions(userOptions: Options) => Promise<void>`
 
 Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
