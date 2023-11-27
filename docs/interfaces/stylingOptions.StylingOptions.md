@@ -24,9 +24,15 @@
 
 • `Optional` **backgroundColorButton**: `string`
 
+The background color of the buttons
+
+**`Default`**
+
+`'#000000'`
+
 #### Defined in
 
-[stylingOptions.ts:5](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L5)
+[stylingOptions.ts:21](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L21)
 
 ___
 
@@ -34,9 +40,15 @@ ___
 
 • `Optional` **backgroundColorMainBox**: `string`
 
+The background color of the cookie banner
+
+**`Default`**
+
+`'#ffffff'`
+
 #### Defined in
 
-[stylingOptions.ts:9](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L9)
+[stylingOptions.ts:41](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L41)
 
 ___
 
@@ -44,9 +56,15 @@ ___
 
 • `Optional` **borderColorButton**: `string`
 
+The border color of the buttons
+
+**`Default`**
+
+`'#000000'`
+
 #### Defined in
 
-[stylingOptions.ts:6](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L6)
+[stylingOptions.ts:26](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L26)
 
 ___
 
@@ -54,9 +72,15 @@ ___
 
 • `Optional` **borderColorMainBox**: `string`
 
+The border color of the buttons
+
+**`Default`**
+
+`'#000000'`
+
 #### Defined in
 
-[stylingOptions.ts:10](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L10)
+[stylingOptions.ts:46](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L46)
 
 ___
 
@@ -64,9 +88,15 @@ ___
 
 • `Optional` **borderRadiusButton**: `string`
 
+The border radius of the buttons
+
+**`Default`**
+
+`'10px'`
+
 #### Defined in
 
-[stylingOptions.ts:3](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L3)
+[stylingOptions.ts:11](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L11)
 
 ___
 
@@ -74,9 +104,15 @@ ___
 
 • `Optional` **borderRadiusButtonMobile**: `string`
 
+The border radius of the buttons in mobile view
+
+**`Default`**
+
+`'10px'`
+
 #### Defined in
 
-[stylingOptions.ts:4](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L4)
+[stylingOptions.ts:16](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L16)
 
 ___
 
@@ -84,9 +120,15 @@ ___
 
 • `Optional` **borderRadiusMainbox**: `string`
 
+The border radius of the cookie banner
+
+**`Default`**
+
+`'3px'`
+
 #### Defined in
 
-[stylingOptions.ts:2](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L2)
+[stylingOptions.ts:6](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L6)
 
 ___
 
@@ -94,9 +136,15 @@ ___
 
 • `Optional` **textColorButton**: `string`
 
+The text color on the buttons
+
+**`Default`**
+
+`'#ffffff'`
+
 #### Defined in
 
-[stylingOptions.ts:7](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L7)
+[stylingOptions.ts:31](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L31)
 
 ___
 
@@ -104,6 +152,12 @@ ___
 
 • `Optional` **textColorMainBox**: `string`
 
+The text color in the cookie banner
+
+**`Default`**
+
+`'#000000'`
+
 #### Defined in
 
-[stylingOptions.ts:8](https://github.com/arvidsandin/cookie-banner/blob/39d8d08/src/utils/stylingOptions.ts#L8)
+[stylingOptions.ts:36](https://github.com/arvidsandin/cookie-banner/blob/1f5e8a9/src/utils/stylingOptions.ts#L36)

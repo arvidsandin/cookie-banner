@@ -14,6 +14,7 @@ export class PrimaryBanner {
    * A function to set the options view as the active one
    */
   @Prop() showOptions: () => void;
+  @Prop() hideBanner: () => void;
 
   private rejectAllCookies = () => {
     this.acceptCategories([]);
@@ -33,6 +34,9 @@ export class PrimaryBanner {
         <div class="info-text">
           <p>{this.getCopyOfMainContent()}</p>
         </div>
+        <button type="button" aria-label="Close cookie banner" class="close-button" onClick={this.hideBanner}>
+          <span aria-hidden="true">✖</span>
+        </button>
         <div class="primary-banner-buttons buttons">
           <button onClick={this.showOptions}>{state.options.texts.moreOptions}</button>
           <button onClick={this.rejectAllCookies}>{state.options.texts.reject}</button>
