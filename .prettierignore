@@ -3,3 +3,6 @@ packages/stencil-library/loader
 packages/stencil-library/www
 packages/stencil-library/node_modules
 packages/stencil-library/src/components.d.ts
+packages/angular-workspace
+packages/react-library
+packages/vue-library
