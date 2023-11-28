@@ -1,5 +1,5 @@
 {
-  "name": "angular-workspace",
+  "name": "@cookie-banner/angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -26,6 +26,7 @@
     "@angular-devkit/build-angular": "^17.0.3",
     "@angular/cli": "^17.0.3",
     "@angular/compiler-cli": "^17.0.0",
+    "@cookie-banner/stencil": "file:../stencil-library",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",

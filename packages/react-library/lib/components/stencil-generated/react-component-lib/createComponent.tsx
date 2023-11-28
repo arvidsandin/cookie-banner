@@ -11,11 +11,19 @@ interface StencilReactInternalProps<ElementType> extends React.HTMLAttributes<El
   ref?: React.Ref<any>;
 }
 
-export const createReactComponent = <PropType, ElementType extends HTMLStencilElement, ContextStateType = {}, ExpandedPropsTypes = {}>(
+export const createReactComponent = <
+  PropType,
+  ElementType extends HTMLStencilElement,
+  ContextStateType = {},
+  ExpandedPropsTypes = {}
+>(
   tagName: string,
   ReactComponentContext?: React.Context<ContextStateType>,
-  manipulatePropsFunction?: (originalProps: StencilReactInternalProps<ElementType>, propsToPass: any) => ExpandedPropsTypes,
-  defineCustomElement?: () => void,
+  manipulatePropsFunction?: (
+    originalProps: StencilReactInternalProps<ElementType>,
+    propsToPass: any
+  ) => ExpandedPropsTypes,
+  defineCustomElement?: () => void
 ) => {
   if (defineCustomElement !== undefined) {
     defineCustomElement();

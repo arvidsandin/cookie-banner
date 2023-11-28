@@ -23,15 +23,15 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
     vueOutputTarget({
-      componentCorePackage: 'cookie-banner',
+      componentCorePackage: '@cookie-banner/stencil',
       proxiesFile: '../vue-library/lib/components.ts',
     }),
     reactOutputTarget({
-      componentCorePackage: 'cookie-banner',
+      componentCorePackage: '@cookie-banner/stencil',
       proxiesFile: '../react-library/lib/components/stencil-generated/index.ts',
     }),
     angularOutputTarget({
-      componentCorePackage: 'cookie-banner',
+      componentCorePackage: '@cookie-banner/stencil',
       outputType: 'component',
       directivesProxyFile: '../angular-workspace/projects/component-library/src/lib/stencil-generated/components.ts',
       directivesArrayFile: '../angular-workspace/projects/component-library/src/lib/stencil-generated/index.ts',

@@ -32,8 +32,14 @@ const getComponentClasses = (classes: unknown) => {
   return (classes as string)?.split(' ') || [];
 };
 
-const getElementClasses = (ref: Ref<HTMLElement | undefined>, componentClasses: Set<string>, defaultClasses: string[] = []) => {
-  return [...Array.from(ref.value?.classList || []), ...defaultClasses].filter((c: string, i, self) => !componentClasses.has(c) && self.indexOf(c) === i);
+const getElementClasses = (
+  ref: Ref<HTMLElement | undefined>,
+  componentClasses: Set<string>,
+  defaultClasses: string[] = []
+) => {
+  return [...Array.from(ref.value?.classList || []), ...defaultClasses].filter(
+    (c: string, i, self) => !componentClasses.has(c) && self.indexOf(c) === i
+  );
 };
 
 /**
@@ -53,7 +59,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
   defineCustomElement: any,
   componentProps: string[] = [],
   modelProp?: string,
-  modelUpdateEvent?: string,
+  modelUpdateEvent?: string
 ) => {
   /**
    * Create a Vue component wrapper around a Web Component.
@@ -117,7 +123,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
     return () => {
       modelPropValue = props[modelProp];
 
-      getComponentClasses(attrs.class).forEach(value => {
+      getComponentClasses(attrs.class).forEach((value) => {
         classes.add(value);
       });
 
@@ -186,7 +192,7 @@ export const defineContainer = <Props, VModelType = string | number | boolean>(
       [ROUTER_LINK_VALUE]: DEFAULT_EMPTY_PROP,
     };
 
-    componentProps.forEach(componentProp => {
+    componentProps.forEach((componentProp) => {
       Container.props[componentProp] = DEFAULT_EMPTY_PROP;
     });
 

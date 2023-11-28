@@ -1,5 +1,5 @@
 {
-  "name": "vue-library",
+  "name": "@cookie-banner/vue",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
@@ -27,12 +27,10 @@
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
   "devDependencies": {
+    "@cookie-banner/stencil": "file:../stencil-library",
     "vue": "^3.3.8"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "cookie-banner": "*"
   }
 }

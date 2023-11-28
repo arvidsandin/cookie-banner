@@ -1,4 +1,4 @@
-[cookie-banner](../README.md) / options
+[@cookie-banner/stencil](../README.md) / options
 
 # Module: options
 

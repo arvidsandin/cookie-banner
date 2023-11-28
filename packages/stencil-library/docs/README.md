@@ -1,6 +1,6 @@
-cookie-banner
+@cookie-banner/stencil
 
-# cookie-banner
+# @cookie-banner/stencil
 
 ## Table of contents
 

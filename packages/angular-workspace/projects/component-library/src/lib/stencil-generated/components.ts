@@ -4,10 +4,11 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Even
 
 import { ProxyCmp, proxyOutputs } from './angular-component-lib/utils';
 
-import { Components } from 'cookie-banner';
+import { Components } from '@cookie-banner/stencil';
+
 
 @ProxyCmp({
-  methods: ['hasConsent', 'getCategoriesWithConsent', 'setOptions', 'showBanner', 'hideBanner', 'deleteConsent', 'setStyling'],
+  methods: ['hasConsent', 'getCategoriesWithConsent', 'setOptions', 'showBanner', 'hideBanner', 'deleteConsent', 'setStyling']
 })
 @Component({
   selector: 'cookie-banner',
@@ -18,16 +19,13 @@ import { Components } from 'cookie-banner';
 })
 export class CookieBanner {
   protected el: HTMLElement;
-  constructor(
-    c: ChangeDetectorRef,
-    r: ElementRef,
-    protected z: NgZone,
-  ) {
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
     proxyOutputs(this, this.el, ['consentUpdated']);
   }
 }
+
 
 export declare interface CookieBanner extends Components.CookieBanner {
   /**
@@ -36,9 +34,10 @@ export declare interface CookieBanner extends Components.CookieBanner {
   consentUpdated: EventEmitter<CustomEvent<string[]>>;
 }
 
+
 @ProxyCmp({
   inputs: ['showBanner'],
-  methods: ['changeColor'],
+  methods: ['changeColor']
 })
 @Component({
   selector: 'floating-cookie-button',
@@ -49,20 +48,18 @@ export declare interface CookieBanner extends Components.CookieBanner {
 })
 export class FloatingCookieButton {
   protected el: HTMLElement;
-  constructor(
-    c: ChangeDetectorRef,
-    r: ElementRef,
-    protected z: NgZone,
-  ) {
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
   }
 }
 
+
 export declare interface FloatingCookieButton extends Components.FloatingCookieButton {}
 
+
 @ProxyCmp({
-  inputs: ['acceptCategories', 'acceptedCategories', 'hideOptions'],
+  inputs: ['acceptCategories', 'acceptedCategories', 'hideOptions']
 })
 @Component({
   selector: 'more-options-banner',
@@ -73,20 +70,18 @@ export declare interface FloatingCookieButton extends Components.FloatingCookieB
 })
 export class MoreOptionsBanner {
   protected el: HTMLElement;
-  constructor(
-    c: ChangeDetectorRef,
-    r: ElementRef,
-    protected z: NgZone,
-  ) {
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
   }
 }
 
+
 export declare interface MoreOptionsBanner extends Components.MoreOptionsBanner {}
 
+
 @ProxyCmp({
-  inputs: ['acceptCategories', 'hideBanner', 'showOptions'],
+  inputs: ['acceptCategories', 'hideBanner', 'showOptions']
 })
 @Component({
   selector: 'primary-banner',
@@ -97,14 +92,13 @@ export declare interface MoreOptionsBanner extends Components.MoreOptionsBanner 
 })
 export class PrimaryBanner {
   protected el: HTMLElement;
-  constructor(
-    c: ChangeDetectorRef,
-    r: ElementRef,
-    protected z: NgZone,
-  ) {
+  constructor(c: ChangeDetectorRef, r: ElementRef, protected z: NgZone) {
     c.detach();
     this.el = r.nativeElement;
   }
 }
 
+
 export declare interface PrimaryBanner extends Components.PrimaryBanner {}
+
+

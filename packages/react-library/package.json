@@ -1,5 +1,5 @@
 {
-  "name": "react-library",
+  "name": "@cookie-banner/react",
   "version": "0.0.0",
   "description": "> TODO: description",
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
@@ -28,6 +28,7 @@
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
   "devDependencies": {
+    "@cookie-banner/stencil": "file:../stencil-library",
     "@types/react": "^18.2.38",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -35,8 +36,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "cookie-banner": "*"
   }
 }

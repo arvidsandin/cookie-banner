@@ -1,4 +1,4 @@
-[cookie-banner](../README.md) / category
+[@cookie-banner/stencil](../README.md) / category
 
 # Module: category
 

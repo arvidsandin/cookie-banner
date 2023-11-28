@@ -1,5 +1,5 @@
 {
-  "name": "cookie-banner",
+  "name": "@cookie-banner/stencil",
   "version": "0.0.1",
   "description": "GDPR compliant cookie consent tool",
   "author": "Arvid Sandin <arvid.sandin.developer@gmail.com>",

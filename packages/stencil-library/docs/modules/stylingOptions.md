@@ -1,4 +1,4 @@
-[cookie-banner](../README.md) / stylingOptions
+[@cookie-banner/stencil](../README.md) / stylingOptions
 
 # Module: stylingOptions
 

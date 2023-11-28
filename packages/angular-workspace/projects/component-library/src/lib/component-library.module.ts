@@ -1,5 +1,5 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { defineCustomElements } from 'cookie-banner/loader';
+import { defineCustomElements } from '@cookie-banner/stencil/loader';
 import { DIRECTIVES } from './stencil-generated';
 
 @NgModule({

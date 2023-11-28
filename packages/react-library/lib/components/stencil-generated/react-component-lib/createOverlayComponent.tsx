@@ -21,7 +21,7 @@ export interface ReactOverlayProps {
 export const createOverlayComponent = <OverlayComponent extends object, OverlayType extends OverlayElement>(
   tagName: string,
   controller: { create: (options: any) => Promise<OverlayType> },
-  customElement?: any,
+  customElement?: any
 ) => {
   defineCustomElement(tagName, customElement);
 
