@@ -48,7 +48,7 @@ button:active{
   transition: opacity ease-in-out 0.2s, visibility ease-in-out 0.2s;
 }
 .consent-box, .options-box {
-  position: absolute;
+  position: fixed;
   bottom: 15px;
   left: 0;
   color: var(--textColorMainBox);

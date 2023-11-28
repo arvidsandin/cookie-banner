@@ -1,5 +1,5 @@
 .floating-button{
-    position: absolute;
+    position: fixed;
     bottom: 15px;
     left: 15px;
     background-color: white;
