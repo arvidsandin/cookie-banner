@@ -88,7 +88,7 @@ function App() {
 
     //listen to event
     cookieBanner.addEventListener('consentUpdated', e => {
-        for (category of e.detail){
+        for (const category of e.detail){
             //update data collection
         }
     })
