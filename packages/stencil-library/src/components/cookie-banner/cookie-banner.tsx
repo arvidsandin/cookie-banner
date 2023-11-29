@@ -105,6 +105,7 @@ export class CookieBanner {
     storageName: 'cookie-consent',
     linkToPrivacyPolicy: null,
     useCookieButton: true,
+    monthsOfValidity: 12,
     texts: {
       mainContent: null,
       linkText: 'privacy policy',
@@ -131,6 +132,10 @@ export class CookieBanner {
 
     if (!options.texts?.mainContent && options.categories?.filter(c => !c.purpose).length) {
       throw new Error('Missing "purpose" in Category object to insert in default text');
+    }
+
+    if (options.monthsOfValidity < 0) {
+      throw new Error('monthsOfValididy cannot be negative');
     }
   };
 
@@ -165,6 +170,7 @@ export class CookieBanner {
     return formattedOptions;
   };
 
+  //From https://stackoverflow.com/questions/4782948/convert-a-javascript-array-into-a-readable-string
   private listToString(list: string[]) {
     return list.length == 1 ? list[0] : [list.slice(0, -1).join(', '), list.slice(-1)].join(' and ');
   }
