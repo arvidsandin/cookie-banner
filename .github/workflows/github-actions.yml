@@ -9,9 +9,6 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: ./packages/stencil-library
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js
@@ -19,4 +16,6 @@ jobs:
         with:
           node-version: '20.x'
       - run: npm ci
-      - run: npm test
+      - run: |
+          cd packages/stencil-library
+          npm test
