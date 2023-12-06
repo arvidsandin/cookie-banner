@@ -11,40 +11,17 @@
 
 ## Getting started
 
-### Installation
+`cookie-banner` is available for React, Vue, Angular, and as an independent Web Component. For instructions, view the readme of the relevant directory:
 
-TODO
+* [Angular](packages/angular-workspace/README.md)
+* [React](packages/react-library/README.md)
+* [Vue](packages/vue-library/README.md)
+* [Web Component](packages/stencil-library/README.md)
 
-### Usage
-After adding the `<cookie-banner></cookie-banner>` component, a setup is required. This can be done by running a function after the component is defined:
-
-```js
-await customElements.whenDefined('cookie-banner');
-document.querySelector('cookie-banner').setOptions(options)
-```
-
-Here is a minimal example of how the options object can look:
-
-```js
-const options = {
-   categories: [
-      {
-         key: 'analytics',
-         name: 'Analytical Cookies',
-         description: 'Allows analytic to be used to improve the usability of the website in the future',
-         purpose: 'analytical',
-         },
-   ],
-   cookiePolicyLastUpdated: '2023-09-13',
-   linkToPrivacyPolicy: 'https://example.com',
-}
-```
-
-Check out the [Options](docs/interfaces/options.Options.md) and [Category](docs/interfaces/category.Category.md) objects to view the details of these properties and other optional ones.
 
 ## Development
 
-To get a local copy up and running follow these steps.
+Since `cookie-banner`is build with Stencil, only the files in packages/stencil-library should be manually modified. To get a local copy up and running follow these steps.
 
 ### Prerequisites
 
@@ -57,14 +34,17 @@ To get a local copy up and running follow these steps.
    ```sh
    git clone https://github.com/arvidsandin/cookie-banner.git && cd cookie-banner
    ```
-1. Install npm packages
+2. Install npm packages
    ```sh
    npm install
    ```
-3. Start local development server
+4. Start local development server
    ```sh
+   cd packages/stencil-library
    npm start
    ```
+
+When creating the framework integrations, run `npm build` once in `packages/stencil-library` and then once in `packages/angular-workspace`, `packages/react-library` or `packages/vue-library` depending on which framework to build for.
 
 
 ## License

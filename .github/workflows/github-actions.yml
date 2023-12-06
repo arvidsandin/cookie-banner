@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: '20.x'
       - run: npm ci
-      - run: npm test
+      - run: |
+          cd packages/stencil-library
+          npm test

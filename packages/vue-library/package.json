@@ -1,0 +1,36 @@
+{
+  "name": "@cookie-banner/vue",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
+  "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arvidsandin/cookie-banner.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1",
+    "build": "npm run tsc",
+    "tsc": "tsc -p . --outDir ./dist"
+  },
+  "bugs": {
+    "url": "https://github.com/arvidsandin/cookie-banner/issues"
+  },
+  "devDependencies": {
+    "@cookie-banner/stencil": "file:../stencil-library",
+    "vue": "^3.3.8"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

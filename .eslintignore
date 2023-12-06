@@ -1,4 +1,8 @@
-dist
-loader
-www
-stencil.config.ts
+packages/stencil-library/dist
+packages/stencil-library/loader
+packages/stencil-library/www
+packages/stencil-library/stencil.config.ts
+packages/angular-workspace
+packages/react-library
+packages/vue-library
+**/*.spec.ts

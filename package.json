@@ -1,54 +1,24 @@
 {
-  "name": "cookie-banner",
-  "version": "0.0.1",
-  "description": "GDPR compliant cookie consent tool",
-  "author": "Arvid Sandin <arvid.sandin.developer@gmail.com>",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/types/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/cookie-banner/cookie-banner.esm.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
-  },
-  "files": [
-    "dist/",
-    "loader/"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "scripts": {
-    "build": "stencil build --docs && typedoc src/utils/*.ts",
-    "start": "stencil build --dev --watch --serve",
-    "unitTest": "stencil test --spec",
-    "test": "stencil test --spec --e2e",
-    "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate",
-    "prepare": "husky install",
-    "lint": "eslint src/**/*{.ts,.tsx} && prettier --check src/**/*{.ts,.tsx}"
+    "lint": "eslint packages/stencil-library/src/**/*{.ts,.tsx} && prettier --check packages/stencil-library/src/**/*{.ts,.tsx}",
+    "prepare": "husky install"
   },
   "dependencies": {
-    "@stencil/core": "^4.0.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
-    "@stencil-community/eslint-plugin": "^0.5.0",
-    "@stencil/store": "^2.0.9",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.11",
+    "@stencil-community/eslint-plugin": "^0.7.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-html": "^7.1.0",
     "husky": "^8.0.3",
-    "jest": "^27.5.1",
-    "jest-cli": "^27.5.1",
+    "lerna": "^7.4.2",
     "lint-staged": "^14.0.1",
-    "prettier": "3.0.3",
-    "puppeteer": "^21.0.3",
-    "typedoc": "^0.25.2",
-    "typedoc-plugin-markdown": "^3.16.0"
-  },
-  "license": "MIT"
+    "prettier": "3.0.3"
+  }
 }
