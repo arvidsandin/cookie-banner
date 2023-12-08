@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prepublish": "npm run build",
+    "publish": "cd dist/component-library && npm publish"
   },
   "private": true,
   "dependencies": {

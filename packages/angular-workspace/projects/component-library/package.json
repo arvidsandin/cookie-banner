@@ -1,10 +1,10 @@
 {
-  "name": "component-library",
-  "version": "0.0.1",
+  "name": "@cookie-banner/angular",
+  "version": "0.0.2",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
-    "@cookie-banner/stencil": "file:../stencil-library"
+    "@cookie-banner/stencil": "^0.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"
