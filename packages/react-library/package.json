@@ -1,6 +1,6 @@
 {
   "name": "@cookie-banner/react",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "> TODO: description",
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
   "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
   "dependencies": {
-    "@cookie-banner/stencil": "^0.0.1"
+    "@cookie-banner/stencil": "^0.0.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.38",
