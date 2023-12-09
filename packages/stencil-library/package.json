@@ -1,6 +1,6 @@
 {
   "name": "@cookie-banner/stencil",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "GDPR compliant cookie consent tool",
   "author": "Arvid Sandin <arvid.sandin.developer@gmail.com>",
   "main": "dist/index.cjs.js",
