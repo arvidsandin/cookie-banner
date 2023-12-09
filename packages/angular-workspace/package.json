@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prepublish": "npm run build",
+    "prepublish": "cd dist/component-library && npm install @cookie-banner/stencil@latest --save-peer && cd ../.. && npm run build",
     "publish": "cd dist/component-library && npm publish"
   },
   "private": true,

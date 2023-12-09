@@ -21,7 +21,9 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "npm run tsc",
-    "tsc": "tsc -p . --outDir ./dist"
+    "tsc": "tsc -p . --outDir ./dist",
+    "prepublish": "npm install @cookie-banner/stencil@latest && npm run build",
+    "publish": "npm publish"
   },
   "bugs": {
     "url": "https://github.com/arvidsandin/cookie-banner/issues"

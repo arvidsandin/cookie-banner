@@ -25,7 +25,9 @@
     "unitTest": "stencil test --spec",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "prepublish": "npm run build",
+    "publish": "npm publish"
   },
   "dependencies": {
     "@stencil/core": "^4.0.0"
