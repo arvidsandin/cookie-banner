@@ -7,10 +7,10 @@
   "scripts": {
     "lint": "eslint packages/stencil-library/src/**/*{.ts,.tsx} && prettier --check packages/stencil-library/src/**/*{.ts,.tsx}",
     "prepare": "husky install",
-    "publish-stencil": "cd packages/stencil-library && npm run publish",
+    "publish-stencil": "cd packages/stencil-library && npm publish",
     "publish-angular": "cd packages/angular-workspace && npm run publish",
-    "publish-react": "cd packages/react-library && npm run publish",
-    "publish-vue": "cd packages/vue-library && npm run publish",
+    "publish-react": "cd packages/react-library && npm publish",
+    "publish-vue": "cd packages/vue-library && npm publish",
     "prepublish": "lerna version --no-private --no-push ",
     "publish": "npm run publish-stencil && npm run publish-angular && npm run publish-react && npm run publish-vue"
     

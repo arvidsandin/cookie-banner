@@ -1,6 +1,6 @@
 {
   "name": "@cookie-banner/react",
-  "version": "0.0.4",
+  "version": "0.0.8",
   "description": "> TODO: description",
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
   "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
@@ -23,14 +23,13 @@
     "test": "node ./__tests__/react-library.test.js",
     "build": "npm run tsc",
     "tsc": "tsc -p . --outDir ./dist",
-    "prepublish": "npm install @cookie-banner/stencil@latest && npm run build",
-    "publish": "npm publish"
+    "prepublishOnly": "npm install && npm run build"
   },
   "bugs": {
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
   "dependencies": {
-    "@cookie-banner/stencil": "^0.0.4"
+    "@cookie-banner/stencil": "^0.0.8"
   },
   "devDependencies": {
     "@types/react": "^18.2.38",
