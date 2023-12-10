@@ -1,6 +1,6 @@
 {
   "name": "@cookie-banner/vue",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "> TODO: description",
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
   "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
@@ -28,7 +28,7 @@
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
   "dependencies": {
-    "@cookie-banner/stencil": "^0.0.8"
+    "@cookie-banner/stencil": "^0.0.9"
   },
   "devDependencies": {
     "vue": "^3.3.8"
