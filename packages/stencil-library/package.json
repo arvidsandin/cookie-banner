@@ -2,6 +2,14 @@
   "name": "@cookie-banner/stencil",
   "version": "0.0.9",
   "description": "GDPR compliant cookie consent tool",
+  "keywords": [
+    "gdpr",
+    "cookie consent",
+    "cookie banner",
+    "cookies",
+    "web component",
+    "stencil"
+  ],
   "author": "Arvid Sandin <arvid.sandin.developer@gmail.com>",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -13,7 +21,7 @@
   "unpkg": "dist/cookie-banner/cookie-banner.esm.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ionic-team/stencil-component-starter.git"
+    "url": "https://github.com/arvidsandin/cookie-banner.git"
   },
   "files": [
     "dist/",
