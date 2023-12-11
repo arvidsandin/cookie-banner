@@ -18,6 +18,12 @@
 * [Vue](packages/vue-library/README.md)
 * [Web Component](packages/stencil-library/README.md)
 
+Or go directly to the npm page:
+
+* [Angular component on npm](https://www.npmjs.com/package/@cookie-banner/angular)
+* [React component on npm](https://www.npmjs.com/package/@cookie-banner/react)
+* [Vue component on npm](https://www.npmjs.com/package/@cookie-banner/vue)
+* [Web Component on npm](https://www.npmjs.com/package/@cookie-banner/stencil)
 
 ## Development
 
