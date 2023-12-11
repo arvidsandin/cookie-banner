@@ -39,8 +39,8 @@ onChange('cookieConsent', value => {
 });
 
 //From https://stackoverflow.com/posts/2536445/timeline
-function monthDiff(d1, d2) {
-  var months;
+function monthDiff(d1: Date, d2: Date) {
+  let months: number;
   months = (d2.getFullYear() - d1.getFullYear()) * 12;
   months -= d1.getMonth();
   months += d2.getMonth();
