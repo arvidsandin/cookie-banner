@@ -10,7 +10,7 @@
 | Property           | Attribute | Description                                          | Type                             | Default     |
 | ------------------ | --------- | ---------------------------------------------------- | -------------------------------- | ----------- |
 | `acceptCategories` | --        | A function to use when accepting categories          | `(categories: string[]) => void` | `undefined` |
-| `hideBanner`       | --        |                                                      | `() => void`                     | `undefined` |
+| `hideBanner`       | --        | A function to make the banner reappear               | `() => void`                     | `undefined` |
 | `showOptions`      | --        | A function to set the options view as the active one | `() => void`                     | `undefined` |
 
 

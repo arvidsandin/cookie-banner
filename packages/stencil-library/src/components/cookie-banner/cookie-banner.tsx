@@ -45,10 +45,10 @@ export class CookieBanner {
     this.forceBannerVisibility = true;
     this.bannerHidden = false;
   }
-  @Method()
   /**
    * Hide the banner
    */
+  @Method()
   async hideBanner() {
     this.forceBannerVisibility = false;
     this.bannerHidden = true;

@@ -26,6 +26,9 @@ export namespace Components {
           * @returns Whether the user has consented to that cookie
          */
         "hasConsent": (key: string) => Promise<boolean>;
+        /**
+          * Hide the banner
+         */
         "hideBanner": () => Promise<void>;
         /**
           * Set the options used for the component. Is required to run at initialization, but can be run any number of times after that
@@ -43,7 +46,15 @@ export namespace Components {
         "showBanner": () => Promise<void>;
     }
     interface FloatingCookieButton {
+        /**
+          * Change the color of the cookie button
+          * @param background CSS value to use for the background color
+          * @param foreground CSS value to use for the cookie icon
+         */
         "changeColor": (background: string, foreground: string) => Promise<void>;
+        /**
+          * A function to make the banner reappear
+         */
         "showBanner": () => void;
     }
     interface MoreOptionsBanner {
@@ -65,6 +76,9 @@ export namespace Components {
           * A function to use when accepting categories
          */
         "acceptCategories": (categories: string[]) => void;
+        /**
+          * A function to make the banner reappear
+         */
         "hideBanner": () => void;
         /**
           * A function to set the options view as the active one
@@ -129,6 +143,9 @@ declare namespace LocalJSX {
         "onConsentUpdated"?: (event: CookieBannerCustomEvent<string[]>) => void;
     }
     interface FloatingCookieButton {
+        /**
+          * A function to make the banner reappear
+         */
         "showBanner"?: () => void;
     }
     interface MoreOptionsBanner {
@@ -150,6 +167,9 @@ declare namespace LocalJSX {
           * A function to use when accepting categories
          */
         "acceptCategories"?: (categories: string[]) => void;
+        /**
+          * A function to make the banner reappear
+         */
         "hideBanner"?: () => void;
         /**
           * A function to set the options view as the active one

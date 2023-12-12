@@ -14,6 +14,9 @@ export class PrimaryBanner {
    * A function to set the options view as the active one
    */
   @Prop() showOptions: () => void;
+  /**
+   * A function to make the banner reappear
+   */
   @Prop() hideBanner: () => void;
 
   private rejectAllCookies = () => {
