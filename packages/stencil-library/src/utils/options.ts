@@ -34,7 +34,7 @@ export interface Options {
      * Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`.
      * If no occurence of { Link } is found, the word and link will be appended at the end.
      * To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that.
-     * @default `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time.'`
+     * @default `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time by clicking the cookie button.'`
      */
     mainContent?: string;
     /**
@@ -51,7 +51,7 @@ export interface Options {
     accept?: string;
     /**
      * The text on the button that rejects all non - essential cookies.
-     * @default `'Reject non-essential'`
+     * @default `'Reject non-essential cookies'`
      */
     reject?: string;
     /**

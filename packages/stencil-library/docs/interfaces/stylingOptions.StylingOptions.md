@@ -32,7 +32,7 @@ The background color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:21](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L21)
+[stylingOptions.ts:21](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L21)
 
 ___
 
@@ -48,7 +48,7 @@ The background color of the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:41](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L41)
+[stylingOptions.ts:41](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L41)
 
 ___
 
@@ -64,7 +64,7 @@ The border color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:26](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L26)
+[stylingOptions.ts:26](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L26)
 
 ___
 
@@ -80,7 +80,7 @@ The border color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:46](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L46)
+[stylingOptions.ts:46](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L46)
 
 ___
 
@@ -96,7 +96,7 @@ The border radius of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:11](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L11)
+[stylingOptions.ts:11](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L11)
 
 ___
 
@@ -112,7 +112,7 @@ The border radius of the buttons in mobile view
 
 #### Defined in
 
-[stylingOptions.ts:16](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L16)
+[stylingOptions.ts:16](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L16)
 
 ___
 
@@ -128,7 +128,7 @@ The border radius of the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:6](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L6)
+[stylingOptions.ts:6](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L6)
 
 ___
 
@@ -144,7 +144,7 @@ The text color on the buttons
 
 #### Defined in
 
-[stylingOptions.ts:31](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L31)
+[stylingOptions.ts:31](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L31)
 
 ___
 
@@ -160,4 +160,4 @@ The text color in the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:36](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/stylingOptions.ts#L36)
+[stylingOptions.ts:36](https://github.com/arvidsandin/cookie-banner/blob/833ed80/packages/stencil-library/src/utils/stylingOptions.ts#L36)
