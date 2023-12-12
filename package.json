@@ -11,8 +11,7 @@
     "publish-angular": "cd packages/angular-workspace && npm run publish",
     "publish-react": "cd packages/react-library && npm publish",
     "publish-vue": "cd packages/vue-library && npm publish",
-    "prepublish": "lerna version --no-private --no-push ",
-    "publish": "npm run publish-stencil && npm run publish-angular && npm run publish-react && npm run publish-vue"
+    "publish": "lerna version --no-private --no-push && npm run publish-angular && npm run publish-react && npm run publish-vue"
     
   },
   "dependencies": {
