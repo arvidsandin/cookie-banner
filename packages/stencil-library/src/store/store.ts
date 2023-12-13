@@ -24,10 +24,27 @@ onChange('options', value => {
     lastAccepted: null,
     acceptedCategories: [],
   };
+
+  if (monthDiff(new Date(state.cookieConsent.lastAccepted), new Date()) > state.options.monthsOfValidity) {
+    //Overwrite outdated consent
+    state.cookieConsent = {
+      lastAccepted: null,
+      acceptedCategories: [],
+    };
+  }
 });
 
 onChange('cookieConsent', value => {
   localStorage.setItem(state.options.storageName, JSON.stringify(value));
 });
+
+//From https://stackoverflow.com/posts/2536445/timeline
+function monthDiff(d1: Date, d2: Date) {
+  let months: number;
+  months = (d2.getFullYear() - d1.getFullYear()) * 12;
+  months -= d1.getMonth();
+  months += d2.getMonth();
+  return months <= 0 ? 0 : months;
+}
 
 export default state;

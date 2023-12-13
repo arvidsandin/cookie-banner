@@ -27,6 +27,11 @@ export interface Options {
    * @default `true`
    */
   useCookieButton?: boolean;
+  /**
+   * How many months a cookie choice should be considered valid
+   * @default 12
+   */
+  monthsOfValidity?: number;
   texts?: {
     /**
      * The text viewed in the first layer of the cookie banner.

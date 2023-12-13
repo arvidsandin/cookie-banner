@@ -83,6 +83,48 @@ describe('linkText', () => {
   });
 });
 
+describe('monthsOfValidity', () => {
+  [
+    {
+      monthsOfValidity: -1,
+      errorMessage: 'monthsOfValididy cannot be negative',
+    },
+    {
+      monthsOfValidity: -10,
+      errorMessage: 'monthsOfValididy cannot be negative',
+    },
+    {
+      monthsOfValidity: Number.NEGATIVE_INFINITY,
+      errorMessage: 'monthsOfValididy cannot be negative',
+    },
+  ].forEach(({ monthsOfValidity, errorMessage }) =>
+    it(`throw ${errorMessage} when monthsOfValidity is ${monthsOfValidity}`, () => {
+      const theCookieBanner = new CookieBanner();
+      const options = {
+        cookiePolicyLastUpdated: '2023-01-01',
+        linkToPrivacyPolicy: 'https://example.com',
+        monthsOfValidity,
+      };
+
+      expect(theCookieBanner.setOptions(options)).rejects.toThrow(errorMessage);
+    }),
+  );
+
+  [{ monthsOfValidity: null }, { monthsOfValidity: 0 }, { monthsOfValidity: 1 }, { monthsOfValidity: Number.MAX_VALUE }, { monthsOfValidity: Number.POSITIVE_INFINITY }].forEach(
+    ({ monthsOfValidity }) =>
+      it(`throws no error on when input is ${monthsOfValidity}`, async () => {
+        const theCookieBanner = new CookieBanner();
+        const options = {
+          cookiePolicyLastUpdated: '2023-01-01',
+          linkToPrivacyPolicy: 'https://example.com',
+          monthsOfValidity,
+        };
+
+        expect(theCookieBanner.setOptions(options)).resolves.toBe(undefined);
+      }),
+  );
+});
+
 describe('cookie-banner', () => {
   [
     {
