@@ -145,7 +145,8 @@ export class CookieBanner {
     if (!formattedOptions.texts.mainContent) {
       formattedOptions.texts.mainContent = `This website uses ${formattedOptions.texts.essentialPurpose} cookies, as well as cookies for ${this.listToString(
         formattedOptions.categories.map(c => c.purpose),
-      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button.`;
+      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button.
+      Click "${formattedOptions.texts.moreOptions}" to only allow some of the cookies or to view more details of the purposes.`;
     }
 
     //Turn text into html
