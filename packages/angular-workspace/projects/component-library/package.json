@@ -1,10 +1,29 @@
 {
-  "name": "component-library",
-  "version": "0.0.1",
+  "name": "@cookie-banner/angular",
+  "version": "0.0.9",
+  "description": "GDPR compliant cookie consent tool",
+  "keywords": [
+    "gdpr",
+    "cookie consent",
+    "cookie banner",
+    "cookies",
+    "web component",
+    "angular"
+  ],
+  "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
+  "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arvidsandin/cookie-banner.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arvidsandin/cookie-banner/issues"
+  },
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
-    "@cookie-banner/stencil": "file:../stencil-library"
+    "@cookie-banner/stencil": "^0.0.1"
   },
   "dependencies": {
     "tslib": "^2.3.0"

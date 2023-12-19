@@ -5,8 +5,16 @@ import { Component, Method, Prop, h } from '@stencil/core';
   shadow: true,
 })
 export class FloatingCookieButton {
+  /**
+   * A function to make the banner reappear
+   */
   @Prop() showBanner: () => void;
 
+  /**
+   * Change the color of the cookie button
+   * @param background CSS value to use for the background color
+   * @param foreground CSS value to use for the cookie icon
+   */
   @Method()
   async changeColor(background: string, foreground: string) {
     this.button.style.backgroundColor = background;

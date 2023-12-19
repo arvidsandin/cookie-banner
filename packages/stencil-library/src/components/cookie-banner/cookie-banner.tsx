@@ -45,10 +45,10 @@ export class CookieBanner {
     this.forceBannerVisibility = true;
     this.bannerHidden = false;
   }
-  @Method()
   /**
    * Hide the banner
    */
+  @Method()
   async hideBanner() {
     this.forceBannerVisibility = false;
     this.bannerHidden = true;
@@ -109,7 +109,7 @@ export class CookieBanner {
     texts: {
       mainContent: null,
       linkText: 'privacy policy',
-      accept: 'Accept all',
+      accept: 'Accept all cookies',
       reject: 'Reject non-essential',
       moreOptions: 'More options',
       back: 'Back',
@@ -145,7 +145,7 @@ export class CookieBanner {
     if (!formattedOptions.texts.mainContent) {
       formattedOptions.texts.mainContent = `This website uses ${formattedOptions.texts.essentialPurpose} cookies, as well as cookies for ${this.listToString(
         formattedOptions.categories.map(c => c.purpose),
-      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button..`;
+      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button.`;
     }
 
     //Turn text into html

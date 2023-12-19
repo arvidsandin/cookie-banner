@@ -1,12 +1,14 @@
 {
-  "name": "@cookie-banner/angular",
+  "name": "angular-workspace",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "updatePeerDep": "cd projects/component-library && npm install @cookie-banner/stencil@latest --save-peer",
+    "publish": "npm run updatePeerDep && npm run build && cd dist/component-library && npm publish"
   },
   "private": true,
   "dependencies": {

@@ -31,7 +31,7 @@ If left empty, it implies only essential cookies are used, in which case it does
 
 #### Defined in
 
-[options.ts:24](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L24)
+[options.ts:24](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L24)
 
 ___
 
@@ -45,7 +45,7 @@ Can be any string parsable by the Date() function in Javascript.
 
 #### Defined in
 
-[options.ts:8](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L8)
+[options.ts:8](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L8)
 
 ___
 
@@ -57,7 +57,7 @@ A relative or absolute link to the privacy policy.
 
 #### Defined in
 
-[options.ts:12](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L12)
+[options.ts:12](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L12)
 
 ___
 
@@ -73,7 +73,7 @@ The key to use for storing the consent in localStorage.
 
 #### Defined in
 
-[options.ts:17](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L17)
+[options.ts:17](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L17)
 
 ___
 
@@ -92,13 +92,13 @@ ___
 | `essentialDescription?` | `string` | The desription of the "essential cookies" category diplayed in the second layer of the cookie banner **`Default`** `'Essental cookies are cookies that are strictly necessary for the core functionalities of the website. These are required to ensure proper behaviour when using the website and can not be disabled.'` |
 | `essentialPurpose?` | `string` | The adjective to use in `options.texts.mainContent` before the word "cookies". This is required if `options.texts.mainContent` is not set, otherwise it will not be used at all. **`Default`** `'essential'` |
 | `linkText?` | `string` | The word(s) that should link to the privacy policy. Will replace {Link} in `texts.mainContent`. **`Default`** `'privacy policy'` |
-| `mainContent?` | `string` | The text viewed in the first layer of the cookie banner. If not set, it will automatically insert the categories defined in `categories` in the text. Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`. If no occurence of { Link } is found, the word and link will be appended at the end. To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that. **`Default`** `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time.'` |
+| `mainContent?` | `string` | The text viewed in the first layer of the cookie banner. If not set, it will automatically insert the categories defined in `categories` in the text. Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`. If no occurence of { Link } is found, the word and link will be appended at the end. To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that. **`Default`** `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time by clicking the cookie button.'` |
 | `moreOptions?` | `string` | The text on the button that takes the user to the second layer of the cookie banner. **`Default`** `'More options'` |
-| `reject?` | `string` | The text on the button that rejects all non - essential cookies. **`Default`** `'Reject non-essential'` |
+| `reject?` | `string` | The text on the button that rejects all non - essential cookies. **`Default`** `'Reject non-essential cookies'` |
 
 #### Defined in
 
-[options.ts:30](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L30)
+[options.ts:30](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L30)
 
 ___
 
@@ -114,4 +114,4 @@ Whether to include a floating button to change consent in the future. If set to 
 
 #### Defined in
 
-[options.ts:29](https://github.com/arvidsandin/cookie-banner/blob/3b40c61/packages/stencil-library/src/utils/options.ts#L29)
+[options.ts:29](https://github.com/arvidsandin/cookie-banner/blob/e5447aa/packages/stencil-library/src/utils/options.ts#L29)

@@ -1,7 +1,15 @@
 {
   "name": "@cookie-banner/vue",
-  "version": "0.0.0",
-  "description": "> TODO: description",
+  "version": "0.0.9",
+  "description": "GDPR compliant cookie consent tool",
+  "keywords": [
+    "gdpr",
+    "cookie consent",
+    "cookie banner",
+    "cookies",
+    "web component",
+    "vue"
+  ],
   "author": "Arvid Sandin <36199701+arvidsandin@users.noreply.github.com>",
   "homepage": "https://github.com/arvidsandin/cookie-banner#readme",
   "license": "MIT",
@@ -21,13 +29,16 @@
   "scripts": {
     "test": "echo \"Error: run tests from root\" && exit 1",
     "build": "npm run tsc",
-    "tsc": "tsc -p . --outDir ./dist"
+    "tsc": "tsc -p . --outDir ./dist",
+    "prepublishOnly": "npm install && npm run build"
   },
   "bugs": {
     "url": "https://github.com/arvidsandin/cookie-banner/issues"
   },
+  "dependencies": {
+    "@cookie-banner/stencil": "^0.0.9"
+  },
   "devDependencies": {
-    "@cookie-banner/stencil": "file:../stencil-library",
     "vue": "^3.3.8"
   },
   "publishConfig": {

@@ -46,7 +46,7 @@ Whether the user has consented to that cookie
 
 ### `hideBanner() => Promise<void>`
 
-
+Hide the banner
 
 #### Returns
 

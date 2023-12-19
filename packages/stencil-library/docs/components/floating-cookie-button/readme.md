@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property     | Attribute | Description | Type         | Default     |
-| ------------ | --------- | ----------- | ------------ | ----------- |
-| `showBanner` | --        |             | `() => void` | `undefined` |
+| Property     | Attribute | Description                            | Type         | Default     |
+| ------------ | --------- | -------------------------------------- | ------------ | ----------- |
+| `showBanner` | --        | A function to make the banner reappear | `() => void` | `undefined` |
 
 
 ## Methods
 
 ### `changeColor(background: string, foreground: string) => Promise<void>`
 
-
+Change the color of the cookie button
 
 #### Returns
 
