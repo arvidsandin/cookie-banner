@@ -23,7 +23,7 @@ export class CookieBanner {
    * @returns An array with the keys of all cookies that the user has consented to
    */
   @Method()
-  async getCategoriesWithConsent() {
+  async getCategoriesWithConsent(): Promise<string[]> {
     return state.cookieConsent.acceptedCategories;
   }
   /**
