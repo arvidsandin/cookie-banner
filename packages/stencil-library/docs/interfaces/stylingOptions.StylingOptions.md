@@ -14,7 +14,7 @@
 - [borderColorMainBox](stylingOptions.StylingOptions.md#bordercolormainbox)
 - [borderRadiusButton](stylingOptions.StylingOptions.md#borderradiusbutton)
 - [borderRadiusButtonMobile](stylingOptions.StylingOptions.md#borderradiusbuttonmobile)
-- [borderRadiusMainbox](stylingOptions.StylingOptions.md#borderradiusmainbox)
+- [borderRadiusMainBox](stylingOptions.StylingOptions.md#borderradiusmainbox)
 - [textColorButton](stylingOptions.StylingOptions.md#textcolorbutton)
 - [textColorLink](stylingOptions.StylingOptions.md#textcolorlink)
 - [textColorMainBox](stylingOptions.StylingOptions.md#textcolormainbox)
@@ -33,7 +33,7 @@ The background color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:21](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L21)
+[stylingOptions.ts:21](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L21)
 
 ___
 
@@ -49,7 +49,7 @@ The background color of the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:46](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L46)
+[stylingOptions.ts:46](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L46)
 
 ___
 
@@ -65,7 +65,7 @@ The border color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:26](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L26)
+[stylingOptions.ts:26](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L26)
 
 ___
 
@@ -81,7 +81,7 @@ The border color of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:51](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L51)
+[stylingOptions.ts:51](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L51)
 
 ___
 
@@ -97,7 +97,7 @@ The border radius of the buttons
 
 #### Defined in
 
-[stylingOptions.ts:11](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L11)
+[stylingOptions.ts:11](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L11)
 
 ___
 
@@ -113,13 +113,13 @@ The border radius of the buttons in mobile view
 
 #### Defined in
 
-[stylingOptions.ts:16](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L16)
+[stylingOptions.ts:16](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L16)
 
 ___
 
-### borderRadiusMainbox
+### borderRadiusMainBox
 
-• `Optional` **borderRadiusMainbox**: `string`
+• `Optional` **borderRadiusMainBox**: `string`
 
 The border radius of the cookie banner
 
@@ -129,7 +129,7 @@ The border radius of the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:6](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L6)
+[stylingOptions.ts:6](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L6)
 
 ___
 
@@ -145,7 +145,7 @@ The text color on the buttons
 
 #### Defined in
 
-[stylingOptions.ts:31](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L31)
+[stylingOptions.ts:31](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L31)
 
 ___
 
@@ -161,7 +161,7 @@ The text color of the link to the privacy policy link
 
 #### Defined in
 
-[stylingOptions.ts:41](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L41)
+[stylingOptions.ts:41](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L41)
 
 ___
 
@@ -177,4 +177,4 @@ The text color in the cookie banner
 
 #### Defined in
 
-[stylingOptions.ts:36](https://github.com/arvidsandin/ask-manager/blob/9081a8f/packages/stencil-library/src/utils/stylingOptions.ts#L36)
+[stylingOptions.ts:36](https://github.com/arvidsandin/ask-manager/blob/e85fffc/packages/stencil-library/src/utils/stylingOptions.ts#L36)

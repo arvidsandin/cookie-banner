@@ -3,7 +3,7 @@ export interface StylingOptions {
    * The border radius of the cookie banner
    * @default `'3px'`
    */
-  borderRadiusMainbox?: string;
+  borderRadiusMainBox?: string;
   /**
    * The border radius of the buttons
    * @default `'10px'`

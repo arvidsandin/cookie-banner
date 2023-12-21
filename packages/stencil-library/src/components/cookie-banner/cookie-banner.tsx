@@ -88,7 +88,7 @@ export class CookieBanner {
 
   private getCurrentStyling(): StylingOptions {
     return {
-      borderRadiusMainbox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
+      borderRadiusMainBox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
       borderRadiusButton: getComputedStyle(this.el).getPropertyValue('--borderRadiusButton'),
       borderRadiusButtonMobile: getComputedStyle(this.el).getPropertyValue('--borderRadiusButtonMobile'),
       backgroundColorButton: getComputedStyle(this.el).getPropertyValue('--backgroundColorButton'),
