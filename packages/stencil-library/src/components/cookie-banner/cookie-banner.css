@@ -190,7 +190,7 @@ input:focus-visible~.checkmark {
 
 .close-button{
   background-color: #00000000;
-  color: #000000;
+  color: var(--textColorMainBox);
   border: none;
   box-shadow: none;
   padding: 0;
