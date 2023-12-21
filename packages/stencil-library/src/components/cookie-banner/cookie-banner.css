@@ -17,6 +17,7 @@
   --borderColorButton: #000000;
   --textColorButton: #ffffff;
   --textColorMainBox: #000000;
+  --textColorLink: #3366CC;
   --backgroundColorMainBox: #ffffff;
   --borderColorMainBox: #000000;
 }
@@ -42,6 +43,10 @@ button:hover{
 }
 button:active{
   transform:scale(0.97);
+}
+
+a{
+  color: var(--textColorLink);
 }
 
 .visibility-animation {

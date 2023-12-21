@@ -97,6 +97,7 @@ export class CookieBanner {
       textColorMainBox: getComputedStyle(this.el).getPropertyValue('--textColorMainBox'),
       backgroundColorMainBox: getComputedStyle(this.el).getPropertyValue('--backgroundColorMainBox'),
       borderColorMainBox: getComputedStyle(this.el).getPropertyValue('--borderColorMainBox'),
+      textColorLink: getComputedStyle(this.el).getPropertyValue('--textColorLink'),
     };
   }
   private readonly defaultOptions: Options = {

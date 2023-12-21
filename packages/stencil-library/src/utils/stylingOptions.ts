@@ -35,6 +35,11 @@ export interface StylingOptions {
    */
   textColorMainBox?: string;
   /**
+   * The text color of the link to the privacy policy link
+   * @default `'#3366CC'`
+   */
+  textColorLink?: string;
+  /**
    * The background color of the cookie banner
    * @default `'#ffffff'`
    */
