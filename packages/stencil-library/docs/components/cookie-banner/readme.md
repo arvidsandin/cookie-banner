@@ -24,13 +24,13 @@ Type: `Promise<void>`
 
 
 
-### `getCategoriesWithConsent() => Promise<any[]>`
+### `getCategoriesWithConsent() => Promise<string[]>`
 
 Get the categories that the user has consented to
 
 #### Returns
 
-Type: `Promise<any[]>`
+Type: `Promise<string[]>`
 
 An array with the keys of all cookies that the user has consented to
 

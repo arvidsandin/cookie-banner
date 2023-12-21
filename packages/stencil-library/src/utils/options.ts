@@ -7,7 +7,7 @@ export interface Options {
    */
   cookiePolicyLastUpdated: string;
   /**
-   * A relative or absolute link to the privacy policy.
+   * A relative or absolute link to a privacy policy or cookie policy.
    */
   linkToPrivacyPolicy: string;
   /**
@@ -39,11 +39,11 @@ export interface Options {
      * Write {Link} (with brackets) in place of the word that you want to link to the privacy policy, and the word itself in `texts.linkText`.
      * If no occurence of { Link } is found, the word and link will be appended at the end.
      * To comply with the GDPR, this text must contain the purposes(categories) of the cookies used, a link to an information page(privacy policy) and information that the user can withdraw their consent at any time and how they can do that.
-     * @default `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time by clicking the cookie button.'`
+     * @default `'This website uses cookies for [purpose categories] purposes. Read more in our {Link}. You can manage your choices at any time by clicking the cookie button. Click "More options" to only allow some of the cookies or to view more details of the purposes.'`
      */
     mainContent?: string;
     /**
-     * The word(s) that should link to the privacy policy.
+     * The word(s) that should link to the privacy/cookie policy.
      * Will replace {Link} in `texts.mainContent`.
      * @default `'privacy policy'`
      */

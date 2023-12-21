@@ -3,7 +3,7 @@ export interface StylingOptions {
    * The border radius of the cookie banner
    * @default `'3px'`
    */
-  borderRadiusMainbox?: string;
+  borderRadiusMainBox?: string;
   /**
    * The border radius of the buttons
    * @default `'10px'`
@@ -34,6 +34,11 @@ export interface StylingOptions {
    * @default `'#000000'`
    */
   textColorMainBox?: string;
+  /**
+   * The text color of the link to the privacy policy link
+   * @default `'#3366CC'`
+   */
+  textColorLink?: string;
   /**
    * The background color of the cookie banner
    * @default `'#ffffff'`

@@ -19,7 +19,7 @@ export namespace Components {
           * Get the categories that the user has consented to
           * @returns An array with the keys of all cookies that the user has consented to
          */
-        "getCategoriesWithConsent": () => Promise<any[]>;
+        "getCategoriesWithConsent": () => Promise<string[]>;
         /**
           * Check if the user has conseted to a particular category
           * @param key The category of cookie to check consent status for

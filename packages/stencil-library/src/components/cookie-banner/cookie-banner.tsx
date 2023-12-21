@@ -23,7 +23,7 @@ export class CookieBanner {
    * @returns An array with the keys of all cookies that the user has consented to
    */
   @Method()
-  async getCategoriesWithConsent() {
+  async getCategoriesWithConsent(): Promise<string[]> {
     return state.cookieConsent.acceptedCategories;
   }
   /**
@@ -88,7 +88,7 @@ export class CookieBanner {
 
   private getCurrentStyling(): StylingOptions {
     return {
-      borderRadiusMainbox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
+      borderRadiusMainBox: getComputedStyle(this.el).getPropertyValue('--borderRadiusMainbox'),
       borderRadiusButton: getComputedStyle(this.el).getPropertyValue('--borderRadiusButton'),
       borderRadiusButtonMobile: getComputedStyle(this.el).getPropertyValue('--borderRadiusButtonMobile'),
       backgroundColorButton: getComputedStyle(this.el).getPropertyValue('--backgroundColorButton'),
@@ -97,6 +97,7 @@ export class CookieBanner {
       textColorMainBox: getComputedStyle(this.el).getPropertyValue('--textColorMainBox'),
       backgroundColorMainBox: getComputedStyle(this.el).getPropertyValue('--backgroundColorMainBox'),
       borderColorMainBox: getComputedStyle(this.el).getPropertyValue('--borderColorMainBox'),
+      textColorLink: getComputedStyle(this.el).getPropertyValue('--textColorLink'),
     };
   }
   private readonly defaultOptions: Options = {
@@ -145,7 +146,8 @@ export class CookieBanner {
     if (!formattedOptions.texts.mainContent) {
       formattedOptions.texts.mainContent = `This website uses ${formattedOptions.texts.essentialPurpose} cookies, as well as cookies for ${this.listToString(
         formattedOptions.categories.map(c => c.purpose),
-      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button.`;
+      )} purposes. Read more in our ${this.stringTokenForLink}. You can manage your choices at any time by clicking the cookie button.
+      Click "${formattedOptions.texts.moreOptions}" to only allow some of the cookies or to view more details of the purposes.`;
     }
 
     //Turn text into html

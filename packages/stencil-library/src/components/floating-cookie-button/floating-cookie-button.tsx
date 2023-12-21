@@ -20,9 +20,9 @@ export class FloatingCookieButton {
     this.button.style.backgroundColor = background;
     this.button.style.color = foreground;
 
-    const g = this.button.getElementsByTagName('g');
-    for (let i = 0; i < g.length; i++) {
-      g[i].style.stroke = foreground;
+    const g_elements = this.button.getElementsByTagName('g');
+    for (const g_element of g_elements) {
+      g_element.style.stroke = foreground;
     }
   }
 
